@@ -22,7 +22,6 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
-cocos2d/
 proj.android/
 proj.ios_mac/
 proj.linux/
