@@ -29,7 +29,7 @@ Scene* HallScene::createScene()
 
 bool HallScene::init()
 {
-    if (!LayerColor::initWithColor(Color4B(255, 255, 255, 255)))
+    if (!LayerColor::initWithColor(Color4B(255, 255, 255, 0)))
     {
         return false;
     }
@@ -62,7 +62,7 @@ bool HallScene::init()
     addChild(m_ActMenu);
 
 	m_Sprite = HallSprite::create();
-	addChild(m_Sprite);
+	addChild(m_Sprite,-1);
     return true;
 }
 
