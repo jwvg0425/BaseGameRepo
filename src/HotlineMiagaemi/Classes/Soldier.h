@@ -8,7 +8,10 @@ public:
     virtual ~Soldier();
 
     Sprite*     getSprite();
-    ImagoType   getType(){ return m_ImagoType; }
+
+	virtual bool        isEvolve();
+	virtual Ant*        evolve();
+	virtual void        update(float dTime);
 
 };
 

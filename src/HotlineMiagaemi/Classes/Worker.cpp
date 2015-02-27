@@ -19,3 +19,18 @@ Sprite* Worker::getSprite()
 {
     return Sprite::create("worker.png");
 }
+
+bool Worker::isEvolve()
+{
+	return false;
+}
+
+Ant* Worker::evolve()
+{
+	return nullptr;
+}
+
+void Worker::update(float dTime)
+{
+
+}

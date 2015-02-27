@@ -19,3 +19,18 @@ Sprite* Princess::getSprite()
 {
     return Sprite::create("princess.png");
 }
+
+bool Princess::isEvolve()
+{
+	return false;
+}
+
+Ant* Princess::evolve()
+{
+	return nullptr;
+}
+
+void Princess::update(float dTime)
+{
+
+}

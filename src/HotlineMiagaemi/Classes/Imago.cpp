@@ -31,3 +31,8 @@ void Imago::attack(Ant* ant)
 
     ant->setHP(m_STR);
 }
+
+Imago::ImagoType Imago::getType()
+{
+	return m_ImagoType;
+}

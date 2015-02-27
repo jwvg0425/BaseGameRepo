@@ -19,3 +19,18 @@ Sprite* Soldier::getSprite()
 {
     return Sprite::create("soldier.png");
 }
+
+bool Soldier::isEvolve()
+{
+	return false;
+}
+
+Ant* Soldier::evolve()
+{
+	return nullptr;
+}
+
+void Soldier::update(float dTime)
+{
+
+}

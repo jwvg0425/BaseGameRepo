@@ -7,7 +7,9 @@ public:
     Male();
     virtual ~Male();
 
-    Sprite*     getSprite();
-    ImagoType   getType(){ return m_ImagoType; }
+    Sprite*				getSprite();
+	virtual bool        isEvolve();
+	virtual Ant*        evolve();
+	virtual void        update(float dTime);
 };
 

@@ -104,12 +104,18 @@ cocos2d::MenuItem* FosterScene::createActButton(const std::string& labelText, cc
 
 void FosterScene::feedCallback(cocos2d::Ref* ref)
 {
-
+	if (!m_IsAct)
+	{
+		startAction(1.0f);
+	}
 }
 
 void FosterScene::brainwashCallback(cocos2d::Ref* ref)
 {
-
+	if (!m_IsAct)
+	{
+		startAction(1.0f);
+	}
 }
 
 void FosterScene::trainCallback(cocos2d::Ref* ref)

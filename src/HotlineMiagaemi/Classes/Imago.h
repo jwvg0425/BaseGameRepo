@@ -22,7 +22,7 @@ public:
 
 	virtual void        update(float dTime) = 0;
 
-    virtual ImagoType   getType() = 0;
+    virtual ImagoType   getType();
 
     void                disguise(int pheromoneTime, ImagoType type);
 

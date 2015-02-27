@@ -1,4 +1,8 @@
 #include "Larva.h"
+#include "Worker.h"
+#include "Male.h"
+#include "Princess.h"
+#include "Soldier.h"
 
 
 Larva::Larva()
@@ -30,9 +34,27 @@ bool Larva::isEvolve()
 
 Ant* Larva::evolve()
 {
-	//TODO : 진화하면 뭐 되는지 정해서 리턴(적합한 성체 리턴)
+	int randomValue = rand() % 100;
+	Ant* evolveAnt;
 
-	return nullptr;
+	if (randomValue < 70)
+	{
+		evolveAnt = new Worker;
+	}
+	else if (randomValue < 90)
+	{
+		evolveAnt = new Soldier;
+	}
+	else if (randomValue < 96)
+	{
+		evolveAnt = new Princess;
+	}
+	else
+	{
+		evolveAnt = new Male;
+	}
+
+	return evolveAnt;
 }
 
 void Larva::update(float dTime)

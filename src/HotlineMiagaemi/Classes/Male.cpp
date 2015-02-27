@@ -19,3 +19,18 @@ Sprite* Male::getSprite()
 {
     return Sprite::create("male.png");
 }
+
+bool Male::isEvolve()
+{
+	return false;
+}
+
+Ant* Male::evolve()
+{
+	return nullptr;
+}
+
+void Male::update(float dTime)
+{
+
+}
