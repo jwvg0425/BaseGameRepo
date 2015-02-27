@@ -3,9 +3,11 @@
 
 Male::Male()
 {
-    m_HP = 500;
-    m_STR = 100;
-    m_INT = 50;
+    m_HP = 1500;
+    m_STR = 200;
+    m_INT = 100;
+    m_Life = 500;
+    m_ImagoType = IT_MALE;
 }
 
 

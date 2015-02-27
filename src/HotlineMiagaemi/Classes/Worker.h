@@ -7,7 +7,7 @@ public:
     Worker();
     virtual ~Worker();
 
-    Sprite* getSprite();
-
+    Sprite*     getSprite();
+    ImagoType   getType(){ return m_ImagoType; }
 };
 

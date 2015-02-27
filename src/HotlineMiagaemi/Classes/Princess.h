@@ -7,7 +7,8 @@ public:
     Princess();
     virtual ~Princess();
 
-    Sprite* getSprite();
+    Sprite*     getSprite();
+    ImagoType   getType(){ return m_ImagoType; }
 
 };
 

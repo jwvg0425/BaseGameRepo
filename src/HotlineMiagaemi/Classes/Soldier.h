@@ -7,7 +7,8 @@ public:
     Soldier();
     virtual ~Soldier();
 
-    Sprite* getSprite();
+    Sprite*     getSprite();
+    ImagoType   getType(){ return m_ImagoType; }
 
 };
 

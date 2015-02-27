@@ -17,3 +17,14 @@ Imago::Imago()
 Imago::~Imago()
 {
 }
+
+void Imago::disguise(int pheromoneTime, ImagoType type)
+{
+    m_PheromoneTime = pheromoneTime;
+    m_ImagoType = type;
+}
+
+void Imago::attack(Ant* ant)
+{
+    ant->setHP(m_STR);
+}

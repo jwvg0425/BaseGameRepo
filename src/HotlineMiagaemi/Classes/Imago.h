@@ -14,17 +14,25 @@ public:
         IT_SOLDIER
     };
 
-    virtual Sprite* getSprite() = 0;
+    virtual Sprite*     getSprite() = 0;
 
-	virtual bool isEvolve() = 0;
+	virtual bool        isEvolve() = 0;
 
-	virtual Ant* evolve() = 0;
+	virtual Ant*        evolve() = 0;
 
-	virtual void update(float dTime) = 0;
+	virtual void        update(float dTime) = 0;
+
+    virtual ImagoType   getType() = 0;
+
+    void                disguise(int pheromoneTime, ImagoType type);
+
+    void                attack(Ant* ant);
 
 private:
     int m_Satiety;
-protected:
 
+protected:
+    int         m_PheromoneTime;
+    ImagoType   m_ImagoType;
 };
 

@@ -7,6 +7,7 @@ public:
     Male();
     virtual ~Male();
 
-    Sprite* getSprite();
+    Sprite*     getSprite();
+    ImagoType   getType(){ return m_ImagoType; }
 };
 

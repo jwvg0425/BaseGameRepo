@@ -27,6 +27,8 @@ public:
 
 	StateType getType();
 
+    void setHP(int Damage);
+
 	bool isFeed();
 	bool isBrainwash();
 	bool isTrain();
@@ -37,8 +39,9 @@ protected:
 	int     m_STR;
 	int     m_HP;
 	int     m_INT;
+    int     m_Life;
 	Sprite* m_Sprite;
-	Ant*  m_State;
+	Ant*    m_State;
 	StateType	m_Type;
 
     bool        m_IsFeed;
