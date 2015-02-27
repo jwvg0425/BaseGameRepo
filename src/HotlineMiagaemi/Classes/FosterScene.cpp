@@ -222,6 +222,8 @@ void FosterScene::update(float dTime)
 			completeAction();
 		}
 	}
+
+	m_StatWindow->update(dTime);
 }
 
 void FosterScene::setActButtonEnable(cocos2d::MenuItem* item, bool enable)
@@ -275,7 +277,7 @@ void FosterScene::updateGauge()
 void FosterScene::feedComplete()
 {
 	GameManager::getInstance()->getAnt()->addSatiety(10);
-	GameManager::getInstance()->getAnt()->addLife(1);
+	GameManager::getInstance()->getAnt()->addAge(1);
 
 	auto type = GameManager::getInstance()->getAnt()->getType();
 
@@ -297,7 +299,7 @@ void FosterScene::brainwashComplete()
 {
 	GameManager::getInstance()->getAnt()->addInt(3);
 	GameManager::getInstance()->getAnt()->addSatiety(-5);
-	GameManager::getInstance()->getAnt()->addLife(1);
+	GameManager::getInstance()->getAnt()->addAge(1);
 	auto type = GameManager::getInstance()->getAnt()->getType();
 
 	switch (type)

@@ -55,14 +55,16 @@ Ant* Larva::evolve()
 	}
 	else if (randomValue < 96)
 	{
-		evolveAnt = new Princess;
+		//TODO : Princess 완성되면 Princess로
+		evolveAnt = new Worker;
 	}
 	else
 	{
-		evolveAnt = new Male;
+		//TODO : Male 완성되면 Male로
+		evolveAnt = new Worker;
 	}
 
-	evolveAnt->addLife(m_Life);
+	evolveAnt->addAge(m_Age);
 	evolveAnt->addInt(m_INT);
 
 	return evolveAnt;

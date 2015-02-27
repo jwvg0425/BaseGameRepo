@@ -2,7 +2,7 @@
 
 
 Ant::Ant()
-:m_STR(0), m_HP(0), m_INT(0), m_Type(ST_NONE), m_Satiety(0)
+:m_STR(0), m_HP(0), m_INT(0), m_Life(0), m_Age(0), m_Type(ST_NONE), m_Satiety(0)
 {
 }
 
@@ -51,12 +51,42 @@ void Ant::addSatiety(int satiety)
 	m_Satiety += satiety;
 }
 
-void Ant::addLife(int life)
+void Ant::addAge(int age)
 {
-	m_Life += life;
+	m_Age += age;
 }
 
 void Ant::addInt(int val)
 {
 	m_INT += val;
+}
+
+int Ant::getHp()
+{
+	return m_HP;
+}
+
+int Ant::getStr()
+{
+	return m_STR;
+}
+
+int Ant::getInt()
+{
+	return m_INT;
+}
+
+int Ant::getLife()
+{
+	return m_Life;
+}
+
+int Ant::getSatiety()
+{
+	return m_Satiety;
+}
+
+int Ant::getAge()
+{
+	return m_Age;
 }

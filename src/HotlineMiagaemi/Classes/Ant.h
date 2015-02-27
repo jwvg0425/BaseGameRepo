@@ -36,14 +36,22 @@ public:
 	bool isStatVisible();
 
 	void addSatiety(int satiety);
-	void addLife(int life);
+	void addAge(int age);
 	void addInt(int val);
+
+	int getHp();
+	int getStr();
+	int getInt();
+	int getLife();
+	int getAge();
+	int getSatiety();
 
 protected:
 	int     m_STR;
 	int     m_HP;
 	int     m_INT;
     int     m_Life;
+	int		m_Age;
 	Sprite* m_Sprite;
 	int		m_Satiety;
 
