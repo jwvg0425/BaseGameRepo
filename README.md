@@ -1,13 +1,17 @@
-게임의 이름
+Hotline miagaemi
 ====
-간단한 게임의 설명 ( 민수를 키워서 세계를 정복하는 게임입니다. )<br>
-본 양식을 필요에 따라 자유롭게 수정하시면 됩니다.
+
+![screenshot](https://rv.wkcdn.net/http://rigvedawiki.net/r1/pds/_ea_b0_9c_eb_af_b8_eb_a5_bc_20_ec_a3_bd_ec_9e_85_ec_8b_9c_eb_8b_a4_20_ea_b0_9c_eb_af_b8_eb_8a_94_20_eb_82_98_ec_9d_98_20_ec_9b_90_ec_88_98/antkill.jpg)
+
+개미를 죽입시다 개미는 나의 원수
+
+여왕개미 죽이기
+
 
 스크린샷
 ----
-![screenshot](http://img.naver.net/static/www/u/2013/0731/nmms_224940510.gif)
 
-팀 - [팀명]
+팀 - [남세]
 ----
-* [리니리노](깃허브 주소1)
-* [뷁뒑쉙뛝](깃허브 주소2)
+* [남현욱](깃허브 주소1)
+* [정세빈](깃허브 주소2)
