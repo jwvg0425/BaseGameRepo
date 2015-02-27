@@ -1,8 +1,10 @@
 #include "Egg.h"
 #include "Larva.h"
 
+const int Egg::m_EvolveTime = 10;
+
 Egg::Egg()
-:m_EvolveTime(10), m_Time(0)
+: m_Time(0)
 {
     m_IsFeed = false;
     m_IsBrainwash = false;
@@ -49,4 +51,9 @@ void Egg::update(float dTime)
 void Egg::addTime(float time)
 {
 	m_Time += time;
+}
+
+int Egg::getEvolveTime()
+{
+	return m_EvolveTime;
 }

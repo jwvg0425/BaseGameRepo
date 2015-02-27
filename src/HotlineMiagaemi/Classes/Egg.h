@@ -17,8 +17,10 @@ public:
 
 	virtual void update(float dTime);
 
+	static int getEvolveTime();
+
 private:
-    int m_EvolveTime;
+    static const int m_EvolveTime;
 	float m_Time;
 };
 

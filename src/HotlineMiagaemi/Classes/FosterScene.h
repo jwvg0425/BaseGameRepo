@@ -28,6 +28,11 @@ private:
 	void trainCallback(cocos2d::Ref* ref);
 	void infiltrateCallback(cocos2d::Ref* ref);
 
+	void startAction(float completeTime);
+	void completeAction();
+
+	void updateGauge();
+
 	cocos2d::Menu* m_ActMenu;
 	cocos2d::MenuItem* m_FeedItem;
 	cocos2d::MenuItem* m_BrainWashItem;
@@ -36,6 +41,11 @@ private:
 	cocos2d::Sprite* m_AntSprite;
 	cocos2d::Sprite* m_Gaugebar;
 	cocos2d::Sprite* m_Gauge;
+
+	float m_ActTime;
+	float m_CompleteTime;
+
+	bool m_IsAct;
 };
 
 #endif // __FOSTER_SCENE_H__

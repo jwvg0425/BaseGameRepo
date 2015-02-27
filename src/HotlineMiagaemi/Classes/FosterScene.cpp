@@ -61,15 +61,19 @@ bool FosterScene::init()
 	m_AntSprite->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2);
 
 	m_Gaugebar = Sprite::create("gaugebar.png");
+	m_Gaugebar->setAnchorPoint(Point(0, 0));
 	addChild(m_Gaugebar);
 
-	m_Gaugebar->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2 - 64);
+	m_Gaugebar->setPosition(WND_WIDTH_GAME / 2 - 32, WND_HEIGHT_GAME / 2 - 96);
 
 	m_Gauge = Sprite::create("gauge.png");
-	m_Gauge->setScaleX(0);
+	m_Gauge->setAnchorPoint(Point(0, 0));
 	addChild(m_Gauge);
 
-	m_Gauge->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2 - 64);
+	m_Gauge->setPosition(WND_WIDTH_GAME / 2 - 32, WND_HEIGHT_GAME / 2 - 96);
+
+	//TODO : 함수 받아서 action 종료시에 해당 함수 실행할 수 있게.
+	startAction(Egg::getEvolveTime());
 
 	scheduleUpdate();
 
@@ -77,7 +81,8 @@ bool FosterScene::init()
 }
 
 FosterScene::FosterScene() : m_ActMenu(nullptr), m_AntSprite(nullptr), m_BrainWashItem(nullptr),
-m_FeedItem(nullptr),m_Gaugebar(nullptr),m_Gauge(nullptr),m_InfiltrateItem(nullptr),m_TrainItem(nullptr)
+m_FeedItem(nullptr),m_Gaugebar(nullptr),m_Gauge(nullptr),m_InfiltrateItem(nullptr),m_TrainItem(nullptr),
+m_ActTime(0.0f), m_CompleteTime(0.0f), m_IsAct(false)
 {
 
 }
@@ -139,6 +144,18 @@ void FosterScene::update(float dTime)
 		setActButtonEnable(m_TrainItem, evolveAnt->isTrain());
 		setActButtonEnable(m_InfiltrateItem, evolveAnt->isInfiltrate());
 	}
+
+	if (m_IsAct)
+	{
+		m_ActTime += dTime;
+
+		updateGauge();
+
+		if (m_ActTime > m_CompleteTime)
+		{
+			completeAction();
+		}
+	}
 }
 
 void FosterScene::setActButtonEnable(cocos2d::MenuItem* item, bool enable)
@@ -153,4 +170,32 @@ void FosterScene::setActButtonEnable(cocos2d::MenuItem* item, bool enable)
 	{
 		item->setColor(Color3B(128, 128, 128));
 	}
+}
+
+void FosterScene::startAction(float completeTime)
+{
+	m_CompleteTime = completeTime;
+	m_IsAct = true;
+	m_ActTime = 0.0f;
+	m_Gaugebar->setVisible(true);
+	m_Gauge->setVisible(true);
+	m_Gauge->setScaleX(0.0f);
+}
+
+void FosterScene::completeAction()
+{
+	m_IsAct = false;
+	m_Gaugebar->setVisible(false);
+	m_Gauge->setVisible(false);
+}
+
+void FosterScene::updateGauge()
+{
+	float ratio = m_ActTime / m_CompleteTime;
+
+	if (ratio > 1.0f)
+	{
+		ratio = 1.0f;
+	}
+	m_Gauge->setScaleX(ratio);
 }
