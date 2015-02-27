@@ -3,10 +3,11 @@
 #include "GameManager.h"
 #include "TunnelManager.h"
 #include "const.h"
+#include "HallSprite.h"
 
 USING_NS_CC;
 
-HallScene::HallScene()
+HallScene::HallScene() : m_Sprite(nullptr)
 {
 }
 
@@ -59,6 +60,9 @@ bool HallScene::init()
     m_ActMenu->setPosition(WND_WIDTH_GAME * 5 / 8, 50);
 
     addChild(m_ActMenu);
+
+	m_Sprite = HallSprite::create();
+	addChild(m_Sprite);
     return true;
 }
 

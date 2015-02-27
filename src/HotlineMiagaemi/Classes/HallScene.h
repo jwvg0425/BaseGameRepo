@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 typedef std::function<void()> ActionFunc;
 
+class HallSprite;
 class HallScene : public cocos2d::LayerColor
 {
 public:
@@ -31,5 +32,6 @@ private:
     cocos2d::MenuItem*  m_DodgeItem;
     cocos2d::MenuItem*  m_MoveItem;
     cocos2d::MenuItem*  m_EnterItem;
+	HallSprite*			m_Sprite;
 };
 #endif
