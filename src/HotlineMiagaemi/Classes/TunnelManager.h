@@ -2,7 +2,8 @@
 #include "map"
 #include "vector"
 
-class Room;
+class RoomScene;
+
 class TunnelManager
 {
 public:
@@ -17,7 +18,7 @@ private:
 
     static TunnelManager* m_Instance;
 
-    std::map<int, Room*> m_RoomList;
+    std::map<int, RoomScene*> m_RoomList;
     std::vector<int>     m_RoomDeepList;
 };
 

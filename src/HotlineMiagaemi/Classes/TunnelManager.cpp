@@ -1,13 +1,11 @@
 #include "TunnelManager.h"
-#include "EggRoom.h"
-#include "PrincessRoom.h"
-#include "QueenRoom.h"
-#include "Room.h"
+#include "RoomScene.h"
 
 #define MAX_DEEP -200
 #define MIN_ROOM 4
 #define MAX_INTERVAL 10
 
+enum RoomType;
 TunnelManager* TunnelManager::m_Instance = nullptr;
 
 TunnelManager* TunnelManager::getInstance()
@@ -41,31 +39,23 @@ TunnelManager::~TunnelManager()
 void TunnelManager::initRoom()
 {
     int roomNum = MIN_ROOM + rand() % MIN_ROOM;
-    //QueenRoom 넣는 구간
+    //QueenRoom 1개 넣는 구간
     int yPosition = rand() % MAX_DEEP;
-    m_RoomList[yPosition] = new QueenRoom;
+    m_RoomList[yPosition] = new RoomScene;
     m_RoomDeepList.push_back(yPosition);
+    m_RoomList[yPosition]->SetRoomType(RT_QUEEN);
 
+    //나머지 Room 넣는 구간
     for (int i = 0; i < roomNum; ++i)
     {
-        int roomType = rand() % 3;
         int yPosition = rand() % MAX_DEEP;
         while (true)
         {
             if (CheckRoomInterval(yPosition))
             {
-                switch (roomType)
-                {
-                case 0:
-                    m_RoomList[yPosition] = new EggRoom;
-                    break;
-                case 1:
-                    m_RoomList[yPosition] = new PrincessRoom;
-                    break;
-                default:
-                    break;
-                }
+                m_RoomList[yPosition] = new RoomScene;
                 m_RoomDeepList.push_back(yPosition);
+                break;
             }
             yPosition = rand() % MAX_DEEP;
         }

@@ -139,7 +139,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\const.cpp" />
     <ClCompile Include="..\Classes\Cutscene.cpp" />
     <ClCompile Include="..\Classes\Egg.cpp" />
-    <ClCompile Include="..\Classes\EggRoom.cpp" />
     <ClCompile Include="..\Classes\FosterScene.cpp" />
     <ClCompile Include="..\Classes\GameManager.cpp" />
     <ClCompile Include="..\Classes\HallWay.cpp" />
@@ -147,10 +146,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\Larva.cpp" />
     <ClCompile Include="..\Classes\Male.cpp" />
     <ClCompile Include="..\Classes\Princess.cpp" />
-    <ClCompile Include="..\Classes\PrincessRoom.cpp" />
     <ClCompile Include="..\Classes\Queen.cpp" />
-    <ClCompile Include="..\Classes\QueenRoom.cpp" />
-    <ClCompile Include="..\Classes\Room.cpp" />
+    <ClCompile Include="..\Classes\RoomScene.cpp" />
     <ClCompile Include="..\Classes\Soldier.cpp" />
     <ClCompile Include="..\Classes\Ant.cpp" />
     <ClCompile Include="..\Classes\StatWindow.cpp" />
@@ -164,7 +161,6 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\const.h" />
     <ClInclude Include="..\Classes\Cutscene.h" />
     <ClInclude Include="..\Classes\Egg.h" />
-    <ClInclude Include="..\Classes\EggRoom.h" />
     <ClInclude Include="..\Classes\FosterScene.h" />
     <ClInclude Include="..\Classes\GameManager.h" />
     <ClInclude Include="..\Classes\HallWay.h" />
@@ -172,10 +168,8 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\Larva.h" />
     <ClInclude Include="..\Classes\Male.h" />
     <ClInclude Include="..\Classes\Princess.h" />
-    <ClInclude Include="..\Classes\PrincessRoom.h" />
     <ClInclude Include="..\Classes\Queen.h" />
-    <ClInclude Include="..\Classes\QueenRoom.h" />
-    <ClInclude Include="..\Classes\Room.h" />
+    <ClInclude Include="..\Classes\RoomScene.h" />
     <ClInclude Include="..\Classes\Soldier.h" />
     <ClInclude Include="..\Classes\Ant.h" />
     <ClInclude Include="..\Classes\StatWindow.h" />
