@@ -89,6 +89,9 @@ bool FosterScene::init()
 	addChild(sprite);
 
 	m_EggNum = Label::createWithSystemFont("5", TEXT_FONT, 64);
+	m_EggNum->setColor(Color3B(0, 0, 0));
+	m_EggNum->setPosition(132, 0);
+	m_EggNum->setAnchorPoint(Point(0, 0));
 	sprite->addChild(m_EggNum);
 
 	startAction(Egg::getEvolveTime(), nullptr);
