@@ -14,13 +14,18 @@ class RoomScene;
 
 class TunnelManager
 {
+    struct Size
+    {
+        int x;
+        int y;
+    };
 public:
     static  TunnelManager* getInstance();
     void releaseInstance();
     void initRoom();
     bool checkRoomInterval(int yPosition);
     void hallSceneCallback(cocos2d::Ref* sender);
-    void roomSceneCallback(int antPos);
+    void roomSceneCallback(int antYPos);
     bool isRoomExist(int antXPos, int antYPos);
     bool isLeft();
 
@@ -30,8 +35,9 @@ private:
 
     static TunnelManager* m_Instance;
 
-    std::map<int,bool>      m_RoomDirList;
-    std::map<int, RoomType> m_RoomTypeList;
+    std::map<int, bool>         m_RoomDirList;
+    std::map<int, RoomType>     m_RoomTypeList;
+    std::map<int, Size>         m_RoomSizeList;
 };
 
 #endif

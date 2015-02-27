@@ -47,6 +47,8 @@ void TunnelManager::initRoom()
         {
             int yPosition = -(rand() % MAX_DEEP);  //Room의 깊이설정
             auto isLeft = (rand() % 2) ? true : false; //Room의 방향설정
+            Size roomSize;
+            roomSize.x = rand() % 11 + 10; roomSize.y = rand() % 11 + 10; //Room의 사이즈설정
             //Room의 Type설정
             int random = rand() % 2;
             auto roomType = RT_NONE;
@@ -64,6 +66,7 @@ void TunnelManager::initRoom()
             {
                 m_RoomDirList[yPosition] = isLeft;
                 m_RoomTypeList[yPosition] = roomType;
+                m_RoomSizeList[yPosition] = roomSize;
                 break;
             }
         }
@@ -86,13 +89,15 @@ void TunnelManager::hallSceneCallback(Ref* sender)
     Director::getInstance()->replaceScene(HallScene::createScene());
 }
 
-void TunnelManager::roomSceneCallback(int antPos)
+void TunnelManager::roomSceneCallback(int antYPos)
 {
     for (auto& room : m_RoomTypeList)
     {
-        if (room.first == antPos)
+        if (room.first == antYPos)
         {
-            Director::getInstance()->replaceScene(RoomScene::createScene(room.second));
+            auto roomSize = m_RoomSizeList[antYPos];
+            auto isLeft = m_RoomDirList[antYPos];
+            Director::getInstance()->replaceScene(RoomScene::createScene(room.second, isLeft, roomSize.x, roomSize.y));
             return;
         }
     }
