@@ -6,7 +6,7 @@
 
 USING_NS_CC;
 
-HallSprite::HallSprite() : m_PlayerSprite(nullptr)
+HallSprite::HallSprite() : m_PlayerSprite(nullptr), m_Camera(0)
 {
 
 }
@@ -146,9 +146,10 @@ void HallSprite::update(float dTime)
 	{
 		if (yPos > m_PrevYPos)
 		{
-			if (yPos < -4)
+			if (m_Camera > 0)
 			{
 				runAction(MoveBy::create(0.5, Point(0, -64)));
+				m_Camera--;
 			}
 			m_PlayerSprite->runAction(MoveBy::create(0.5, Point(0, 64)));
 		}
@@ -157,6 +158,7 @@ void HallSprite::update(float dTime)
 			if (yPos < -4)
 			{
 				runAction(MoveBy::create(0.5, Point(0, 64)));
+				m_Camera++;
 			}
 			m_PlayerSprite->runAction(MoveBy::create(0.5, Point(0, -64)));
 		}
