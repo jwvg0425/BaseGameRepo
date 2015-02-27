@@ -48,6 +48,7 @@ bool RoomScene::init()
     m_ActMenu->alignItemsHorizontallyWithPadding(30);
     m_ActMenu->setPosition(WND_WIDTH_GAME * 7 / 8, 50);
 
+    addChild(m_ActMenu);
     return true;
 }
 
