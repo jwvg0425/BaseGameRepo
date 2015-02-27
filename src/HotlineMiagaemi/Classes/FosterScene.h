@@ -7,6 +7,7 @@
 
 typedef std::function<void()> ActionFunc;
 
+class StatWindow;
 class FosterScene : public cocos2d::LayerColor
 {
 public:
@@ -46,6 +47,8 @@ private:
 	cocos2d::Sprite* m_AntSprite;
 	cocos2d::Sprite* m_Gaugebar;
 	cocos2d::Sprite* m_Gauge;
+
+	StatWindow* m_StatWindow;
 
 	ActionFunc m_CompleteActionFunc;
 

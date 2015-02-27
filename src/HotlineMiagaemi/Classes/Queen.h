@@ -6,5 +6,7 @@ class Queen :
 public:
     Queen();
     virtual ~Queen();
+
+
 };
 

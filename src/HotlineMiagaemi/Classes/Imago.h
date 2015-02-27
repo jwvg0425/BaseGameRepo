@@ -15,11 +15,8 @@ public:
     };
 
     virtual Sprite*     getSprite() = 0;
-
 	virtual bool        isEvolve() = 0;
-
 	virtual Ant*        evolve() = 0;
-
 	virtual void        update(float dTime) = 0;
 
     virtual ImagoType   getType();

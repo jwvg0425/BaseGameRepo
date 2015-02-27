@@ -1,6 +1,7 @@
 #include "FosterScene.h"
 #include "const.h"
 #include "GameManager.h"
+#include "StatWindow.h"
 #include "Egg.h"
 
 USING_NS_CC;
@@ -71,7 +72,10 @@ bool FosterScene::init()
 
 	m_Gauge->setPosition(WND_WIDTH_GAME / 2 - 32, WND_HEIGHT_GAME / 2 - 96);
 
-	//TODO : 함수 받아서 action 종료시에 해당 함수 실행할 수 있게.
+	m_StatWindow = StatWindow::create();
+	m_StatWindow->setPosition(WND_WIDTH_GAME / 2 + 160, WND_HEIGHT_GAME / 2);
+	addChild(m_StatWindow);
+
 	startAction(Egg::getEvolveTime(), nullptr);
 
 	scheduleUpdate();
@@ -81,7 +85,7 @@ bool FosterScene::init()
 
 FosterScene::FosterScene() : m_ActMenu(nullptr), m_AntSprite(nullptr), m_BrainWashItem(nullptr),
 m_FeedItem(nullptr),m_Gaugebar(nullptr),m_Gauge(nullptr),m_InfiltrateItem(nullptr),m_TrainItem(nullptr),
-m_ActTime(0.0f), m_CompleteTime(0.0f), m_IsAct(false), m_CompleteActionFunc(nullptr)
+m_ActTime(0.0f), m_CompleteTime(0.0f), m_IsAct(false), m_CompleteActionFunc(nullptr), m_StatWindow(nullptr)
 {
 
 }
@@ -144,6 +148,18 @@ void FosterScene::brainwashCallback(cocos2d::Ref* ref)
 			auto repeat = RepeatForever::create(animate);
 			m_AntSprite->stopAllActions();
 			m_AntSprite->runAction(repeat);
+			
+			auto label = Label::createWithSystemFont("개미를 죽입시다 개미는 나의 원수", TEXT_FONT, 16);
+			label->setColor(Color3B(0, 0, 0));
+			addChild(label);
+			auto move = MoveBy::create(1.0f, Point(0, 60));
+			auto fade = FadeOut::create(1.0f);
+			auto spawn = Spawn::create(move, fade, nullptr);
+			auto del = CallFunc::create(CC_CALLBACK_0(Label::removeFromParent, label));
+			auto sequence = Sequence::create(spawn, del, nullptr);
+
+			label->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2 + 64);
+			label->runAction(sequence);
 			startAction(2.0f, std::bind(&FosterScene::brainwashComplete, this));
 			break;
 		}
