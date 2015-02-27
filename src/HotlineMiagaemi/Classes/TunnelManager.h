@@ -1,6 +1,10 @@
 #ifndef _TUNNEL_MANAGER_H_
 #define _TUNNEL_MANAGER_H_
 
+#define MAX_DEEP 200
+#define MIN_ROOM 4
+#define MAX_INTERVAL 10
+
 #include "RoomScene.h"
 #include "cocos2d.h"
 #include "map"
@@ -17,7 +21,7 @@ public:
     bool checkRoomInterval(int yPosition);
     void hallSceneCallback(cocos2d::Ref* sender);
     void roomSceneCallback(int antPos);
-    bool isRoomExist(int antPos);
+    bool isRoomExist(int antXPos, int antYPos);
     bool isLeft();
 
 private:

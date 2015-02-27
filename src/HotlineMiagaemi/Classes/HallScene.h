@@ -20,12 +20,15 @@ public:
 
     CREATE_FUNC(HallScene);
 
+    void dodgeCallback(cocos2d::Ref* ref);
     void moveCallback(cocos2d::Ref* ref);
     void enterCallback(cocos2d::Ref* ref);
 
 private:
-    int                 m_AntPos;
+    int                 m_AntXPos;
+    int                 m_AntYPos;
     cocos2d::Menu*      m_ActMenu;
+    cocos2d::MenuItem*  m_DodgeItem;
     cocos2d::MenuItem*  m_MoveItem;
     cocos2d::MenuItem*  m_EnterItem;
 };

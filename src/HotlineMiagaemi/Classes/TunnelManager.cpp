@@ -1,10 +1,6 @@
 #include "TunnelManager.h"
 #include "HallScene.h"
 
-#define MAX_DEEP 200
-#define MIN_ROOM 4
-#define MAX_INTERVAL 10
-
 USING_NS_CC;
 
 TunnelManager* TunnelManager::m_Instance = nullptr;
@@ -102,11 +98,14 @@ void TunnelManager::roomSceneCallback(int antPos)
     }
 }
 
-bool TunnelManager::isRoomExist(int antPos)
+bool TunnelManager::isRoomExist(int antXPos, int antYPos)
 {
+    if (antXPos == 0)
+        return false;
+
     for (auto& roomDeep : m_RoomDirList)
     {
-        if (roomDeep.first == antPos)
+        if (roomDeep.first == antXPos)
             return true;
     }
     return false;
