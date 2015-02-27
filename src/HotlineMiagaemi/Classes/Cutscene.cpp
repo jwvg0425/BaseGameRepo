@@ -36,7 +36,9 @@ bool CutScene::init()
     cutAnimation->addSpriteFrameWithFile("cutscene/cut06.png");
 	cutAnimation->addSpriteFrameWithFile("cutscene/cut07.png");
 	cutAnimation->addSpriteFrameWithFile("cutscene/cut08.png");
+	cutAnimation->addSpriteFrameWithFile("cutscene/cut09.png");
 	cutAnimation->addSpriteFrameWithFile("cutscene/cut10.png");
+	cutAnimation->addSpriteFrameWithFile("cutscene/cut11.png");
 
     auto director = Director::getInstance();
     auto action1 = Animate::create(cutAnimation);
