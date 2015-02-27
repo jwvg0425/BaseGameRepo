@@ -120,58 +120,58 @@ void GameManager::initSubtileNames()
 		m_SubtileNames[DIR_UPRIGHT][DIR_UP | DIR_UPRIGHT | DIR_RIGHT] =
 		m_SubtileNames[DIR_LEFTUP][DIR_LEFT | DIR_LEFTUP | DIR_LEFT] =
 		m_SubtileNames[DIR_DOWNLEFT][DIR_DOWN | DIR_DOWNLEFT | DIR_LEFT] =
-		"subtile_01.png";
+		"tile/subtile_01.png";
 
 	m_SubtileNames[DIR_LEFTUP][DIR_NONE] =
 		m_SubtileNames[DIR_LEFTUP][DIR_LEFTUP] =
-		"subtile_02.png";
+		"tile/subtile_02.png";
 
 	m_SubtileNames[DIR_UPRIGHT][DIR_NONE] =
 		m_SubtileNames[DIR_UPRIGHT][DIR_UPRIGHT] =
-		"subtile_03.png";
+		"tile/subtile_03.png";
 
 	m_SubtileNames[DIR_DOWNLEFT][DIR_NONE] =
 		m_SubtileNames[DIR_DOWNLEFT][DIR_DOWNLEFT] =
-		"subtile_04.png";
+		"tile/subtile_04.png";
 
 	m_SubtileNames[DIR_RIGHTDOWN][DIR_NONE] =
 		m_SubtileNames[DIR_RIGHTDOWN][DIR_RIGHTDOWN] =
-		"subtile_05.png";
+		"tile/subtile_05.png";
 
 	m_SubtileNames[DIR_RIGHTDOWN][DIR_RIGHT | DIR_DOWN] =
-		"subtile_06.png";
+		"tile/subtile_06.png";
 
 	m_SubtileNames[DIR_DOWNLEFT][DIR_DOWN | DIR_LEFT] =
-		"subtile_08.png";
+		"tile/subtile_08.png";
 
 	m_SubtileNames[DIR_LEFTUP][DIR_LEFT | DIR_UP] =
-		"subtile_13.png";
+		"tile/subtile_13.png";
 
 	m_SubtileNames[DIR_UPRIGHT][DIR_UP | DIR_RIGHT] =
-		"subtile_11.png";
+		"tile/subtile_11.png";
 
 	m_SubtileNames[DIR_DOWNLEFT][DIR_LEFT] =
 		m_SubtileNames[DIR_DOWNLEFT][DIR_LEFT | DIR_DOWNLEFT] =
 		m_SubtileNames[DIR_RIGHTDOWN][DIR_RIGHT] =
 		m_SubtileNames[DIR_RIGHTDOWN][DIR_RIGHT | DIR_RIGHTDOWN] =
-		"subtile_07.png";
+		"tile/subtile_07.png";
 
 	m_SubtileNames[DIR_UPRIGHT][DIR_UP] =
 		m_SubtileNames[DIR_UPRIGHT][DIR_UP | DIR_UPRIGHT] =
 		m_SubtileNames[DIR_RIGHTDOWN][DIR_DOWN] =
 		m_SubtileNames[DIR_RIGHTDOWN][DIR_DOWN | DIR_RIGHTDOWN] =
-		"subtile_09.png";
+		"tile/subtile_09.png";
 
 	m_SubtileNames[DIR_LEFTUP][DIR_UP] =
 		m_SubtileNames[DIR_LEFTUP][DIR_UP | DIR_LEFTUP] =
 		m_SubtileNames[DIR_DOWNLEFT][DIR_DOWN] =
 		m_SubtileNames[DIR_DOWNLEFT][DIR_DOWN | DIR_DOWNLEFT] =
-		"subtile_10.png";
+		"tile/subtile_10.png";
 
 	m_SubtileNames[DIR_UPRIGHT][DIR_RIGHT] =
 		m_SubtileNames[DIR_UPRIGHT][DIR_RIGHT | DIR_UPRIGHT] =
 		m_SubtileNames[DIR_LEFTUP][DIR_LEFT] =
 		m_SubtileNames[DIR_LEFTUP][DIR_LEFT | DIR_LEFTUP] =
-		"subtile_12.png";
+		"tile/subtile_12.png";
 
 }

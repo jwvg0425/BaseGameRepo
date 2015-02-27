@@ -110,8 +110,15 @@ bool TunnelManager::isRoomExist(int antXPos, int antYPos)
 
     for (auto& roomDeep : m_RoomDirList)
     {
-        if (roomDeep.first == antXPos)
-            return true;
+		if (roomDeep.first == antYPos)
+		{
+			if (roomDeep.second == true && antXPos == -1)
+				return true;
+			else if (roomDeep.second == false && antXPos == 1)
+				return true;
+			else
+				return false;
+		}
     }
     return false;
 }
