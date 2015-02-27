@@ -137,3 +137,8 @@ int HallScene::getAntYPos()
 {
 	return m_AntYPos;
 }
+
+int HallScene::getAntXPos()
+{
+	return m_AntXPos;
+}

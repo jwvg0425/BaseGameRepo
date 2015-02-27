@@ -26,6 +26,7 @@ public:
     void enterCallback(cocos2d::Ref* ref);
 
 	int getAntYPos();
+	int getAntXPos();
 
 private:
     int                 m_AntXPos;
