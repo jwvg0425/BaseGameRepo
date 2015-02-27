@@ -22,7 +22,7 @@ void GameManager::releaseInstance()
 	}
 }
 
-GameManager::GameManager() : m_NowAnt(nullptr)
+GameManager::GameManager() : m_NowAnt(nullptr), m_AntNum(5)
 {
 	initAnt();
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva.plist");

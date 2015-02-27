@@ -13,13 +13,14 @@ public:
 	void setAnt(Ant* ant);
 	void initAnt();
 	cocos2d::Animation* getAnimation(Ant* ant);
+	static cocos2d::Animation* createAnimation
+		(const char* format, int startIdx, size_t frameNum, float delay);
 
 private:
 	GameManager();
 	~GameManager();
 	Ant* m_NowAnt;
-
-	cocos2d::Animation* createAnimation(const char* format, int startIdx, size_t frameNum, float delay);
+	int m_AntNum;
 
 	static GameManager* m_Instance;
 };
