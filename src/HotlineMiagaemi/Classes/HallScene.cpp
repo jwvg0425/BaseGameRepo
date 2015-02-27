@@ -142,4 +142,3 @@ int HallScene::getAntXPos()
 {
 	return m_AntXPos;
 }
->>>>>>> origin/master
