@@ -10,5 +10,6 @@ public:
     Sprite* getSprite();
 
 protected:
+    int m_Satiety;
 };
 

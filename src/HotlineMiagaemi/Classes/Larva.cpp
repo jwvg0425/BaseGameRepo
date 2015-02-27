@@ -2,6 +2,7 @@
 
 
 Larva::Larva()
+:m_Satiety(0)
 {
     m_IsFeed = true;
     m_IsBrainwash = true;

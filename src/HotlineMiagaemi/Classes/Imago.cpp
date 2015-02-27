@@ -2,6 +2,7 @@
 
 
 Imago::Imago()
+:m_Satiety(70)
 {
     m_IsFeed = true;
     m_IsBrainwash = true;
@@ -13,9 +14,4 @@ Imago::Imago()
 
 Imago::~Imago()
 {
-}
-
-Sprite* Imago::getSprite()
-{
-    return Sprite::create("imago.png");
 }

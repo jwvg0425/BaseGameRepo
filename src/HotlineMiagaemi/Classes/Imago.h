@@ -7,7 +7,11 @@ public:
     Imago();
     virtual ~Imago();
 
-    Sprite* getSprite();
+    virtual Sprite* getSprite() = 0;
+
+private:
+    int m_Satiety;
+protected:
 
 };
 
