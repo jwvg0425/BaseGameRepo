@@ -1,5 +1,8 @@
-#pragma once
+#ifndef _TUNNEL_MANAGER_H_
+#define _TUNNEL_MANAGER_H_
+
 #include "RoomScene.h"
+#include "cocos2d.h"
 #include "map"
 #include "vector"
 
@@ -11,7 +14,11 @@ public:
     static  TunnelManager* getInstance();
     void releaseInstance();
     void initRoom();
-    bool CheckRoomInterval(int yPosition);
+    bool checkRoomInterval(int yPosition);
+    void hallSceneCallback(cocos2d::Ref* sender);
+    void roomSceneCallback(int antPos);
+    bool isRoomExist(int antPos);
+    bool isLeft();
 
 private:
     TunnelManager();
@@ -21,6 +28,6 @@ private:
 
     std::map<int,bool>      m_RoomDirList;
     std::map<int, RoomType> m_RoomTypeList;
-    int                     m_AntDeep;
 };
 
+#endif

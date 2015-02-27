@@ -1,8 +1,11 @@
 #include "TunnelManager.h"
+#include "HallScene.h"
 
-#define MAX_DEEP -200
+#define MAX_DEEP 200
 #define MIN_ROOM 4
 #define MAX_INTERVAL 10
+
+USING_NS_CC;
 
 TunnelManager* TunnelManager::m_Instance = nullptr;
 
@@ -28,7 +31,6 @@ void TunnelManager::releaseInstance()
 TunnelManager::TunnelManager()
 {
     initRoom();
-    m_AntDeep = 0;
 }
 
 
@@ -47,7 +49,7 @@ void TunnelManager::initRoom()
     {
         while (true)
         {
-            int yPosition = rand() % MAX_DEEP;  //Room의 깊이설정
+            int yPosition = -(rand() % MAX_DEEP);  //Room의 깊이설정
             auto isLeft = (rand() % 2) ? true : false; //Room의 방향설정
             //Room의 Type설정
             int random = rand() % 2;
@@ -56,11 +58,13 @@ void TunnelManager::initRoom()
             {
             case 0:
                 roomType = RT_EGG;
+                break;
             case 1:
                 roomType = RT_PRINCESS;
+                break;
             }
             ///////////////////////////
-            if (CheckRoomInterval(yPosition))
+            if (checkRoomInterval(yPosition))
             {
                 m_RoomDirList[yPosition] = isLeft;
                 m_RoomTypeList[yPosition] = roomType;
@@ -70,7 +74,7 @@ void TunnelManager::initRoom()
     }
 }
 
-bool TunnelManager::CheckRoomInterval(int yPosition)
+bool TunnelManager::checkRoomInterval(int yPosition)
 {
     for (auto& roomDeep : m_RoomDirList)
     {
@@ -79,4 +83,31 @@ bool TunnelManager::CheckRoomInterval(int yPosition)
             return false;
     }
     return true;
+}
+
+void TunnelManager::hallSceneCallback(Ref* sender)
+{
+    Director::getInstance()->replaceScene(HallScene::createScene());
+}
+
+void TunnelManager::roomSceneCallback(int antPos)
+{
+    for (auto& room : m_RoomTypeList)
+    {
+        if (room.first == antPos)
+        {
+            Director::getInstance()->replaceScene(RoomScene::createScene(room.second));
+            return;
+        }
+    }
+}
+
+bool TunnelManager::isRoomExist(int antPos)
+{
+    for (auto& roomDeep : m_RoomDirList)
+    {
+        if (roomDeep.first == antPos)
+            return true;
+    }
+    return false;
 }

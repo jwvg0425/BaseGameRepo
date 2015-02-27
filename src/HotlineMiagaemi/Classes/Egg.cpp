@@ -1,7 +1,7 @@
 #include "Egg.h"
 #include "Larva.h"
 
-const int Egg::EVOLVE_TIME = 10;
+const int Egg::EVOLVE_TIME = 1;
 
 Egg::Egg()
 : m_Time(0)

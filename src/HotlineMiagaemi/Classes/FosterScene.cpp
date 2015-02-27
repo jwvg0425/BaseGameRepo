@@ -1,6 +1,7 @@
 #include "FosterScene.h"
 #include "const.h"
 #include "GameManager.h"
+#include "TunnelManager.h"
 #include "StatWindow.h"
 #include "Egg.h"
 #include "Imago.h"
@@ -195,7 +196,10 @@ void FosterScene::trainCallback(cocos2d::Ref* ref)
 
 void FosterScene::infiltrateCallback(cocos2d::Ref* ref)
 {
-
+    if (!m_IsAct)
+    {
+        TunnelManager::getInstance()->hallSceneCallback(ref);
+    }
 }
 
 void FosterScene::update(float dTime)

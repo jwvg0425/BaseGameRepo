@@ -12,13 +12,15 @@ RoomScene::~RoomScene()
 {
 }
 
-Scene* RoomScene::createScene()
+Scene* RoomScene::createScene(RoomType roomType)
 {
     auto scene = Scene::create();
 
     auto layer = RoomScene::create();
 
     scene->addChild(layer);
+
+    static_cast<RoomScene*>(layer)->setRoomType(roomType);
 
     return scene;
 }

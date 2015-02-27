@@ -17,16 +17,14 @@ public:
     RoomScene();
     ~RoomScene();
 
-    static cocos2d::Scene* createScene();
+    static cocos2d::Scene* createScene(RoomType roomType);
 
     virtual bool init();
 
-    bool isLeft(){ return m_IsLeft; }
-    void SetRoomType(RoomType type){ m_RoomType = type; }
+    void setRoomType(RoomType type){ m_RoomType = type; }
 
 protected:
     RoomType         m_RoomType;
-    bool             m_IsLeft;
 };
 
 #endif

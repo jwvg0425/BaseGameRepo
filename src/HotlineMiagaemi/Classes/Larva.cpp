@@ -4,7 +4,7 @@
 #include "Princess.h"
 #include "Soldier.h"
 
-const int Larva::SATIETY_EVOLVE_VALUE = 70;
+const int Larva::SATIETY_EVOLVE_VALUE = 10;
 
 Larva::Larva()
 {
