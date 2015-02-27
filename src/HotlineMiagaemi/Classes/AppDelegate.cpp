@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
-#include "FosterScene.h"
 #include "Cutscene.h"
+#include "const.h"
 
 USING_NS_CC;
 
@@ -17,22 +17,23 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
     if(!glview) {
-        glview = GLView::create("My Game");
+        glview = GLView::createWithRect("HotlineMaigaemi",
+			Rect(0,0,WND_WIDTH_CUTSCENE,WND_HEIGHT_CUTSCENE));
         director->setOpenGLView(glview);
     }
 
     // turn on display FPS
-    director->setDisplayStats(true);
+    director->setDisplayStats(false);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
     //auto scene1 = FosterScene::createScene();
-    auto scene2 = CutScene::createScene();
+    auto scene = CutScene::createScene();
     // run
     //director->runWithScene(scene1);
-    director->runWithScene(scene2);
+    director->runWithScene(scene);
 
     return true;
 }
