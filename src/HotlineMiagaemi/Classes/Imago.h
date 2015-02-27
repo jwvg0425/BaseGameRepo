@@ -7,6 +7,13 @@ public:
     Imago();
     virtual ~Imago();
 
+    enum ImagoType{
+        IT_WORKER,
+        IT_MALE,
+        IT_PRINCESS,
+        IT_SOLDIER
+    };
+
     virtual Sprite* getSprite() = 0;
 
 	virtual bool isEvolve() = 0;

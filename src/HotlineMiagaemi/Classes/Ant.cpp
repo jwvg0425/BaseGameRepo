@@ -2,7 +2,7 @@
 
 
 Ant::Ant()
-:m_STR(0), m_HP(0), m_INT(0), m_State(nullptr), m_Type(NONE)
+:m_STR(0), m_HP(0), m_INT(0), m_State(nullptr), m_Type(ST_NONE)
 {
 }
 
@@ -36,7 +36,7 @@ bool Ant::isStatVisible()
 	return m_IsStatVisible;
 }
 
-Ant::Type Ant::getType()
+Ant::StateType Ant::getType()
 {
 	return m_Type;
 }

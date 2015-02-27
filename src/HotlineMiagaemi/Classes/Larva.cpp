@@ -10,7 +10,7 @@ Larva::Larva()
     m_IsInfiltrate = false;
     m_IsStatVisible = true;
 
-	m_Type = LARVA;
+	m_Type = ST_LARVA;
 }
 
 

@@ -6,12 +6,12 @@ USING_NS_CC;
 class Ant
 {
 public:
-	enum Type
+	enum StateType
 	{
-		NONE = 0,
-		EGG = 1,
-		LARVA = 2,
-		IMAGO = 3,
+		ST_NONE = 0,
+		ST_EGG = 1,
+		ST_LARVA = 2,
+		ST_IMAGO = 3,
 	};
 
     Ant();
@@ -25,7 +25,7 @@ public:
 
 	virtual void update(float dTime) = 0;
 
-	Type getType();
+	StateType getType();
 
 	bool isFeed();
 	bool isBrainwash();
@@ -39,7 +39,7 @@ protected:
 	int     m_INT;
 	Sprite* m_Sprite;
 	Ant*  m_State;
-	Type	m_Type;
+	StateType	m_Type;
 
     bool        m_IsFeed;
     bool        m_IsBrainwash;

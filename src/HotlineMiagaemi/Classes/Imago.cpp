@@ -10,7 +10,7 @@ Imago::Imago()
     m_IsInfiltrate = true;
     m_IsStatVisible = true;
 
-	m_Type = IMAGO;
+	m_Type = ST_IMAGO;
 }
 
 

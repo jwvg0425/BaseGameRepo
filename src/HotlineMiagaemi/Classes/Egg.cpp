@@ -10,7 +10,7 @@ Egg::Egg()
     m_IsInfiltrate = false;
     m_IsStatVisible = false;
 
-	m_Type = EGG;
+	m_Type = ST_EGG;
 }
 
 
