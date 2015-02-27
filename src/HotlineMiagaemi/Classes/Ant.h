@@ -12,7 +12,7 @@ public:
 
     virtual Sprite* getSprite() = 0;
 
-private:
+protected:
     int     m_STR;
     int     m_HP;
     int     m_INT;
