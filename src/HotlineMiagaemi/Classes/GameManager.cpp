@@ -1,5 +1,6 @@
 ﻿#include "GameManager.h"
 #include "Egg.h"
+#include "Imago.h"
 
 GameManager* GameManager::m_Instance = nullptr;
 
@@ -28,6 +29,8 @@ GameManager::GameManager() : m_NowAnt(nullptr), m_AntNum(5)
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva_brainwash.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva_feed.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("worker.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("soldier.plist");
 }
 
 GameManager::~GameManager()
@@ -68,6 +71,13 @@ cocos2d::Animation* GameManager::getAnimation(Ant* ant)
 	case Ant::ST_LARVA:
 		return createAnimation("larva_%d.png", 1, 2, 0.3f);
 	case Ant::ST_IMAGO:
+		switch (static_cast<Imago*>(ant)->getImagoType())
+		{
+		case Imago::IT_WORKER:
+			return createAnimation("worker_%d.png", 1, 4, 0.3f);
+		case Imago::IT_SOLDIER:
+			return createAnimation("soldier_%d.png", 1, 4, 0.3f);
+		}
 		return nullptr;
 	}
 
@@ -88,4 +98,9 @@ cocos2d::Animation* GameManager::createAnimation(const char* format, int startId
 	
 	animation->retain();
 	return animation;
+}
+
+int GameManager::getAntNum()
+{
+	return m_AntNum;
 }

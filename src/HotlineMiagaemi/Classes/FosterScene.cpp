@@ -3,6 +3,7 @@
 #include "GameManager.h"
 #include "StatWindow.h"
 #include "Egg.h"
+#include "Imago.h"
 
 USING_NS_CC;
 
@@ -76,6 +77,20 @@ bool FosterScene::init()
 	m_StatWindow->setPosition(WND_WIDTH_GAME / 2 + 160, WND_HEIGHT_GAME / 2);
 	addChild(m_StatWindow);
 
+	m_TypeLabel = Label::createWithSystemFont("알", TEXT_FONT, 16);
+	addChild(m_TypeLabel);
+	m_TypeLabel->setAnchorPoint(Point(0.5, 0.5));
+	m_TypeLabel->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2 - 128);
+	m_TypeLabel->setColor(Color3B(0, 0, 0));
+
+	auto sprite = Sprite::create("egg_interface.png");
+	sprite->setPosition(10, WND_HEIGHT_GAME - 80);
+	sprite->setAnchorPoint(Point(0, 0));
+	addChild(sprite);
+
+	m_EggNum = Label::createWithSystemFont("5", TEXT_FONT, 64);
+	sprite->addChild(m_EggNum);
+
 	startAction(Egg::getEvolveTime(), nullptr);
 
 	scheduleUpdate();
@@ -84,8 +99,8 @@ bool FosterScene::init()
 }
 
 FosterScene::FosterScene() : m_ActMenu(nullptr), m_AntSprite(nullptr), m_BrainWashItem(nullptr),
-m_FeedItem(nullptr),m_Gaugebar(nullptr),m_Gauge(nullptr),m_InfiltrateItem(nullptr),m_TrainItem(nullptr),
-m_ActTime(0.0f), m_CompleteTime(0.0f), m_IsAct(false), m_CompleteActionFunc(nullptr), m_StatWindow(nullptr)
+m_FeedItem(nullptr), m_Gaugebar(nullptr), m_Gauge(nullptr), m_InfiltrateItem(nullptr), m_TrainItem(nullptr), m_TypeLabel(nullptr),
+m_ActTime(0.0f), m_CompleteTime(0.0f), m_IsAct(false), m_CompleteActionFunc(nullptr), m_StatWindow(nullptr), m_EggNum(nullptr)
 {
 
 }
@@ -209,6 +224,30 @@ void FosterScene::update(float dTime)
 		setActButtonEnable(m_BrainWashItem, evolveAnt->isBrainwash());
 		setActButtonEnable(m_TrainItem, evolveAnt->isTrain());
 		setActButtonEnable(m_InfiltrateItem, evolveAnt->isInfiltrate());
+
+		switch (evolveAnt->getType())
+		{
+		case Ant::ST_LARVA:
+			m_TypeLabel->setString("유충");
+			break;
+		case Ant::ST_IMAGO:
+			switch (static_cast<Imago*>(evolveAnt)->getImagoType())
+			{
+			case Imago::IT_WORKER:
+				m_TypeLabel->setString("일개미");
+				break;
+			case Imago::IT_SOLDIER:
+				m_TypeLabel->setString("병정개미");
+				break;
+			case Imago::IT_PRINCESS:
+				m_TypeLabel->setString("공주개미");
+				break;
+			case Imago::IT_MALE:
+				m_TypeLabel->setString("수개미");
+				break;
+			}
+			break;
+		}
 	}
 
 	if (m_IsAct)

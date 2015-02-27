@@ -47,6 +47,8 @@ private:
 	cocos2d::Sprite* m_AntSprite;
 	cocos2d::Sprite* m_Gaugebar;
 	cocos2d::Sprite* m_Gauge;
+	cocos2d::Label* m_TypeLabel;
+	cocos2d::Label* m_EggNum;
 
 	StatWindow* m_StatWindow;
 

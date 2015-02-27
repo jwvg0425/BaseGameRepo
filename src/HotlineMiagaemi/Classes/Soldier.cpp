@@ -17,7 +17,7 @@ Soldier::~Soldier()
 
 Sprite* Soldier::getSprite()
 {
-    return Sprite::create("soldier.png");
+    return Sprite::create("soldier_1.png");
 }
 
 bool Soldier::isEvolve()

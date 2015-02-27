@@ -19,7 +19,7 @@ public:
 	virtual Ant*        evolve() = 0;
 	virtual void        update(float dTime) = 0;
 
-    virtual ImagoType   getType();
+    ImagoType			getImagoType();
 
     void                disguise(int pheromoneTime, ImagoType type);
 

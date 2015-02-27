@@ -17,7 +17,7 @@ Worker::~Worker()
 
 Sprite* Worker::getSprite()
 {
-    return Sprite::create("worker.png");
+    return Sprite::create("worker_1.png");
 }
 
 bool Worker::isEvolve()

@@ -5,14 +5,14 @@
 const std::string HP_LABEL = "체력 : ";
 const std::string INT_LABEL = "지능 : ";
 const std::string STR_LABEL = "공격력 : ";
-const std::string LIFE_LABEL = "나이 : ";
+const std::string AGE_LABEL = "나이 : ";
 const std::string SAT_LABEL = "포만감 : ";
 
 USING_NS_CC;
 
 StatWindow::StatWindow() :
 m_Window(nullptr), m_Hp(nullptr), m_Int(nullptr), m_Str(nullptr), m_Sat(nullptr), m_Life(nullptr),
-m_PrevHp(0), m_PrevInt(0), m_PrevStr(0), m_PrevSat(0), m_PrevLife(-1)
+m_PrevHp(0), m_PrevInt(0), m_PrevStr(0), m_PrevSat(0), m_PrevAge(-1)
 {
 
 }
@@ -63,7 +63,7 @@ void StatWindow::initLabel()
 	m_Sat->setAnchorPoint(Point(0, 0));
 	m_Sat->setPosition(-60, -40);
 	m_Sat->setColor(Color3B(0, 0, 0));
-	m_Life = Label::createWithSystemFont(LIFE_LABEL, TEXT_FONT, 16);
+	m_Life = Label::createWithSystemFont(AGE_LABEL, TEXT_FONT, 16);
 	m_Life->setAnchorPoint(Point(0, 0));
 	m_Life->setPosition(-60, -80);
 	m_Life->setColor(Color3B(0, 0, 0));
@@ -83,7 +83,7 @@ void StatWindow::updateLabel()
 	int strValue = ant->getStr();
 	int intValue = ant->getInt();
 	int satValue = ant->getSatiety();
-	int lifeValue = ant->getLife();
+	int ageValue = ant->getAge();
 
 	switch (ant->getType())
 	{
@@ -121,9 +121,9 @@ void StatWindow::updateLabel()
 		m_PrevSat = satValue;
 	}
 
-	if (lifeValue != m_PrevLife)
+	if (ageValue != m_PrevAge)
 	{
-		m_Life->setString(LIFE_LABEL + (lifeValue == -1 ? std::string("??") : std::to_string(lifeValue)));
-		m_PrevLife = lifeValue;
+		m_Life->setString(AGE_LABEL + (ageValue == -1 ? std::string("??") : std::to_string(ageValue)));
+		m_PrevAge = ageValue;
 	}
 }

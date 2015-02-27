@@ -11,6 +11,7 @@ public:
 	void releaseInstance();
 	Ant* getAnt();
 	void setAnt(Ant* ant);
+	int getAntNum();
 	void initAnt();
 	cocos2d::Animation* getAnimation(Ant* ant);
 	static cocos2d::Animation* createAnimation

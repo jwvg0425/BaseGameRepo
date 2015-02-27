@@ -32,7 +32,7 @@ private:
 	int m_PrevInt;
 	int m_PrevStr;
 	int m_PrevSat;
-	int m_PrevLife;
+	int m_PrevAge;
 };
 
 #endif //_STAT_WINDOW_H_
