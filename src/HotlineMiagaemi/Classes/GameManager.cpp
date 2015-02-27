@@ -27,6 +27,7 @@ GameManager::GameManager() : m_NowAnt(nullptr), m_AntNum(5)
 	initAnt();
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva_brainwash.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva_feed.plist");
 }
 
 GameManager::~GameManager()
