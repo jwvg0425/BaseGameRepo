@@ -22,7 +22,6 @@ bool CutScene::init()
     }
 
     auto cut1 = Sprite::create("cutscene/cut1.png");
-    cut1->setPosition(Vec2(100.0f, 20.0f));
     cut1->setAnchorPoint(Vec2(0, 0));
     this->addChild(cut1);
     auto cutAnimation = Animation::create();
