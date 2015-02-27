@@ -27,18 +27,22 @@ bool FosterScene::init()
 	glview->setDesignResolutionSize(WND_WIDTH_GAME, WND_HEIGHT_GAME, ResolutionPolicy::SHOW_ALL);
 
 	//¸ÔÀÌ±â
-	auto feedItem = createActButton("¸ÔÀÌ±â");
+	auto feedItem = createActButton("¸ÔÀÌ±â", 
+		CC_CALLBACK_1(FosterScene::feedCallback,this));
 	//¼¼³ú½ÃÅ°±â
-	auto brainwashItem = createActButton("¼¼³ú");
+	auto brainwashItem = createActButton("¼¼³ú",
+		CC_CALLBACK_1(FosterScene::brainwashCallback, this));
 	//ÈÆ·Ã½ÃÅ°±â
-	auto trainItem = createActButton("ÈÆ·Ã");
+	auto trainItem = createActButton("ÈÆ·Ã", 
+		CC_CALLBACK_1(FosterScene::trainCallback, this));
 	//ÀáÀÔ
-	auto infiltrateItem = createActButton("ÀáÀÔ");
+	auto infiltrateItem = createActButton("ÀáÀÔ",
+		CC_CALLBACK_1(FosterScene::infiltrateCallback, this));
 
 	m_ActMenu = Menu::create(feedItem, brainwashItem, trainItem, infiltrateItem, nullptr);
 
 	m_ActMenu->alignItemsHorizontallyWithPadding(30);
-	m_ActMenu->setPosition(WND_WIDTH_GAME/2, 40);
+	m_ActMenu->setPosition(WND_WIDTH_GAME/2, 50);
 
 	addChild(m_ActMenu);
 
@@ -55,13 +59,33 @@ FosterScene::~FosterScene()
 
 }
 
-cocos2d::MenuItem* FosterScene::createActButton(const std::string& labelText)
+cocos2d::MenuItem* FosterScene::createActButton(const std::string& labelText, ccMenuCallback callback)
 {
-	auto item = MenuItemImage::create("button.png", "button_pushed.png");
+	auto item = MenuItemImage::create("button.png", "button_pushed.png", callback);
 	auto itemLabel = Label::createWithSystemFont(labelText, TEXT_FONT, 16);
 	item->addChild(itemLabel);
 	itemLabel->setPosition(36, 22);
 	itemLabel->setColor(Color3B(0, 0, 0));
 
 	return item;
+}
+
+void FosterScene::feedCallback(cocos2d::Ref* ref)
+{
+
+}
+
+void FosterScene::brainwashCallback(cocos2d::Ref* ref)
+{
+
+}
+
+void FosterScene::trainCallback(cocos2d::Ref* ref)
+{
+
+}
+
+void FosterScene::infiltrateCallback(cocos2d::Ref* ref)
+{
+
 }

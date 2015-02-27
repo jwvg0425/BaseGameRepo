@@ -18,7 +18,12 @@ public:
     CREATE_FUNC(FosterScene);
 
 private:
-	cocos2d::MenuItem* createActButton(const std::string& labelText);
+	cocos2d::MenuItem* createActButton(const std::string& labelText, cocos2d::ccMenuCallback callback);
+
+	void feedCallback(cocos2d::Ref* ref);
+	void brainwashCallback(cocos2d::Ref* ref);
+	void trainCallback(cocos2d::Ref* ref);
+	void infiltrateCallback(cocos2d::Ref* ref);
 
 	cocos2d::Menu* m_ActMenu;
 };
