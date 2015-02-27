@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "FosterScene.h"
+#include "Cutscene.h"
 
 USING_NS_CC;
 
@@ -27,10 +28,11 @@ bool AppDelegate::applicationDidFinishLaunching() {
     director->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    auto scene = FosterScene::createScene();
-
+    //auto scene1 = FosterScene::createScene();
+    auto scene2 = CutScene::createScene();
     // run
-    director->runWithScene(scene);
+    //director->runWithScene(scene1);
+    director->runWithScene(scene2);
 
     return true;
 }
