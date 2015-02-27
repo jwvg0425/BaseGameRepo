@@ -1,4 +1,6 @@
 ﻿#include "GameManager.h"
+#include "Ant.h"
+#include "Egg.h"
 
 GameManager* GameManager::m_Instance = nullptr;
 
@@ -21,9 +23,9 @@ void GameManager::releaseInstance()
 	}
 }
 
-GameManager::GameManager()
+GameManager::GameManager() : m_NowAnt(nullptr)
 {
-
+	initAnt();
 }
 
 GameManager::~GameManager()
@@ -34,4 +36,19 @@ GameManager::~GameManager()
 Ant* GameManager::getAnt()
 {
 	return m_NowAnt;
+}
+
+void GameManager::initAnt()
+{
+	m_NowAnt = new Egg();
+}
+
+void GameManager::setAnt(Ant* ant)
+{
+	if (m_NowAnt != nullptr)
+	{
+		delete m_NowAnt;
+	}
+
+	m_NowAnt = ant;
 }

@@ -14,6 +14,8 @@ public:
     static cocos2d::Scene* createScene();
 
     virtual bool init();  
+
+	void update(float dTime);
     
     CREATE_FUNC(FosterScene);
 
@@ -26,6 +28,9 @@ private:
 	void infiltrateCallback(cocos2d::Ref* ref);
 
 	cocos2d::Menu* m_ActMenu;
+	cocos2d::Sprite* m_AntSprite;
+	cocos2d::Sprite* m_Gaugebar;
+	cocos2d::Sprite* m_Gauge;
 };
 
 #endif // __FOSTER_SCENE_H__

@@ -12,7 +12,13 @@ public:
 
     virtual Sprite* getSprite() = 0;
 
-private:
+	virtual bool isEvolve() = 0;
+
+	virtual Ant* evolve() = 0;
+	
+	virtual void update(float dTime) = 0;
+
+protected:
     int     m_STR;
     int     m_HP;
     int     m_INT;

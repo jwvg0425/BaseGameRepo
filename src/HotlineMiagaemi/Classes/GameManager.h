@@ -1,7 +1,7 @@
-﻿#include "cocos2d.h"
-
-#ifndef _GAME_MANAGER_H_
+﻿#ifndef _GAME_MANAGER_H_
 #define _GAME_MANAGER_H_
+
+#include "cocos2d.h"
 
 class Ant;
 
@@ -11,6 +11,8 @@ public:
 	static GameManager* getInstance();
 	void releaseInstance();
 	Ant* getAnt();
+	void setAnt(Ant* ant);
+	void initAnt();
 
 private:
 	GameManager();

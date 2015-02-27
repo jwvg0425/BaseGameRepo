@@ -1,5 +1,8 @@
 #include "FosterScene.h"
 #include "const.h"
+#include "GameManager.h"
+#include "Ant.h"
+#include "Egg.h"
 
 USING_NS_CC;
 
@@ -29,15 +32,24 @@ bool FosterScene::init()
 	//¸ÔÀÌ±â
 	auto feedItem = createActButton("¸ÔÀÌ±â", 
 		CC_CALLBACK_1(FosterScene::feedCallback,this));
+	feedItem->setEnabled(false);
+	feedItem->setColor(Color3B(128, 128, 128));
 	//¼¼³ú½ÃÅ°±â
 	auto brainwashItem = createActButton("¼¼³ú",
 		CC_CALLBACK_1(FosterScene::brainwashCallback, this));
+	brainwashItem->setEnabled(false);
+	brainwashItem->setColor(Color3B(128, 128, 128));
 	//ÈÆ·Ã½ÃÅ°±â
 	auto trainItem = createActButton("ÈÆ·Ã", 
 		CC_CALLBACK_1(FosterScene::trainCallback, this));
+	trainItem->setEnabled(false);
+	trainItem->setColor(Color3B(128, 128, 128));
+
 	//ÀáÀÔ
 	auto infiltrateItem = createActButton("ÀáÀÔ",
 		CC_CALLBACK_1(FosterScene::infiltrateCallback, this));
+	infiltrateItem->setEnabled(false);
+	infiltrateItem->setColor(Color3B(128, 128, 128));
 
 	m_ActMenu = Menu::create(feedItem, brainwashItem, trainItem, infiltrateItem, nullptr);
 
@@ -46,10 +58,28 @@ bool FosterScene::init()
 
 	addChild(m_ActMenu);
 
+	m_AntSprite = GameManager::getInstance()->getAnt()->getSprite();
+	addChild(m_AntSprite);
+
+	m_AntSprite->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2);
+
+	m_Gaugebar = Sprite::create("gaugebar.png");
+	addChild(m_Gaugebar);
+
+	m_Gaugebar->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2 - 64);
+
+	m_Gauge = Sprite::create("gauge.png");
+	m_Gauge->setScaleX(0);
+	addChild(m_Gauge);
+
+	m_Gauge->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2 - 64);
+
+	scheduleUpdate();
+
     return true;
 }
 
-FosterScene::FosterScene() : m_ActMenu(nullptr)
+FosterScene::FosterScene() : m_ActMenu(nullptr), m_AntSprite(nullptr)
 {
 
 }
@@ -88,4 +118,16 @@ void FosterScene::trainCallback(cocos2d::Ref* ref)
 void FosterScene::infiltrateCallback(cocos2d::Ref* ref)
 {
 
+}
+
+void FosterScene::update(float dTime)
+{
+	Ant* ant = GameManager::getInstance()->getAnt();
+
+	ant->update(dTime);
+
+	if (ant->isEvolve())
+	{
+		GameManager::getInstance()->setAnt(ant->evolve());
+	}
 }
