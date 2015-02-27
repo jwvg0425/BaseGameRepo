@@ -46,6 +46,7 @@ Ant* Egg::evolve()
 void Egg::update(float dTime)
 {
 	addTime(dTime);
+	cocos2d::Animation::create();
 }
 
 void Egg::addTime(float time)

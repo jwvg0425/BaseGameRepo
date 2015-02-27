@@ -1,7 +1,6 @@
 #include "FosterScene.h"
 #include "const.h"
 #include "GameManager.h"
-#include "Ant.h"
 #include "Egg.h"
 
 USING_NS_CC;
@@ -136,6 +135,15 @@ void FosterScene::update(float dTime)
 		m_AntSprite = evolveAnt->getSprite();
 		m_AntSprite->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2);
 		addChild(m_AntSprite);
+		
+		auto animation = GameManager::getInstance()->getAnimation(evolveAnt);
+
+		if (animation != nullptr)
+		{
+			auto ani = RepeatForever::create(Animate::create(animation));
+
+			m_AntSprite->runAction(ani);
+		}
 
 		GameManager::getInstance()->setAnt(evolveAnt);
 
