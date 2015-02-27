@@ -1,4 +1,5 @@
 #pragma once
+#include "RoomScene.h"
 #include "map"
 #include "vector"
 
@@ -18,7 +19,8 @@ private:
 
     static TunnelManager* m_Instance;
 
-    std::map<int, RoomScene*> m_RoomList;
-    std::vector<int>     m_RoomDeepList;
+    std::map<int,bool>      m_RoomDirList;
+    std::map<int, RoomType> m_RoomTypeList;
+    int                     m_AntDeep;
 };
 

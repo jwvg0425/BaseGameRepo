@@ -25,8 +25,8 @@ public:
     void SetRoomType(RoomType type){ m_RoomType = type; }
 
 protected:
-    RoomType    m_RoomType;
-    bool        m_IsLeft;
+    RoomType         m_RoomType;
+    bool             m_IsLeft;
 };
 
 #endif

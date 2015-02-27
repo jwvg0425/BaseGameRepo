@@ -1,29 +1,28 @@
-#include "RoomScene.h"
-#include "stdlib.h"
+#include "HallScene.h"
 
 USING_NS_CC;
 
-RoomScene::RoomScene()
+HallScene::HallScene()
 {
 }
 
 
-RoomScene::~RoomScene()
+HallScene::~HallScene()
 {
 }
 
-Scene* RoomScene::createScene()
+Scene* HallScene::createScene()
 {
     auto scene = Scene::create();
 
-    auto layer = RoomScene::create();
+    auto layer = HallScene::create();
 
     scene->addChild(layer);
 
     return scene;
 }
 
-bool RoomScene::init()
+bool HallScene::init()
 {
     if (!Layer::init())
     {
