@@ -1,4 +1,4 @@
-Hotline miagaemi
+Hotline maigaemi
 ====
 
 ![screenshot](https://rv.wkcdn.net/http://rigvedawiki.net/r1/pds/_ea_b0_9c_eb_af_b8_eb_a5_bc_20_ec_a3_bd_ec_9e_85_ec_8b_9c_eb_8b_a4_20_ea_b0_9c_eb_af_b8_eb_8a_94_20_eb_82_98_ec_9d_98_20_ec_9b_90_ec_88_98/antkill.jpg)
