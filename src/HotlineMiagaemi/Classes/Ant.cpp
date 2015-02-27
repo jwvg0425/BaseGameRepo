@@ -2,7 +2,7 @@
 
 
 Ant::Ant()
-:m_STR(0), m_HP(0), m_INT(0), m_State(nullptr), m_Type(ST_NONE), m_Satiety(0)
+:m_STR(0), m_HP(0), m_INT(0), m_Type(ST_NONE), m_Satiety(0)
 {
 }
 
@@ -49,4 +49,14 @@ void Ant::setHP(int Damage)
 void Ant::addSatiety(int satiety)
 {
 	m_Satiety += satiety;
+}
+
+void Ant::addLife(int life)
+{
+	m_Life += life;
+}
+
+void Ant::addInt(int val)
+{
+	m_INT += val;
 }

@@ -106,7 +106,7 @@ void FosterScene::feedCallback(cocos2d::Ref* ref)
 {
 	if (!m_IsAct)
 	{
-		startAction(1.0f, std::bind(&FosterScene::feedComplete, this));
+		startAction(2.0f, std::bind(&FosterScene::feedComplete, this));
 	}
 }
 
@@ -114,7 +114,25 @@ void FosterScene::brainwashCallback(cocos2d::Ref* ref)
 {
 	if (!m_IsAct)
 	{
-		startAction(1.0f, nullptr);
+		auto ant = GameManager::getInstance()->getAnt();
+		auto type = ant->getType();
+
+		switch (type)
+		{
+		case Ant::ST_LARVA:
+		{
+			auto animation = GameManager::createAnimation("larva_brainwash_%d.png", 1, 4, 0.2f);
+			auto animate = Animate::create(animation);
+			auto repeat = RepeatForever::create(animate);
+			m_AntSprite->stopAllActions();
+			m_AntSprite->runAction(repeat);
+			startAction(2.0f, std::bind(&FosterScene::brainwashComplete, this));
+			break;
+		}
+		case Ant::ST_IMAGO:
+			//TODO: ImagoType에 따라 다르게 처리하는 거 넣기
+			break;
+		}
 	}
 }
 
@@ -223,4 +241,26 @@ void FosterScene::updateGauge()
 void FosterScene::feedComplete()
 {
 	GameManager::getInstance()->getAnt()->addSatiety(10);
+	GameManager::getInstance()->getAnt()->addLife(1);
+}
+
+void FosterScene::brainwashComplete()
+{
+	GameManager::getInstance()->getAnt()->addInt(3);
+	GameManager::getInstance()->getAnt()->addSatiety(-5);
+	GameManager::getInstance()->getAnt()->addLife(1);
+	auto type = GameManager::getInstance()->getAnt()->getType();
+
+	switch (type)
+	{
+	case Ant::ST_LARVA:
+	{
+		auto animation = GameManager::createAnimation("larva_%d.png", 1, 2, 0.3f);
+		auto animate = Animate::create(animation);
+		auto repeat = RepeatForever::create(animate);
+		m_AntSprite->stopAllActions();
+		m_AntSprite->runAction(repeat);
+		break;
+	}
+	}
 }

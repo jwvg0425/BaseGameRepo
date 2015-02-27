@@ -36,6 +36,8 @@ public:
 	bool isStatVisible();
 
 	void addSatiety(int satiety);
+	void addLife(int life);
+	void addInt(int val);
 
 protected:
 	int     m_STR;
@@ -43,7 +45,6 @@ protected:
 	int     m_INT;
     int     m_Life;
 	Sprite* m_Sprite;
-	Ant*    m_State;
 	int		m_Satiety;
 
 	StateType	m_Type;

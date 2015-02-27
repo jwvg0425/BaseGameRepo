@@ -35,7 +35,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // create a scene. it's an autorelease object
     //auto scene1 = FosterScene::createScene();
-    auto scene = TitleScene::createScene();
+    auto scene = FosterScene::createScene();
     // run
     //director->runWithScene(scene1);
     director->runWithScene(scene);

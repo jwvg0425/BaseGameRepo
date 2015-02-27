@@ -1,7 +1,7 @@
 #include "Egg.h"
 #include "Larva.h"
 
-const int Egg::m_EvolveTime = 10;
+const int Egg::EVOLVE_TIME = 10;
 
 Egg::Egg()
 : m_Time(0)
@@ -27,7 +27,7 @@ Sprite* Egg::getSprite()
 
 bool Egg::isEvolve()
 {
-	if (m_EvolveTime < m_Time)
+	if (EVOLVE_TIME < m_Time)
 	{
 		return true;
 	}
@@ -56,5 +56,5 @@ void Egg::addTime(float time)
 
 int Egg::getEvolveTime()
 {
-	return m_EvolveTime;
+	return EVOLVE_TIME;
 }

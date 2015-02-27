@@ -62,6 +62,9 @@ Ant* Larva::evolve()
 		evolveAnt = new Male;
 	}
 
+	evolveAnt->addLife(m_Life);
+	evolveAnt->addInt(m_INT);
+
 	return evolveAnt;
 }
 

@@ -20,7 +20,7 @@ public:
 	static int getEvolveTime();
 
 private:
-    static const int m_EvolveTime;
+    static const int EVOLVE_TIME;
 	float m_Time;
 };
 
