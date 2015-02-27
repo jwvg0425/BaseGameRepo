@@ -1,6 +1,7 @@
 ﻿#include "GameManager.h"
 #include "Egg.h"
 #include "Imago.h"
+#include "const.h"
 
 GameManager* GameManager::m_Instance = nullptr;
 
@@ -26,6 +27,7 @@ void GameManager::releaseInstance()
 GameManager::GameManager() : m_NowAnt(nullptr), m_AntNum(5)
 {
 	initAnt();
+
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva_brainwash.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva_feed.plist");
