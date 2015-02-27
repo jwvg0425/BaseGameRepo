@@ -28,9 +28,6 @@ public:
 
     void                attack(Ant* ant);
 
-private:
-    int m_Satiety;
-
 protected:
     int         m_PheromoneTime;
     ImagoType   m_ImagoType;

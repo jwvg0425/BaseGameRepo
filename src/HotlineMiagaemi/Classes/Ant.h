@@ -35,6 +35,8 @@ public:
 	bool isInfiltrate();
 	bool isStatVisible();
 
+	void addSatiety(int satiety);
+
 protected:
 	int     m_STR;
 	int     m_HP;
@@ -42,6 +44,8 @@ protected:
     int     m_Life;
 	Sprite* m_Sprite;
 	Ant*    m_State;
+	int		m_Satiety;
+
 	StateType	m_Type;
 
     bool        m_IsFeed;

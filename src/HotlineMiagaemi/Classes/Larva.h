@@ -14,8 +14,7 @@ public:
 	virtual Ant* evolve();
 
 	virtual void update(float dTime);
-
-protected:
-    int m_Satiety;
+private:
+	static const int SATIETY_EVOLVE_VALUE;
 };
 

@@ -4,15 +4,16 @@
 #include "Princess.h"
 #include "Soldier.h"
 
+const int Larva::SATIETY_EVOLVE_VALUE = 70;
 
 Larva::Larva()
-:m_Satiety(0)
 {
     m_IsFeed = true;
     m_IsBrainwash = true;
     m_IsTrain = false;
     m_IsInfiltrate = false;
     m_IsStatVisible = true;
+	m_Satiety = 0;
 
 	m_Type = ST_LARVA;
 }
@@ -29,7 +30,14 @@ Sprite* Larva::getSprite()
 
 bool Larva::isEvolve()
 {
-	return false;
+	if (m_Satiety >= SATIETY_EVOLVE_VALUE)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 Ant* Larva::evolve()

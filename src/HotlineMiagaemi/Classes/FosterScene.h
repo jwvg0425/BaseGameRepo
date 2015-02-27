@@ -5,6 +5,8 @@
 
 #include "cocos2d.h"
 
+typedef std::function<void()> ActionFunc;
+
 class FosterScene : public cocos2d::LayerColor
 {
 public:
@@ -28,7 +30,10 @@ private:
 	void trainCallback(cocos2d::Ref* ref);
 	void infiltrateCallback(cocos2d::Ref* ref);
 
-	void startAction(float completeTime);
+	void feedComplete();
+	void brainwashComplete();
+
+	void startAction(float completeTime, ActionFunc completeActionFunc);
 	void completeAction();
 
 	void updateGauge();
@@ -41,6 +46,8 @@ private:
 	cocos2d::Sprite* m_AntSprite;
 	cocos2d::Sprite* m_Gaugebar;
 	cocos2d::Sprite* m_Gauge;
+
+	ActionFunc m_CompleteActionFunc;
 
 	float m_ActTime;
 	float m_CompleteTime;

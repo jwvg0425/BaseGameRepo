@@ -72,7 +72,7 @@ bool FosterScene::init()
 	m_Gauge->setPosition(WND_WIDTH_GAME / 2 - 32, WND_HEIGHT_GAME / 2 - 96);
 
 	//TODO : 함수 받아서 action 종료시에 해당 함수 실행할 수 있게.
-	startAction(Egg::getEvolveTime());
+	startAction(Egg::getEvolveTime(), nullptr);
 
 	scheduleUpdate();
 
@@ -81,7 +81,7 @@ bool FosterScene::init()
 
 FosterScene::FosterScene() : m_ActMenu(nullptr), m_AntSprite(nullptr), m_BrainWashItem(nullptr),
 m_FeedItem(nullptr),m_Gaugebar(nullptr),m_Gauge(nullptr),m_InfiltrateItem(nullptr),m_TrainItem(nullptr),
-m_ActTime(0.0f), m_CompleteTime(0.0f), m_IsAct(false)
+m_ActTime(0.0f), m_CompleteTime(0.0f), m_IsAct(false), m_CompleteActionFunc(nullptr)
 {
 
 }
@@ -106,7 +106,7 @@ void FosterScene::feedCallback(cocos2d::Ref* ref)
 {
 	if (!m_IsAct)
 	{
-		startAction(1.0f);
+		startAction(1.0f, std::bind(&FosterScene::feedComplete, this));
 	}
 }
 
@@ -114,7 +114,7 @@ void FosterScene::brainwashCallback(cocos2d::Ref* ref)
 {
 	if (!m_IsAct)
 	{
-		startAction(1.0f);
+		startAction(1.0f, nullptr);
 	}
 }
 
@@ -186,8 +186,9 @@ void FosterScene::setActButtonEnable(cocos2d::MenuItem* item, bool enable)
 	}
 }
 
-void FosterScene::startAction(float completeTime)
+void FosterScene::startAction(float completeTime, ActionFunc completeActionFunc)
 {
+	m_CompleteActionFunc = completeActionFunc;
 	m_CompleteTime = completeTime;
 	m_IsAct = true;
 	m_ActTime = 0.0f;
@@ -201,6 +202,11 @@ void FosterScene::completeAction()
 	m_IsAct = false;
 	m_Gaugebar->setVisible(false);
 	m_Gauge->setVisible(false);
+
+	if (m_CompleteActionFunc != nullptr)
+	{
+		m_CompleteActionFunc();
+	}
 }
 
 void FosterScene::updateGauge()
@@ -212,4 +218,9 @@ void FosterScene::updateGauge()
 		ratio = 1.0f;
 	}
 	m_Gauge->setScaleX(ratio);
+}
+
+void FosterScene::feedComplete()
+{
+	GameManager::getInstance()->getAnt()->addSatiety(10);
 }

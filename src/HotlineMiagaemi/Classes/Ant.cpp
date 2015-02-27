@@ -2,7 +2,7 @@
 
 
 Ant::Ant()
-:m_STR(0), m_HP(0), m_INT(0), m_State(nullptr), m_Type(ST_NONE)
+:m_STR(0), m_HP(0), m_INT(0), m_State(nullptr), m_Type(ST_NONE), m_Satiety(0)
 {
 }
 
@@ -44,4 +44,9 @@ Ant::StateType Ant::getType()
 void Ant::setHP(int Damage)
 {
     m_HP -= Damage;
+}
+
+void Ant::addSatiety(int satiety)
+{
+	m_Satiety += satiety;
 }
