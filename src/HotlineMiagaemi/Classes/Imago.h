@@ -6,5 +6,8 @@ class Imago :
 public:
     Imago();
     virtual ~Imago();
+
+    Sprite* getSprite();
+
 };
 

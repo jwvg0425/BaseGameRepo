@@ -14,3 +14,8 @@ Larva::Larva()
 Larva::~Larva()
 {
 }
+
+Sprite* Larva::getSprite()
+{
+    return Sprite::create("larva1.png");
+}

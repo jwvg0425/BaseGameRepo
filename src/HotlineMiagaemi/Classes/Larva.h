@@ -6,5 +6,9 @@ class Larva :
 public:
     Larva();
     virtual ~Larva();
+
+    Sprite* getSprite();
+
+protected:
 };
 

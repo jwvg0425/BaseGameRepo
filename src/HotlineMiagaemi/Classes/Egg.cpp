@@ -2,6 +2,7 @@
 
 
 Egg::Egg()
+:m_EvolveTime(10)
 {
     m_IsFeed = false;
     m_IsBrainwash = false;
@@ -13,4 +14,9 @@ Egg::Egg()
 
 Egg::~Egg()
 {
+}
+
+Sprite* Egg::getSprite()
+{
+    return Sprite::create("egg.png");
 }

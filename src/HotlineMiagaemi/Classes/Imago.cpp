@@ -14,3 +14,8 @@ Imago::Imago()
 Imago::~Imago()
 {
 }
+
+Sprite* Imago::getSprite()
+{
+    return Sprite::create("imago.png");
+}
