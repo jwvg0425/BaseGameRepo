@@ -141,6 +141,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\Cutscene.cpp" />
     <ClCompile Include="..\Classes\Egg.cpp" />
     <ClCompile Include="..\Classes\FosterScene.cpp" />
+    <ClCompile Include="..\Classes\GameManager.cpp" />
     <ClCompile Include="..\Classes\Imago.cpp" />
     <ClCompile Include="..\Classes\Larva.cpp" />
     <ClCompile Include="..\Classes\State.cpp" />
@@ -153,6 +154,7 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\Cutscene.h" />
     <ClInclude Include="..\Classes\Egg.h" />
     <ClInclude Include="..\Classes\FosterScene.h" />
+    <ClInclude Include="..\Classes\GameManager.h" />
     <ClInclude Include="..\Classes\Imago.h" />
     <ClInclude Include="..\Classes\Larva.h" />
     <ClInclude Include="..\Classes\State.h" />
