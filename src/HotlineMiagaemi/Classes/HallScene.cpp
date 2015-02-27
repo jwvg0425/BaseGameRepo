@@ -105,7 +105,7 @@ void HallScene::moveCallback(cocos2d::Ref* ref)
 
 void HallScene::enterCallback(cocos2d::Ref* ref)
 {
-
+    TunnelManager::getInstance()->roomSceneCallback(m_AntYPos);
 }
 
 cocos2d::MenuItem* HallScene::createActButton(const std::string& labelText, ccMenuCallback callback)
