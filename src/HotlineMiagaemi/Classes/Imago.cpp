@@ -26,5 +26,8 @@ void Imago::disguise(int pheromoneTime, ImagoType type)
 
 void Imago::attack(Ant* ant)
 {
+    if (ant == nullptr)
+        return;
+
     ant->setHP(m_STR);
 }
