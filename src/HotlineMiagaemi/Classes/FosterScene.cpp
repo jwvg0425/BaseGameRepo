@@ -183,7 +183,31 @@ void FosterScene::brainwashCallback(cocos2d::Ref* ref)
 			break;
 		}
 		case Ant::ST_IMAGO:
-			//TODO: ImagoType에 따라 다르게 처리하는 거 넣기
+			switch (static_cast<Imago*>(ant)->getImagoType())
+			{
+			case Imago::IT_WORKER:
+			{
+				auto animation = GameManager::createAnimation("worker_brainwash_%d.png", 1, 4, 0.2f);
+				auto animate = Animate::create(animation);
+				auto repeat = RepeatForever::create(animate);
+				m_AntSprite->stopAllActions();
+				m_AntSprite->runAction(repeat);
+				break;
+			}
+			}
+
+			auto label = Label::createWithSystemFont("여왕 개미를 암살하라!", TEXT_FONT, 16);
+			label->setColor(Color3B(0, 0, 0));
+			addChild(label);
+			auto move = MoveBy::create(1.0f, Point(0, 60));
+			auto fade = FadeOut::create(1.0f);
+			auto spawn = Spawn::create(move, fade, nullptr);
+			auto del = CallFunc::create(CC_CALLBACK_0(Label::removeFromParent, label));
+			auto sequence = Sequence::create(spawn, del, nullptr);
+
+			label->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2 + 64);
+			label->runAction(sequence);
+			startAction(2.0f, std::bind(&FosterScene::brainwashComplete, this));
 			break;
 		}
 	}
@@ -322,7 +346,7 @@ void FosterScene::updateGauge()
 
 void FosterScene::feedComplete()
 {
-	GameManager::getInstance()->getAnt()->addSatiety(10);
+	GameManager::getInstance()->getAnt()->addSatiety(5 + (rand() % 5));
 	GameManager::getInstance()->getAnt()->addAge(1);
 
 	auto type = GameManager::getInstance()->getAnt()->getType();
@@ -343,10 +367,11 @@ void FosterScene::feedComplete()
 
 void FosterScene::brainwashComplete()
 {
-	GameManager::getInstance()->getAnt()->addInt(3);
-	GameManager::getInstance()->getAnt()->addSatiety(-5);
-	GameManager::getInstance()->getAnt()->addAge(1);
-	auto type = GameManager::getInstance()->getAnt()->getType();
+	GameManager::getInstance()->getAnt()->addInt(1 + (rand() % 4));
+	GameManager::getInstance()->getAnt()->addSatiety(-5 - (rand() % 5));
+	GameManager::getInstance()->getAnt()->addAge(1 + (rand() % 3));
+	auto ant = GameManager::getInstance()->getAnt();
+	auto type = ant->getType();
 
 	switch (type)
 	{
@@ -359,5 +384,18 @@ void FosterScene::brainwashComplete()
 		m_AntSprite->runAction(repeat);
 		break;
 	}
+	case Ant::ST_IMAGO:
+		switch (static_cast<Imago*>(ant)->getImagoType())
+		{
+		case Imago::IT_WORKER:
+		{
+			auto animation = GameManager::createAnimation("worker_%d.png", 1, 4, 0.3f);
+			auto animate = Animate::create(animation);
+			auto repeat = RepeatForever::create(animate);
+			m_AntSprite->stopAllActions();
+			m_AntSprite->runAction(repeat);
+			break;
+		}
+		}
 	}
 }

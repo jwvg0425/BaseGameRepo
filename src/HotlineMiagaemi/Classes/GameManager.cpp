@@ -27,11 +27,13 @@ void GameManager::releaseInstance()
 GameManager::GameManager() : m_NowAnt(nullptr), m_AntNum(5)
 {
 	initAnt();
+	initSubtileNames();
 
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva_brainwash.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva_feed.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("worker.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("worker_brainwash.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("soldier.plist");
 }
 
@@ -105,4 +107,71 @@ cocos2d::Animation* GameManager::createAnimation(const char* format, int startId
 int GameManager::getAntNum()
 {
 	return m_AntNum;
+}
+
+cocos2d::Sprite* GameManager::getSubtile(Direction parts, int surrounds)
+{
+	return Sprite::create(m_SubtileNames[parts][surrounds]);
+}
+
+void GameManager::initSubtileNames()
+{
+	m_SubtileNames[DIR_RIGHTDOWN][DIR_RIGHT | DIR_RIGHTDOWN | DIR_DOWN] =
+		m_SubtileNames[DIR_UPRIGHT][DIR_UP | DIR_UPRIGHT | DIR_RIGHT] =
+		m_SubtileNames[DIR_LEFTUP][DIR_LEFT | DIR_LEFTUP | DIR_LEFT] =
+		m_SubtileNames[DIR_DOWNLEFT][DIR_DOWN | DIR_DOWNLEFT | DIR_LEFT] =
+		"subtile_01.png";
+
+	m_SubtileNames[DIR_LEFTUP][DIR_NONE] =
+		m_SubtileNames[DIR_LEFTUP][DIR_LEFTUP] =
+		"subtile_02.png";
+
+	m_SubtileNames[DIR_UPRIGHT][DIR_NONE] =
+		m_SubtileNames[DIR_UPRIGHT][DIR_UPRIGHT] =
+		"subtile_03.png";
+
+	m_SubtileNames[DIR_DOWNLEFT][DIR_NONE] =
+		m_SubtileNames[DIR_DOWNLEFT][DIR_DOWNLEFT] =
+		"subtile_04.png";
+
+	m_SubtileNames[DIR_RIGHTDOWN][DIR_NONE] =
+		m_SubtileNames[DIR_RIGHTDOWN][DIR_RIGHTDOWN] =
+		"subtile_05.png";
+
+	m_SubtileNames[DIR_RIGHTDOWN][DIR_RIGHT | DIR_DOWN] =
+		"subtile_06.png";
+
+	m_SubtileNames[DIR_DOWNLEFT][DIR_DOWN | DIR_LEFT] =
+		"subtile_08.png";
+
+	m_SubtileNames[DIR_LEFTUP][DIR_LEFT | DIR_UP] =
+		"subtile_13.png";
+
+	m_SubtileNames[DIR_UPRIGHT][DIR_UP | DIR_RIGHT] =
+		"subtile_11.png";
+
+	m_SubtileNames[DIR_DOWNLEFT][DIR_LEFT] =
+		m_SubtileNames[DIR_DOWNLEFT][DIR_LEFT | DIR_DOWNLEFT] =
+		m_SubtileNames[DIR_RIGHTDOWN][DIR_RIGHT] =
+		m_SubtileNames[DIR_RIGHTDOWN][DIR_RIGHT | DIR_RIGHTDOWN] =
+		"subtile_07.png";
+
+	m_SubtileNames[DIR_UPRIGHT][DIR_UP] =
+		m_SubtileNames[DIR_UPRIGHT][DIR_UP | DIR_UPRIGHT] =
+		m_SubtileNames[DIR_RIGHTDOWN][DIR_DOWN] =
+		m_SubtileNames[DIR_RIGHTDOWN][DIR_DOWN | DIR_RIGHTDOWN] =
+		"subtile_09.png";
+
+	m_SubtileNames[DIR_LEFTUP][DIR_UP] =
+		m_SubtileNames[DIR_LEFTUP][DIR_UP | DIR_LEFTUP] =
+		m_SubtileNames[DIR_DOWNLEFT][DIR_DOWN] =
+		m_SubtileNames[DIR_DOWNLEFT][DIR_DOWN | DIR_DOWNLEFT] =
+		"subtile_10.png";
+
+	m_SubtileNames[DIR_UPRIGHT][DIR_RIGHT] =
+		m_SubtileNames[DIR_UPRIGHT][DIR_RIGHT | DIR_UPRIGHT] =
+		m_SubtileNames[DIR_LEFTUP][DIR_LEFT] =
+		m_SubtileNames[DIR_LEFTUP][DIR_LEFT | DIR_LEFTUP] =
+		"subtile_12.png";
+
 }
