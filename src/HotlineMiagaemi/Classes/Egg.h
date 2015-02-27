@@ -1,8 +1,8 @@
 #pragma once
-#include "State.h"
+#include "Ant.h"
 
 class Egg :
-    public State
+    public Ant
 {
 public:
     Egg();
@@ -13,7 +13,7 @@ public:
 
 	virtual bool isEvolve();
 
-	virtual State* evolve();
+	virtual Ant* evolve();
 
 	virtual void update(float dTime);
 

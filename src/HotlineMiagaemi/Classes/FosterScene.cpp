@@ -120,13 +120,13 @@ void FosterScene::infiltrateCallback(cocos2d::Ref* ref)
 
 void FosterScene::update(float dTime)
 {
-	State* ant = GameManager::getInstance()->getAnt();
+	Ant* ant = GameManager::getInstance()->getAnt();
 
 	ant->update(dTime);
 
 	if (ant->isEvolve())
 	{
-		State* evolveAnt = ant->evolve();
+		Ant* evolveAnt = ant->evolve();
 		m_AntSprite->removeFromParent();
 		m_AntSprite = evolveAnt->getSprite();
 		m_AntSprite->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2);
@@ -147,7 +147,7 @@ void FosterScene::setActButtonEnable(cocos2d::MenuItem* item, bool enable)
 
 	if (enable)
 	{
-		item->setColor(Color3B(0, 0, 0));
+		item->setColor(Color3B(255, 255, 255));
 	}
 	else
 	{

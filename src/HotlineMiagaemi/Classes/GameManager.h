@@ -3,21 +3,21 @@
 
 #include "cocos2d.h"
 
-class State;
+class Ant;
 
 class GameManager
 {
 public:
 	static GameManager* getInstance();
 	void releaseInstance();
-	State* getAnt();
-	void setAnt(State* ant);
+	Ant* getAnt();
+	void setAnt(Ant* ant);
 	void initAnt();
 
 private:
 	GameManager();
 	~GameManager();
-	State* m_NowAnt;
+	Ant* m_NowAnt;
 
 	static GameManager* m_Instance;
 };

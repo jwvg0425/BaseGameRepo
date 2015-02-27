@@ -1,7 +1,7 @@
 #pragma once
-#include "State.h"
+#include "Ant.h"
 class Larva :
-    public State
+    public Ant
 {
 public:
     Larva();
@@ -11,7 +11,7 @@ public:
 
 	virtual bool isEvolve();
 
-	virtual State* evolve();
+	virtual Ant* evolve();
 
 	virtual void update(float dTime);
 

@@ -28,7 +28,7 @@ bool Larva::isEvolve()
 	return false;
 }
 
-State* Larva::evolve()
+Ant* Larva::evolve()
 {
 	//TODO : 진화하면 뭐 되는지 정해서 리턴(적합한 성체 리턴)
 

@@ -1,5 +1,5 @@
 ﻿#include "GameManager.h"
-#include "State.h"
+#include "Ant.h"
 #include "Egg.h"
 
 GameManager* GameManager::m_Instance = nullptr;
@@ -33,7 +33,7 @@ GameManager::~GameManager()
 
 }
 
-State* GameManager::getAnt()
+Ant* GameManager::getAnt()
 {
 	return m_NowAnt;
 }
@@ -43,7 +43,7 @@ void GameManager::initAnt()
 	m_NowAnt = new Egg();
 }
 
-void GameManager::setAnt(State* ant)
+void GameManager::setAnt(Ant* ant)
 {
 	if (m_NowAnt != nullptr)
 	{

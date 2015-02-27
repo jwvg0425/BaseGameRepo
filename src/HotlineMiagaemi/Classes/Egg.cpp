@@ -33,7 +33,7 @@ bool Egg::isEvolve()
 	return false;
 }
 
-State* Egg::evolve()
+Ant* Egg::evolve()
 {
 	//TODO: 스탯 넣어주기 필요.
 	Larva* larva = new Larva;

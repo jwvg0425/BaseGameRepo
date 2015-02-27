@@ -1,6 +1,5 @@
 #pragma once
 #include "cocos2d.h"
-class State;
 
 USING_NS_CC;
 
@@ -22,19 +21,30 @@ public:
 
 	virtual bool isEvolve() = 0;
 
-	virtual State* evolve() = 0;
-	
+	virtual Ant* evolve() = 0;
+
 	virtual void update(float dTime) = 0;
 
 	Type getType();
-	
+
+	bool isFeed();
+	bool isBrainwash();
+	bool isTrain();
+	bool isInfiltrate();
+	bool isStatVisible();
+
 protected:
-	
-    int     m_STR;
-    int     m_HP;
-    int     m_INT;
-    Sprite* m_Sprite;
-    State*  m_State;
+	int     m_STR;
+	int     m_HP;
+	int     m_INT;
+	Sprite* m_Sprite;
+	Ant*  m_State;
 	Type	m_Type;
+
+    bool        m_IsFeed;
+    bool        m_IsBrainwash;
+    bool        m_IsTrain;
+    bool        m_IsInfiltrate;
+    bool        m_IsStatVisible;
 };
 

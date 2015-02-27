@@ -1,7 +1,7 @@
 #pragma once
-#include "State.h"
+#include "Ant.h"
 class Imago :
-    public State
+    public Ant
 {
 public:
     Imago();
@@ -11,7 +11,7 @@ public:
 
 	virtual bool isEvolve() = 0;
 
-	virtual State* evolve() = 0;
+	virtual Ant* evolve() = 0;
 
 	virtual void update(float dTime) = 0;
 
