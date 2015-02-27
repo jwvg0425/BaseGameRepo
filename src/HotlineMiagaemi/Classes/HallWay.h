@@ -1,7 +1,5 @@
 #pragma once
-#include "AntTunnel.h"
-class HallWay :
-    public AntTunnel
+class HallWay
 {
 public:
     HallWay();

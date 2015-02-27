@@ -1,7 +1,6 @@
 #pragma once
-#include "AntTunnel.h"
-class PrincessRoom :
-    public AntTunnel
+#include "Room.h"
+class PrincessRoom : public Room
 {
 public:
     PrincessRoom();

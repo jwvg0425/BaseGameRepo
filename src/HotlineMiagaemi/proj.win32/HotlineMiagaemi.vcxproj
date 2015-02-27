@@ -139,16 +139,22 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClCompile Include="..\Classes\const.cpp" />
     <ClCompile Include="..\Classes\Cutscene.cpp" />
     <ClCompile Include="..\Classes\Egg.cpp" />
+    <ClCompile Include="..\Classes\EggRoom.cpp" />
     <ClCompile Include="..\Classes\FosterScene.cpp" />
     <ClCompile Include="..\Classes\GameManager.cpp" />
+    <ClCompile Include="..\Classes\HallWay.cpp" />
     <ClCompile Include="..\Classes\Imago.cpp" />
     <ClCompile Include="..\Classes\Larva.cpp" />
     <ClCompile Include="..\Classes\Male.cpp" />
     <ClCompile Include="..\Classes\Princess.cpp" />
+    <ClCompile Include="..\Classes\PrincessRoom.cpp" />
     <ClCompile Include="..\Classes\Queen.cpp" />
+    <ClCompile Include="..\Classes\QueenRoom.cpp" />
+    <ClCompile Include="..\Classes\Room.cpp" />
     <ClCompile Include="..\Classes\Soldier.cpp" />
     <ClCompile Include="..\Classes\Ant.cpp" />
     <ClCompile Include="..\Classes\TitleScene.cpp" />
+    <ClCompile Include="..\Classes\TunnelManager.cpp" />
     <ClCompile Include="..\Classes\Worker.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -157,16 +163,22 @@ xcopy /Y /Q "$(EngineRoot)external\websockets\prebuilt\win32\*.*" "$(OutDir)"</C
     <ClInclude Include="..\Classes\const.h" />
     <ClInclude Include="..\Classes\Cutscene.h" />
     <ClInclude Include="..\Classes\Egg.h" />
+    <ClInclude Include="..\Classes\EggRoom.h" />
     <ClInclude Include="..\Classes\FosterScene.h" />
     <ClInclude Include="..\Classes\GameManager.h" />
+    <ClInclude Include="..\Classes\HallWay.h" />
     <ClInclude Include="..\Classes\Imago.h" />
     <ClInclude Include="..\Classes\Larva.h" />
     <ClInclude Include="..\Classes\Male.h" />
     <ClInclude Include="..\Classes\Princess.h" />
+    <ClInclude Include="..\Classes\PrincessRoom.h" />
     <ClInclude Include="..\Classes\Queen.h" />
+    <ClInclude Include="..\Classes\QueenRoom.h" />
+    <ClInclude Include="..\Classes\Room.h" />
     <ClInclude Include="..\Classes\Soldier.h" />
     <ClInclude Include="..\Classes\Ant.h" />
     <ClInclude Include="..\Classes\TitleScene.h" />
+    <ClInclude Include="..\Classes\TunnelManager.h" />
     <ClInclude Include="..\Classes\Worker.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
