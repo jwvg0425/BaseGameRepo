@@ -9,6 +9,8 @@ Imago::Imago()
     m_IsTrain = true;
     m_IsInfiltrate = true;
     m_IsStatVisible = true;
+
+	m_Type = IMAGO;
 }
 
 

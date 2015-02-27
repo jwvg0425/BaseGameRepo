@@ -21,6 +21,7 @@ public:
 
 private:
 	cocos2d::MenuItem* createActButton(const std::string& labelText, cocos2d::ccMenuCallback callback);
+	void setActButtonEnable(cocos2d::MenuItem* item, bool enable);
 
 	void feedCallback(cocos2d::Ref* ref);
 	void brainwashCallback(cocos2d::Ref* ref);
@@ -28,6 +29,10 @@ private:
 	void infiltrateCallback(cocos2d::Ref* ref);
 
 	cocos2d::Menu* m_ActMenu;
+	cocos2d::MenuItem* m_FeedItem;
+	cocos2d::MenuItem* m_BrainWashItem;
+	cocos2d::MenuItem* m_TrainItem;
+	cocos2d::MenuItem* m_InfiltrateItem;
 	cocos2d::Sprite* m_AntSprite;
 	cocos2d::Sprite* m_Gaugebar;
 	cocos2d::Sprite* m_Gauge;

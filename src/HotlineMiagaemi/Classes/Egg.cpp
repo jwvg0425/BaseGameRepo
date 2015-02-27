@@ -9,6 +9,8 @@ Egg::Egg()
     m_IsTrain = false;
     m_IsInfiltrate = false;
     m_IsStatVisible = false;
+
+	m_Type = EGG;
 }
 
 
@@ -31,7 +33,7 @@ bool Egg::isEvolve()
 	return false;
 }
 
-Ant* Egg::evolve()
+State* Egg::evolve()
 {
 	//TODO: 스탯 넣어주기 필요.
 	Larva* larva = new Larva;

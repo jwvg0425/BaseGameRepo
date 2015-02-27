@@ -9,6 +9,12 @@ public:
 
     Sprite* getSprite();
 
+	virtual bool isEvolve();
+
+	virtual State* evolve();
+
+	virtual void update(float dTime);
+
 protected:
     int m_Satiety;
 };

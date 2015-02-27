@@ -13,7 +13,7 @@ public:
 
 	virtual bool isEvolve();
 
-	virtual Ant* evolve();
+	virtual State* evolve();
 
 	virtual void update(float dTime);
 

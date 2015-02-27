@@ -30,28 +30,25 @@ bool FosterScene::init()
 	glview->setDesignResolutionSize(WND_WIDTH_GAME, WND_HEIGHT_GAME, ResolutionPolicy::SHOW_ALL);
 
 	//¸ÔÀÌ±â
-	auto feedItem = createActButton("¸ÔÀÌ±â", 
+	m_FeedItem = createActButton("¸ÔÀÌ±â", 
 		CC_CALLBACK_1(FosterScene::feedCallback,this));
-	feedItem->setEnabled(false);
-	feedItem->setColor(Color3B(128, 128, 128));
+	setActButtonEnable(m_FeedItem, false);
+
 	//¼¼³ú½ÃÅ°±â
-	auto brainwashItem = createActButton("¼¼³ú",
+	m_BrainWashItem = createActButton("¼¼³ú",
 		CC_CALLBACK_1(FosterScene::brainwashCallback, this));
-	brainwashItem->setEnabled(false);
-	brainwashItem->setColor(Color3B(128, 128, 128));
+	setActButtonEnable(m_BrainWashItem, false);
 	//ÈÆ·Ã½ÃÅ°±â
-	auto trainItem = createActButton("ÈÆ·Ã", 
+	m_TrainItem = createActButton("ÈÆ·Ã", 
 		CC_CALLBACK_1(FosterScene::trainCallback, this));
-	trainItem->setEnabled(false);
-	trainItem->setColor(Color3B(128, 128, 128));
+	setActButtonEnable(m_TrainItem, false);
 
 	//ÀáÀÔ
-	auto infiltrateItem = createActButton("ÀáÀÔ",
+	m_InfiltrateItem = createActButton("ÀáÀÔ",
 		CC_CALLBACK_1(FosterScene::infiltrateCallback, this));
-	infiltrateItem->setEnabled(false);
-	infiltrateItem->setColor(Color3B(128, 128, 128));
+	setActButtonEnable(m_InfiltrateItem, false);
 
-	m_ActMenu = Menu::create(feedItem, brainwashItem, trainItem, infiltrateItem, nullptr);
+	m_ActMenu = Menu::create(m_FeedItem, m_BrainWashItem, m_TrainItem, m_InfiltrateItem, nullptr);
 
 	m_ActMenu->alignItemsHorizontallyWithPadding(30);
 	m_ActMenu->setPosition(WND_WIDTH_GAME/2, 50);
@@ -79,7 +76,8 @@ bool FosterScene::init()
     return true;
 }
 
-FosterScene::FosterScene() : m_ActMenu(nullptr), m_AntSprite(nullptr)
+FosterScene::FosterScene() : m_ActMenu(nullptr), m_AntSprite(nullptr), m_BrainWashItem(nullptr),
+m_FeedItem(nullptr),m_Gaugebar(nullptr),m_Gauge(nullptr),m_InfiltrateItem(nullptr),m_TrainItem(nullptr)
 {
 
 }
@@ -122,12 +120,37 @@ void FosterScene::infiltrateCallback(cocos2d::Ref* ref)
 
 void FosterScene::update(float dTime)
 {
-	Ant* ant = GameManager::getInstance()->getAnt();
+	State* ant = GameManager::getInstance()->getAnt();
 
 	ant->update(dTime);
 
 	if (ant->isEvolve())
 	{
-		GameManager::getInstance()->setAnt(ant->evolve());
+		State* evolveAnt = ant->evolve();
+		m_AntSprite->removeFromParent();
+		m_AntSprite = evolveAnt->getSprite();
+		m_AntSprite->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2);
+		addChild(m_AntSprite);
+
+		GameManager::getInstance()->setAnt(evolveAnt);
+
+		setActButtonEnable(m_FeedItem, evolveAnt->isFeed());
+		setActButtonEnable(m_BrainWashItem, evolveAnt->isBrainwash());
+		setActButtonEnable(m_TrainItem, evolveAnt->isTrain());
+		setActButtonEnable(m_InfiltrateItem, evolveAnt->isInfiltrate());
+	}
+}
+
+void FosterScene::setActButtonEnable(cocos2d::MenuItem* item, bool enable)
+{
+	item->setEnabled(enable);
+
+	if (enable)
+	{
+		item->setColor(Color3B(0, 0, 0));
+	}
+	else
+	{
+		item->setColor(Color3B(128, 128, 128));
 	}
 }
