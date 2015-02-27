@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "Cutscene.h"
+#include "FosterScene.h"
 #include "const.h"
 
 USING_NS_CC;
@@ -30,7 +31,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // create a scene. it's an autorelease object
     //auto scene1 = FosterScene::createScene();
-    auto scene = CutScene::createScene();
+    auto scene = FosterScene::createScene();
     // run
     //director->runWithScene(scene1);
     director->runWithScene(scene);
