@@ -1,6 +1,8 @@
 #include "CutScene.h"
+#include "FosterScene.h"
 
 USING_NS_CC;
+
 
 Scene* CutScene::createScene()
 {
@@ -8,7 +10,7 @@ Scene* CutScene::createScene()
 
     auto layer = CutScene::create();
 
-    scene->addChild(layer);
+    scene->addChild(layer, 0, "CutScene");
 
     return scene;
 }
@@ -33,8 +35,15 @@ bool CutScene::init()
     cutAnimation->addSpriteFrameWithFile("cutscene/cut5.png");
     cutAnimation->addSpriteFrameWithFile("cutscene/cut6.png");
 
-    auto cutScene = Animate::create(cutAnimation);
-
+    auto director = Director::getInstance();
+    auto action1 = Animate::create(cutAnimation);
+    auto action2 = CallFuncN::create(CC_CALLBACK_1(CutScene::SceneCallback, this));
+    auto cutScene = Sequence::create(action1, action2, NULL);
     cut1->runAction(cutScene);
     return true;
+}
+
+void CutScene::SceneCallback(Ref* sender)
+{
+    Director::getInstance()->replaceScene(FosterScene::createScene());
 }

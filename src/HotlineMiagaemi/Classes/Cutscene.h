@@ -10,6 +10,8 @@ class CutScene : public cocos2d::Layer
 public:
     static cocos2d::Scene* createScene();
 
+    void SceneCallback(Ref* sender);
+
     virtual bool init();
 
     CREATE_FUNC(CutScene);
