@@ -19,6 +19,7 @@ public:
 private:
 	cocos2d::Sprite* m_PlayerSprite;
 	int m_PrevYPos;
+	int m_PrevXPos;
 
 	//anchorPoint 0.5,0.5 기준
 	void addTile(float x, float y, 

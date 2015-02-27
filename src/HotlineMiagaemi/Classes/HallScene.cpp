@@ -132,3 +132,14 @@ void HallScene::setActButtonEnable(cocos2d::MenuItem* item, bool enable)
         item->setColor(Color3B(128, 128, 128));
     }
 }
+
+int HallScene::getAntYPos()
+{
+	return m_AntYPos;
+}
+
+int HallScene::getAntXPos()
+{
+	return m_AntXPos;
+}
+>>>>>>> origin/master
