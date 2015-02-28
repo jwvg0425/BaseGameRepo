@@ -212,6 +212,15 @@ void RoomScene::moveCallback(cocos2d::Ref* ref)
             break;
     }
 
+    if (m_AntXPos == 0 && m_AntYPos == 0)
+        setActButtonEnable(m_OutItem, true);
+    else
+        setActButtonEnable(m_OutItem, false);
+}
+
+void RoomScene::outCallback(cocos2d::Ref* ref)
+{
+
 }
 
 cocos2d::MenuItem* RoomScene::createActButton(const std::string& labelText, ccMenuCallback callback)

@@ -34,6 +34,7 @@ public:
     void setIsLeft(bool isLeft){ m_IsLeft = isLeft; }
 
     void moveCallback(cocos2d::Ref* ref);
+    void outCallback(cocos2d::Ref* ref);
 
     RoomType getRoomType(){ return m_RoomType; }
     int getRoomSizeX(){ return m_SizeX; }
