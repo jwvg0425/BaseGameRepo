@@ -90,3 +90,14 @@ int Ant::getAge()
 {
 	return m_Age;
 }
+
+bool Ant::isDead()
+{
+	//수명 다 되거나, 배가 너무 고프거나, 체력이 없으면 사망함
+	if (m_Age > m_Life || m_Satiety < 0 || m_HP < 0)
+	{
+		return true;
+	}
+
+	return false;
+}

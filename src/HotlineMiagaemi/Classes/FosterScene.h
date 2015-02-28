@@ -31,6 +31,12 @@ private:
 	void trainCallback(cocos2d::Ref* ref);
 	void infiltrateCallback(cocos2d::Ref* ref);
 
+	void battleCallback(cocos2d::Ref* sender);
+	void athleticCallback(cocos2d::Ref* sender);
+	void exploreCallback(cocos2d::Ref* sender);
+	void dodgeCallback(cocos2d::Ref* sender);
+	void hellCallback(cocos2d::Ref* sender);
+
 	void feedComplete();
 	void brainwashComplete();
 
@@ -44,6 +50,9 @@ private:
 	cocos2d::MenuItem* m_BrainWashItem;
 	cocos2d::MenuItem* m_TrainItem;
 	cocos2d::MenuItem* m_InfiltrateItem;
+
+	//ÈÆ·Ã ¸Þ´º
+	cocos2d::Menu* m_TrainMenu;
 	cocos2d::Sprite* m_AntSprite;
 	cocos2d::Sprite* m_Gaugebar;
 	cocos2d::Sprite* m_Gauge;
@@ -58,6 +67,7 @@ private:
 	float m_CompleteTime;
 
 	bool m_IsAct;
+	bool m_IsTrainVisible;
 };
 
 #endif // __FOSTER_SCENE_H__

@@ -35,6 +35,8 @@ public:
 	bool isInfiltrate();
 	bool isStatVisible();
 
+	bool isDead();
+
 	void addSatiety(int satiety);
 	void addAge(int age);
 	void addInt(int val);

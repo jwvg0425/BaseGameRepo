@@ -45,6 +45,34 @@ bool FosterScene::init()
 		CC_CALLBACK_1(FosterScene::trainCallback, this));
 	setActButtonEnable(m_TrainItem, false);
 
+	//ÈÆ·Ã ¸Þ´º
+	auto battleItem = createActButton("ÀüÅõ ÈÆ·Ã",
+		CC_CALLBACK_1(FosterScene::battleCallback, this));
+	setActButtonEnable(battleItem, true);
+
+	auto athleticItem = createActButton("Ã¼·Â ÈÆ·Ã",
+		CC_CALLBACK_1(FosterScene::athleticCallback, this));
+	setActButtonEnable(athleticItem, true);
+
+	auto exploreItem = createActButton("Å½»ç ÈÆ·Ã",
+		CC_CALLBACK_1(FosterScene::exploreCallback, this));
+	setActButtonEnable(battleItem, true);
+
+	auto dodgeItem = createActButton("È¸ÇÇ ÈÆ·Ã",
+		CC_CALLBACK_1(FosterScene::dodgeCallback, this));
+	setActButtonEnable(dodgeItem, true);
+
+	auto hellItem = createActButton("Áö¿Á",
+		CC_CALLBACK_1(FosterScene::hellCallback, this));
+	setActButtonEnable(hellItem, true);
+
+	m_TrainMenu = Menu::create(battleItem, athleticItem, exploreItem, dodgeItem, hellItem, nullptr);
+	m_TrainMenu->alignItemsVerticallyWithPadding(5);
+	m_TrainMenu->setPosition(WND_WIDTH_GAME / 2 - 144, WND_HEIGHT_GAME / 2);
+	m_TrainMenu->setVisible(m_IsTrainVisible);
+
+	addChild(m_TrainMenu);
+
 	//ÀáÀÔ
 	m_InfiltrateItem = createActButton("ÀáÀÔ",
 		CC_CALLBACK_1(FosterScene::infiltrateCallback, this));
@@ -103,8 +131,9 @@ bool FosterScene::init()
 }
 
 FosterScene::FosterScene() : m_ActMenu(nullptr), m_AntSprite(nullptr), m_BrainWashItem(nullptr),
-m_FeedItem(nullptr), m_Gaugebar(nullptr), m_Gauge(nullptr), m_InfiltrateItem(nullptr), m_TrainItem(nullptr), m_TypeLabel(nullptr),
-m_ActTime(0.0f), m_CompleteTime(0.0f), m_IsAct(false), m_CompleteActionFunc(nullptr), m_StatWindow(nullptr), m_EggNum(nullptr)
+m_FeedItem(nullptr), m_Gaugebar(nullptr), m_Gauge(nullptr), m_InfiltrateItem(nullptr), m_TrainItem(nullptr), m_TrainMenu(nullptr),
+m_TypeLabel(nullptr), m_ActTime(0.0f), m_CompleteTime(0.0f), m_IsAct(false),
+m_CompleteActionFunc(nullptr), m_StatWindow(nullptr), m_EggNum(nullptr), m_IsTrainVisible(false)
 {
 
 }
@@ -245,7 +274,9 @@ void FosterScene::brainwashCallback(cocos2d::Ref* ref)
 
 void FosterScene::trainCallback(cocos2d::Ref* ref)
 {
+	m_IsTrainVisible = !m_IsTrainVisible;
 
+	m_TrainMenu->setVisible(m_IsTrainVisible);
 }
 
 void FosterScene::infiltrateCallback(cocos2d::Ref* ref)
@@ -460,4 +491,29 @@ void FosterScene::brainwashComplete()
 		}
 		}
 	}
+}
+
+void FosterScene::battleCallback(cocos2d::Ref* sender)
+{
+
+}
+
+void FosterScene::athleticCallback(cocos2d::Ref* sender)
+{
+
+}
+
+void FosterScene::exploreCallback(cocos2d::Ref* sender)
+{
+
+}
+
+void FosterScene::dodgeCallback(cocos2d::Ref* sender)
+{
+
+}
+
+void FosterScene::hellCallback(cocos2d::Ref* sender)
+{
+
 }
