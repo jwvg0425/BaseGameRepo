@@ -145,8 +145,19 @@ void FosterScene::feedCallback(cocos2d::Ref* ref)
 			break;
 		}
 		case Ant::ST_IMAGO:
-			//TODO: ImagoType에 따라 다르게 처리하는 거 넣기
-			break;
+			switch (static_cast<Imago*>(ant)->getImagoType())
+			{
+			case Imago::IT_WORKER:
+			{
+				auto animation = GameManager::createAnimation("worker_feed_%d.png", 1, 8, 0.125f);
+				auto animate = Animate::create(animation);
+				auto repeat = RepeatForever::create(animate);
+				m_AntSprite->stopAllActions();
+				m_AntSprite->runAction(repeat);
+				startAction(2.0f, std::bind(&FosterScene::feedComplete, this));
+				break;
+			}
+			}
 		}
 	}
 }
@@ -358,7 +369,8 @@ void FosterScene::feedComplete()
 	GameManager::getInstance()->getAnt()->addSatiety(5 + (rand() % 5));
 	GameManager::getInstance()->getAnt()->addAge(1);
 
-	auto type = GameManager::getInstance()->getAnt()->getType();
+	auto ant = GameManager::getInstance()->getAnt();
+	auto type = ant->getType();
 
 	switch (type)
 	{
@@ -371,6 +383,19 @@ void FosterScene::feedComplete()
 		m_AntSprite->runAction(repeat);
 		break;
 	}
+	case Ant::ST_IMAGO:
+		switch (static_cast<Imago*>(ant)->getImagoType())
+		{
+		case Imago::IT_WORKER:
+		{
+			auto animation = GameManager::createAnimation("worker_%d.png", 1, 4, 0.3f);
+			auto animate = Animate::create(animation);
+			auto repeat = RepeatForever::create(animate);
+			m_AntSprite->stopAllActions();
+			m_AntSprite->runAction(repeat);
+			break;
+		}
+		}
 	}
 }
 

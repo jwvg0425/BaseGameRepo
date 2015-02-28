@@ -33,6 +33,7 @@ GameManager::GameManager() : m_NowAnt(nullptr), m_AntNum(5)
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva_brainwash.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva_feed.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("worker.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("worker_feed.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("worker_brainwash.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("soldier.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("soldier_brainwash.plist");
