@@ -247,6 +247,17 @@ void FosterScene::update(float dTime)
 	if (ant->isEvolve())
 	{
 		addUpmoveLabel(1, "ÁøÈ­!", 40);
+		auto effectSprite = Sprite::create();
+
+		auto effectAni = GameManager::createAnimation("effect_%d.png", 1, 8, 0.05f);
+		auto effectAnimate = Animate::create(effectAni);
+		auto del = CallFunc::create(CC_CALLBACK_0(Sprite::removeFromParent, effectSprite));
+		auto sequence = Sequence::create(effectAnimate, del, nullptr);
+		
+		addChild(effectSprite,1);
+		effectSprite->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2);
+		effectSprite->runAction(sequence);
+		
 		Ant* evolveAnt = ant->evolve();
 		m_AntSprite->removeFromParent();
 		m_AntSprite = evolveAnt->getSprite();

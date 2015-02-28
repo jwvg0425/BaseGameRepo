@@ -133,7 +133,6 @@ bool HallSprite::init()
 
 	auto ant = GameManager::getInstance()->getAnt();
 	m_PlayerSprite = ant->getSprite();
-	m_PlayerSprite->setFlippedY(true);
 	auto animation = GameManager::getInstance()->getAnimation(ant);
 
 	if (animation != nullptr)
@@ -146,6 +145,7 @@ bool HallSprite::init()
 	addChild(m_PlayerSprite);
 
 	m_PlayerSprite->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME - 32);
+	GameManager::getInstance()->getAnt()->setDir(DIR_DOWN);
 
 	m_CursorSprite = Sprite::create("cursor_1.png");
 
@@ -189,6 +189,22 @@ void HallSprite::update(float dTime)
 	int yPos = static_cast<HallScene*>(getParent())->getAntYPos();
 	int xPos = static_cast<HallScene*>(getParent())->getAntXPos();
 
+	switch (GameManager::getInstance()->getAnt()->getDir())
+	{
+	case DIR_LEFT:
+		m_PlayerSprite->setRotation(270);
+		break;
+	case DIR_UP:
+		m_PlayerSprite->setRotation(0);
+		break;
+	case DIR_RIGHT:
+		m_PlayerSprite->setRotation(90);
+		break;
+	case DIR_DOWN:
+		m_PlayerSprite->setRotation(180);
+		break;
+	}
+
 	if (yPos != m_PrevYPos)
 	{
 		if (yPos > m_PrevYPos)
@@ -198,7 +214,6 @@ void HallSprite::update(float dTime)
 				runAction(MoveBy::create(0.5, Point(0, -64)));
 				m_Camera--;
 			}
-			m_PlayerSprite->setRotation(180);
 			m_PlayerSprite->runAction(MoveBy::create(0.5, Point(0, 64)));
 		}
 		else
@@ -208,7 +223,6 @@ void HallSprite::update(float dTime)
 				runAction(MoveBy::create(0.5, Point(0, 64)));
 				m_Camera++;
 			}
-			m_PlayerSprite->setRotation(0);
 			m_PlayerSprite->runAction(MoveBy::create(0.5, Point(0, -64)));
 			
 		}
@@ -220,12 +234,10 @@ void HallSprite::update(float dTime)
 		if (xPos > m_PrevXPos)
 		{
 			m_PlayerSprite->runAction(MoveBy::create(0.5, Point(64, 0)));
-			m_PlayerSprite->setRotation(270);
 		}
 		else
 		{
 			m_PlayerSprite->runAction(MoveBy::create(0.5, Point(-64, 0)));
-			m_PlayerSprite->setRotation(90);
 		}
 		m_PrevXPos = xPos;
 	}
@@ -248,6 +260,24 @@ void HallSprite::update(float dTime)
 
 			m_PrevEnemyPos[antList[i]].x = xPos;
 			m_PrevEnemyPos[antList[i]].y = yPos;
+		}
+
+		//방향 변경
+
+		switch (antList[i]->getDir())
+		{
+		case DIR_LEFT:
+			m_EnemySprites[antList[i]]->setRotation(270);
+			break;
+		case DIR_UP:
+			m_EnemySprites[antList[i]]->setRotation(0);
+			break;
+		case DIR_RIGHT:
+			m_EnemySprites[antList[i]]->setRotation(90);
+			break;
+		case DIR_DOWN:
+			m_EnemySprites[antList[i]]->setRotation(180);
+			break;
 		}
 	}
 

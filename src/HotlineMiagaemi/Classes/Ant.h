@@ -1,5 +1,6 @@
 #pragma once
 #include "cocos2d.h"
+#include "const.h"
 
 USING_NS_CC;
 
@@ -50,6 +51,9 @@ public:
 	int getAge();
 	int getSatiety();
 
+	Direction	getDir();
+	void		setDir(Direction dir);
+
 protected:
 	int     m_STR;
 	int     m_HP;
@@ -59,6 +63,7 @@ protected:
 	Sprite* m_Sprite;
 	int		m_Satiety;
 
+	Direction	m_Dir;
 	StateType	m_Type;
 
     bool        m_IsFeed;

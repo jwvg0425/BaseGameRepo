@@ -9,6 +9,7 @@ Imago::Imago()
     m_IsInfiltrate = true;
     m_IsStatVisible = true;
 	m_Satiety = 70;
+	m_Dir = DIR_DOWN;
 
 	m_Type = ST_IMAGO;
 }
@@ -52,22 +53,26 @@ void Imago::move()
     case 0:
         if (m_Y <= MAX_DEEP)
             break;
+		m_Dir = DIR_DOWN;
         m_Y--;
         break;
     case 1:
         if (m_Y >= 0)
             break;
+		m_Dir = DIR_UP;
         m_Y++;
         break;
     case 2:
         if (m_X <= -1)
             break;
         m_X--;
+		m_Dir = DIR_LEFT;
         break;
     case 3:
         if (m_X >= 1)
             break;
         m_X++;
+		m_Dir = DIR_RIGHT;
         break;
     }
 }

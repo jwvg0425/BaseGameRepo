@@ -2,7 +2,7 @@
 
 
 Ant::Ant()
-:m_STR(0), m_HP(0), m_INT(0), m_Life(0), m_Age(0), m_Type(ST_NONE), m_Satiety(0)
+:m_STR(0), m_HP(0), m_INT(0), m_Life(0), m_Age(0), m_Type(ST_NONE), m_Satiety(0), m_Dir(DIR_NONE)
 {
 }
 
@@ -118,4 +118,14 @@ void Ant::addStr(int str)
 void Ant::addHp(int hp)
 {
 	m_HP += hp;
+}
+
+Direction Ant::getDir()
+{
+	return m_Dir;
+}
+
+void Ant::setDir(Direction dir)
+{
+	m_Dir = dir;
 }

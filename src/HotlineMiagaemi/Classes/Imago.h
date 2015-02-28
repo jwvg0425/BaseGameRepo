@@ -1,5 +1,6 @@
 #pragma once
 #include "Ant.h"
+
 class Imago :
     public Ant
 {

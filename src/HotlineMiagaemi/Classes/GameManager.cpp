@@ -197,6 +197,7 @@ void GameManager::initSprites()
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("male.plist");
 
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("cursor.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("effect.plist");
 }
 
 void GameManager::runAnimation(cocos2d::Sprite* sprite, cocos2d::Animation* animation)

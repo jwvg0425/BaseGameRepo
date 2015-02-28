@@ -25,6 +25,8 @@ public:
     void moveCallback(cocos2d::Ref* ref);
     void enterCallback(cocos2d::Ref* ref);
 
+	void update(float dTime);
+
 	int getAntYPos();
 	int getAntXPos();
 
@@ -36,5 +38,7 @@ private:
     cocos2d::MenuItem*  m_MoveItem;
     cocos2d::MenuItem*  m_EnterItem;
 	HallSprite*			m_Sprite;
+	bool				m_IsAct;
+	float				m_Time;
 };
 #endif

@@ -9,6 +9,8 @@ USING_NS_CC;
 
 HallScene::HallScene() : m_Sprite(nullptr)
 {
+	m_IsAct = true;
+	m_Time = 0;
 }
 
 
@@ -63,11 +65,19 @@ bool HallScene::init()
 
 	m_Sprite = HallSprite::create();
 	addChild(m_Sprite,-1);
+
+	scheduleUpdate();
     return true;
 }
 
 void HallScene::dodgeCallback(cocos2d::Ref* ref)
 {
+	if (!m_IsAct)
+		return;
+
+	m_IsAct = false;
+	m_Time = 0;
+
     int random = rand() % 3;
 
     switch (random)
@@ -76,6 +86,7 @@ void HallScene::dodgeCallback(cocos2d::Ref* ref)
         if (m_AntYPos == 0)
             break;
         m_AntYPos++;
+		GameManager::getInstance()->getAnt()->setDir(DIR_UP);
         if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
         {
             m_AntYPos--;
@@ -89,6 +100,7 @@ void HallScene::dodgeCallback(cocos2d::Ref* ref)
             {
             case 0: //반대로 갈 때
                 m_AntXPos++;
+				GameManager::getInstance()->getAnt()->setDir(DIR_RIGHT);
                 if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
                 {
                     m_AntXPos--;
@@ -98,12 +110,14 @@ void HallScene::dodgeCallback(cocos2d::Ref* ref)
                 if (m_AntYPos == 0) //막혔을 때
                 {
                     m_AntXPos++;
+					GameManager::getInstance()->getAnt()->setDir(DIR_RIGHT);
                     if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
                     {
                         m_AntXPos--;
                     }
                     break;
                 }
+				GameManager::getInstance()->getAnt()->setDir(DIR_UP);
                 m_AntYPos++;
                 if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
                 {
@@ -114,6 +128,7 @@ void HallScene::dodgeCallback(cocos2d::Ref* ref)
             break;
         }
         m_AntXPos--;
+		GameManager::getInstance()->getAnt()->setDir(DIR_LEFT);
         if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
         {
             m_AntXPos++;
@@ -127,6 +142,7 @@ void HallScene::dodgeCallback(cocos2d::Ref* ref)
             {
             case 0: //반대로 갈 때
                 m_AntXPos--;
+				GameManager::getInstance()->getAnt()->setDir(DIR_LEFT);
                 if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
                 {
                     m_AntXPos++;
@@ -136,6 +152,7 @@ void HallScene::dodgeCallback(cocos2d::Ref* ref)
                 if (m_AntYPos == 0) // 막혔을 때
                 {
                     m_AntXPos--;
+					GameManager::getInstance()->getAnt()->setDir(DIR_LEFT);
                     if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
                     {
                         m_AntXPos++;
@@ -143,6 +160,7 @@ void HallScene::dodgeCallback(cocos2d::Ref* ref)
                     break;
                 }
                 m_AntYPos++;
+				GameManager::getInstance()->getAnt()->setDir(DIR_UP);
                 if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
                 {
                     m_AntYPos--;
@@ -152,6 +170,7 @@ void HallScene::dodgeCallback(cocos2d::Ref* ref)
             break;
         }
         m_AntXPos++;
+		GameManager::getInstance()->getAnt()->setDir(DIR_RIGHT);
         if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
         {
             m_AntXPos--;
@@ -167,7 +186,14 @@ void HallScene::dodgeCallback(cocos2d::Ref* ref)
 
 void HallScene::moveCallback(cocos2d::Ref* ref)
 {
+	if (!m_IsAct)
+		return;
+
+	m_IsAct = false;
+	m_Time = 0;
+
     m_AntYPos--;
+	GameManager::getInstance()->getAnt()->setDir(DIR_DOWN);
     if (m_AntYPos <= MAX_DEEP)
         m_AntYPos++;
     if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
@@ -183,6 +209,12 @@ void HallScene::moveCallback(cocos2d::Ref* ref)
 
 void HallScene::enterCallback(cocos2d::Ref* ref)
 {
+	if (!m_IsAct)
+		return;
+
+	m_IsAct = false;
+	m_Time = 0;
+
     TunnelManager::getInstance()->roomSceneCallback(m_AntYPos);
 }
 
@@ -219,4 +251,17 @@ int HallScene::getAntYPos()
 int HallScene::getAntXPos()
 {
 	return m_AntXPos;
+}
+
+void HallScene::update(float dTime)
+{
+	if (!m_IsAct)
+	{
+		m_Time += dTime;
+
+		if (m_Time > 1.0f)
+		{
+			m_IsAct = true;
+		}
+	}
 }
