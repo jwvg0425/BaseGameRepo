@@ -20,13 +20,16 @@ HallScene::~HallScene()
 {
 }
 
-Scene* HallScene::createScene()
+cocos2d::Scene* HallScene::createScene(int playerX, int playerY)
 {
     auto scene = Scene::create();
 
     auto layer = HallScene::create();
 
     scene->addChild(layer);
+
+    static_cast<HallScene*>(layer)->setAntXPos(playerX);
+    static_cast<HallScene*>(layer)->setAntYPos(playerY);
 
     return scene;
 }
@@ -37,8 +40,6 @@ bool HallScene::init()
     {
         return false;
     }
-    m_AntXPos = 0;
-    m_AntYPos = 0;
 
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();

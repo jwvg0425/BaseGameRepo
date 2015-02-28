@@ -50,6 +50,8 @@ private:
     std::map<int, RoomType>     m_RoomTypeList;
     std::map<int, Size>         m_RoomSizeList;
     std::vector<Imago*>         m_HallAntList;
+    int                         m_PlayerX;
+    int                         m_PlayerY;
 };
 
 #endif

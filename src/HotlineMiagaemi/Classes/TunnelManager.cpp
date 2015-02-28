@@ -33,6 +33,8 @@ void TunnelManager::releaseInstance()
 TunnelManager::TunnelManager()
 {
     m_PlayerAnt = GameManager::getInstance()->getAnt();
+    m_PlayerX = 0;
+    m_PlayerY = 0;
     initRoom();
     initAnt();
 }
@@ -152,6 +154,8 @@ bool TunnelManager::checkAntInterval(int antYPos)
 
 void TunnelManager::moveCallback(int playerX, int playerY)
 {
+    m_PlayerX = playerX;
+    m_PlayerY = playerY;
     for (auto& ant : m_HallAntList)
     {
         int prevX = ant->getPosX();
@@ -180,7 +184,7 @@ void TunnelManager::moveCallback(int playerX, int playerY)
 
 void TunnelManager::hallSceneCallback(Ref* sender)
 {
-    Director::getInstance()->replaceScene(HallScene::createScene());
+    Director::getInstance()->replaceScene(HallScene::createScene(m_PlayerX, m_PlayerY));
 }
 
 void TunnelManager::roomSceneCallback(int antYPos)

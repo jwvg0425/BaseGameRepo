@@ -93,10 +93,10 @@ bool RoomScene::init()
         CC_CALLBACK_1(RoomScene::moveCallback, this));
     setActButtonEnable(m_OutItem, true);
 
-    m_ActMenu = Menu::create(m_MoveItem, NULL);
+    m_ActMenu = Menu::create(m_MoveItem, m_OutItem, NULL);
 
     m_ActMenu->alignItemsHorizontallyWithPadding(30);
-    m_ActMenu->setPosition(WND_WIDTH_GAME * 7 / 8, 50);
+    m_ActMenu->setPosition(WND_WIDTH_GAME * 3 / 4, 50);
 
     addChild(m_ActMenu);
 
@@ -224,7 +224,7 @@ void RoomScene::moveCallback(cocos2d::Ref* ref)
 
 void RoomScene::outCallback(cocos2d::Ref* ref)
 {
-
+    TunnelManager::getInstance()->hallSceneCallback(ref);
 }
 
 cocos2d::MenuItem* RoomScene::createActButton(const std::string& labelText, ccMenuCallback callback)

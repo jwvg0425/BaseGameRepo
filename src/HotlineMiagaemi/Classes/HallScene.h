@@ -16,7 +16,7 @@ public:
 
     void setActButtonEnable(cocos2d::MenuItem* item, bool enable);
 
-    static cocos2d::Scene* createScene();
+    static cocos2d::Scene* createScene(int playerX, int playerY);
 
     virtual bool init();
 
@@ -28,6 +28,8 @@ public:
 
 	void update(float dTime);
 
+    void setAntXPos(int x){ m_AntXPos = x; }
+    void setAntYPos(int y){ m_AntYPos = y; }
 	int getAntYPos();
 	int getAntXPos();
 
