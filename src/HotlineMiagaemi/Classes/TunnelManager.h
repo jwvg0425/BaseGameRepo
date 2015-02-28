@@ -1,8 +1,8 @@
 #ifndef _TUNNEL_MANAGER_H_
 #define _TUNNEL_MANAGER_H_
 
-#define MAX_DEEP 200
-#define MIN_ROOM 4
+#define MAX_DEEP -200
+#define MIN_ROOM 8
 #define MAX_INTERVAL 10
 
 #include "RoomScene.h"
