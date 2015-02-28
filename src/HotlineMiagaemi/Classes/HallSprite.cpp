@@ -105,7 +105,7 @@ bool HallSprite::init()
 		addChild(m_EnemySprites[antList[i]]);
 
 		m_EnemySprites[antList[i]]->setAnchorPoint(Point(0.5, 0.5));
-		m_EnemySprites[antList[i]]->setPosition(WND_WIDTH_GAME / 2 + x * 64, WND_HEIGHT_GAME - 32 + (y + 1) * 64);
+		m_EnemySprites[antList[i]]->setPosition(WND_WIDTH_GAME / 2 + x * 64, WND_HEIGHT_GAME - 32 + y * 64);
 
 		cocos2d::Animation* animation = nullptr;
 
@@ -244,7 +244,7 @@ void HallSprite::update(float dTime)
 		if (xPos != prevXPos || yPos != prevYPos)
 		{
 			m_EnemySprites[antList[i]]->runAction(MoveTo::create(0.5, 
-				Point(WND_WIDTH_GAME / 2 +xPos*64, WND_HEIGHT_GAME - 32 + (yPos + 1) * 64)));
+				Point(WND_WIDTH_GAME / 2 +xPos*64, WND_HEIGHT_GAME - 32 + yPos * 64)));
 
 			m_PrevEnemyPos[antList[i]].x = xPos;
 			m_PrevEnemyPos[antList[i]].y = yPos;

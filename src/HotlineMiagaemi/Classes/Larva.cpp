@@ -53,11 +53,6 @@ Ant* Larva::evolve()
 	{
 		evolveAnt = new Soldier;
 	}
-	else if (randomValue < 96)
-	{
-		//TODO : Princess 완성되면 Princess로
-		evolveAnt = new Worker;
-	}
 	else
 	{
 		evolveAnt = new Male;

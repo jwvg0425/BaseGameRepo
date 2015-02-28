@@ -246,6 +246,7 @@ void FosterScene::update(float dTime)
 
 	if (ant->isEvolve())
 	{
+		addUpmoveLabel(1, "ÁøÈ­!", 40);
 		Ant* evolveAnt = ant->evolve();
 		m_AntSprite->removeFromParent();
 		m_AntSprite = evolveAnt->getSprite();
