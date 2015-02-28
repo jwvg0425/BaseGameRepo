@@ -234,3 +234,19 @@ const std::vector<Imago*>& TunnelManager::getHallAntList()
 {
 	return m_HallAntList;
 }
+
+void TunnelManager::updateHallAntList()
+{
+	for (auto it = m_HallAntList.begin(); it != m_HallAntList.end(); )
+	{
+		if ((*it)->isDead())
+		{
+			delete *it;
+			it = m_HallAntList.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+}

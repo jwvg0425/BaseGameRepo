@@ -36,6 +36,7 @@ public:
     bool isRoomExist(int antXPos, int antYPos);
     bool isLeft();
 	const std::vector<Imago*>& getHallAntList();
+	void updateHallAntList();
 
 private:
     TunnelManager();

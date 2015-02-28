@@ -4,6 +4,7 @@
 #include "TunnelManager.h"
 #include "const.h"
 #include "HallSprite.h"
+#include "FosterScene.h"
 
 USING_NS_CC;
 
@@ -259,9 +260,18 @@ void HallScene::update(float dTime)
 	{
 		m_Time += dTime;
 
-		if (m_Time > 1.0f)
+		if (m_Time > 0.55f)
 		{
 			m_IsAct = true;
 		}
 	}
+
+	if (GameManager::getInstance()->getAnt()->isDead())
+	{
+		GameManager::getInstance()->antDie();
+		GameManager::getInstance()->initAnt();
+		Director::getInstance()->replaceScene(FosterScene::createScene());
+	}
+	//磷篮 局甸 昏力 贸府
+	TunnelManager::getInstance()->updateHallAntList();
 }

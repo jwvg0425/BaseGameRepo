@@ -281,6 +281,8 @@ void HallSprite::update(float dTime)
 		}
 	}
 
+	std::vector<Imago*> deletedMembers;
+
 	for (auto& sprites : m_EnemySprites)
 	{
 		//해당 스프라이트가 존재하는 스프라이트인지 검사
@@ -298,6 +300,12 @@ void HallSprite::update(float dTime)
 		}())
 		{
 			sprites.second->removeFromParent();
+			deletedMembers.push_back(sprites.first);
 		}
+	}
+
+	for (auto& member : deletedMembers)
+	{
+		m_EnemySprites.erase(member);
 	}
 }
