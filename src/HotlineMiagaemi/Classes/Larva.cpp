@@ -47,7 +47,7 @@ Ant* Larva::evolve()
 
 	if (randomValue < 70)
 	{
-		evolveAnt = new Male;
+		evolveAnt = new Worker;
 	}
 	else if (randomValue < 90)
 	{

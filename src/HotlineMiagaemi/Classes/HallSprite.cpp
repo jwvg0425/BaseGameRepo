@@ -91,6 +91,43 @@ bool HallSprite::init()
 		}
 	}
 
+	//몬스터 위치 초기화
+
+	auto antList = TunnelManager::getInstance()->getHallAntList();
+
+	for (int i = 0; i < antList.size(); i++)
+	{
+		int x = antList[i]->getPosX();
+		int y = antList[i]->getPosY();
+		m_PrevEnemyPos[antList[i]] = Point(x, y);
+		m_EnemySprites[antList[i]] = antList[i]->getSprite();
+
+		addChild(m_EnemySprites[antList[i]]);
+
+		m_EnemySprites[antList[i]]->setAnchorPoint(Point(0.5, 0.5));
+		m_EnemySprites[antList[i]]->setPosition(WND_WIDTH_GAME / 2 + x * 64, WND_HEIGHT_GAME - 32 + (y + 1) * 64);
+
+		cocos2d::Animation* animation = nullptr;
+
+		switch (antList[i]->getImagoType())
+		{
+		case Imago::IT_WORKER:
+			animation = GameManager::createAnimation("worker_%d.png", 1, 4, 0.3f);
+			break;
+		case Imago::IT_SOLDIER:
+			animation = GameManager::createAnimation("soldier_%d.png", 1, 4, 0.3f);
+			break;
+		case Imago::IT_MALE:
+			animation = GameManager::createAnimation("male_%d.png", 1, 4, 0.3f);
+			break;
+			//TODO : princess 그래픽 만들어주면 추가하기
+		case Imago::IT_PRINCESS:
+			break;
+		}
+
+		GameManager::runAnimation(m_EnemySprites[antList[i]], animation);
+	}
+
 	m_PrevXPos = 0;
 	m_PrevYPos = 0;
 
@@ -194,4 +231,43 @@ void HallSprite::update(float dTime)
 	}
 
 	m_CursorSprite->setPosition(m_PlayerSprite->getPositionX(), m_PlayerSprite->getPositionY() + 32);
+
+	auto antList = TunnelManager::getInstance()->getHallAntList();
+
+	for (int i = 0; i < antList.size(); i++)
+	{
+		int xPos = antList[i]->getPosX();
+		int yPos = antList[i]->getPosY();
+		int prevXPos = m_PrevEnemyPos[antList[i]].x;
+		int prevYPos = m_PrevEnemyPos[antList[i]].y;
+
+		if (xPos != prevXPos || yPos != prevYPos)
+		{
+			m_EnemySprites[antList[i]]->runAction(MoveTo::create(0.5, 
+				Point(WND_WIDTH_GAME / 2 +xPos*64, WND_HEIGHT_GAME - 32 + (yPos + 1) * 64)));
+
+			m_PrevEnemyPos[antList[i]].x = xPos;
+			m_PrevEnemyPos[antList[i]].y = yPos;
+		}
+	}
+
+	for (auto& sprites : m_EnemySprites)
+	{
+		//해당 스프라이트가 존재하는 스프라이트인지 검사
+		if (![&]() -> bool
+		{
+			for (int i = 0; i < antList.size(); i++)
+			{
+				if (antList[i] == sprites.first)
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}())
+		{
+			sprites.second->removeFromParent();
+		}
+	}
 }

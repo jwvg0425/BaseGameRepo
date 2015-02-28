@@ -4,6 +4,7 @@
 
 #include "cocos2d.h"
 
+class Imago;
 class HallSprite : public cocos2d::Node
 {
 public:
@@ -26,6 +27,9 @@ private:
 	//anchorPoint 0.5,0.5 기준
 	void addTile(float x, float y, 
 		const std::string& upright, const std::string& rightdown, const std::string& downleft, const std::string& leftup);
+
+	std::map<Imago*, cocos2d::Point> m_PrevEnemyPos;
+	std::map<Imago*, cocos2d::Sprite*> m_EnemySprites;
 };
 
 
