@@ -1,4 +1,5 @@
 #include "TunnelManager.h"
+#include "GameManager.h"
 #include "HallScene.h"
 #include "Imago.h"
 #include "Worker.h"
@@ -30,6 +31,7 @@ void TunnelManager::releaseInstance()
 
 TunnelManager::TunnelManager()
 {
+    m_PlayerAnt = GameManager::getInstance()->getAnt();
     initRoom();
     initAnt();
 }
@@ -147,7 +149,7 @@ void TunnelManager::moveCallback(int playerX, int playerY)
         //player와 겹치는 경우를 테스트
         if (playerX == ant.second->getPosX() && playerY == ant.second->getPosY())
         {
-            //공격하는 부분을 추가해야함!!!!
+            ant.second->attack(m_PlayerAnt);
             ant.second->setPos(prevX, prevY);
         }
 

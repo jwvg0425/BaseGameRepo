@@ -27,7 +27,7 @@ public:
 
 	StateType getType();
 
-    void setHP(int Damage);
+    void isAttacked(int Damage);
 
 	bool isFeed();
 	bool isBrainwash();

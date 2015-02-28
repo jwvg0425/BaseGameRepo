@@ -40,6 +40,7 @@ private:
 
     static TunnelManager* m_Instance;
 
+    Ant*                        m_PlayerAnt;
     std::map<int, bool>         m_RoomDirList;
     std::map<int, RoomType>     m_RoomTypeList;
     std::map<int, Size>         m_RoomSizeList;

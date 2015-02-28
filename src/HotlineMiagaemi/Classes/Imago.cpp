@@ -29,7 +29,7 @@ void Imago::attack(Ant* ant)
     if (ant == nullptr)
         return;
 
-    ant->setHP(m_STR);
+    ant->isAttacked(m_STR);
 }
 
 Imago::ImagoType Imago::getImagoType()

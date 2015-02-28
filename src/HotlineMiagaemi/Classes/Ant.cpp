@@ -41,7 +41,7 @@ Ant::StateType Ant::getType()
 	return m_Type;
 }
 
-void Ant::setHP(int Damage)
+void Ant::isAttacked(int Damage)
 {
     m_HP -= Damage;
 }
