@@ -194,6 +194,15 @@ void FosterScene::brainwashCallback(cocos2d::Ref* ref)
 				m_AntSprite->runAction(repeat);
 				break;
 			}
+			case Imago::IT_SOLDIER:
+			{
+				auto animation = GameManager::createAnimation("soldier_brainwash_%d.png", 1, 4, 0.2f);
+				auto animate = Animate::create(animation);
+				auto repeat = RepeatForever::create(animate);
+				m_AntSprite->stopAllActions();
+				m_AntSprite->runAction(repeat);
+				break;
+			}
 			}
 
 			auto label = Label::createWithSystemFont("여왕 개미를 암살하라!", TEXT_FONT, 16);
@@ -390,6 +399,15 @@ void FosterScene::brainwashComplete()
 		case Imago::IT_WORKER:
 		{
 			auto animation = GameManager::createAnimation("worker_%d.png", 1, 4, 0.3f);
+			auto animate = Animate::create(animation);
+			auto repeat = RepeatForever::create(animate);
+			m_AntSprite->stopAllActions();
+			m_AntSprite->runAction(repeat);
+			break;
+		}
+		case Imago::IT_SOLDIER:
+		{
+			auto animation = GameManager::createAnimation("soldier_%d.png", 1, 4, 0.3f);
 			auto animate = Animate::create(animation);
 			auto repeat = RepeatForever::create(animate);
 			m_AntSprite->stopAllActions();
