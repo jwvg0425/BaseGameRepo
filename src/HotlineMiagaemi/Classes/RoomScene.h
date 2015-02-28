@@ -27,6 +27,7 @@ public:
 
     virtual bool init();
 	void initSprite();
+	void initRoomAnt();
 
     CREATE_FUNC(RoomScene);
 

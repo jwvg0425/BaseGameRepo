@@ -33,6 +33,7 @@ cocos2d::Scene* RoomScene::createScene(RoomType roomType, bool isLeft, int sizeX
     static_cast<RoomScene*>(layer)->setRoomSizeX(sizeX);
     static_cast<RoomScene*>(layer)->setRoomSizeY(sizeY);
 	static_cast<RoomScene*>(layer)->setIsLeft(isLeft);
+	static_cast<RoomScene*>(layer)->initRoomAnt();
 	static_cast<RoomScene*>(layer)->initSprite();
 
     return scene;
@@ -48,43 +49,6 @@ bool RoomScene::init()
     m_AntXPos = 0;
     m_AntYPos = 0;
 
-    m_EggXPos = rand() % m_SizeX + 1;
-    m_EggYPos = rand() % m_SizeY + 1;
-    int antNum;
-    if (m_RoomType == RT_QUEEN)
-    {
-        m_RoomAntList.push_back(GameManager::getInstance()->getQueen());
-        GameManager::getInstance()->getQueen()->setPos(m_SizeX, m_SizeY);
-        antNum = rand() % 5 + 10;
-    }
-    else
-        antNum = rand() % 11 + 20;
-    for (int i = 0; i < antNum; ++i)
-    {
-        while (true)
-        {
-            int x = rand() % m_SizeX + 1;
-            int y = rand() % m_SizeY + 1;
-
-            if (checkRoomAnt(x, y))
-            {
-                switch (m_RoomType)
-                {
-                case RT_NONE:
-                    break;
-                case RT_EGG:
-                    m_RoomAntList.push_back(new Worker(x,y));
-                    break;
-                case RT_MALE:
-                    m_RoomAntList.push_back(new Male(x,y));
-                case RT_QUEEN:
-                    m_RoomAntList.push_back(new Soldier(x, y));
-                    break;
-                }
-                break;
-            }
-        }
-    }
     m_MoveItem = createActButton("이동하기",
         CC_CALLBACK_1(RoomScene::moveCallback, this));
     setActButtonEnable(m_MoveItem, true);
@@ -260,6 +224,48 @@ int RoomScene::getAntYPos()
 const std::vector<Imago*>& RoomScene::getRoomAntList()
 {
 	return m_RoomAntList;
+}
+
+void RoomScene::initRoomAnt()
+{
+	m_EggXPos = rand() % m_SizeX + 1;
+	m_EggYPos = rand() % m_SizeY + 1;
+	int antNum;
+	if (m_RoomType == RT_QUEEN)
+	{
+		m_RoomAntList.push_back(GameManager::getInstance()->getQueen());
+		GameManager::getInstance()->getQueen()->setPos(m_SizeX, m_SizeY);
+		antNum = rand() % 5 + 10;
+	}
+	else
+		antNum = rand() % 11 + 20;
+	for (int i = 0; i < antNum; ++i)
+	{
+		while (true)
+		{
+			int x = -(rand() % m_SizeX + 1);
+			int y = -(rand() % m_SizeY + 1);
+
+			if (checkRoomAnt(x, y))
+			{
+				switch (m_RoomType)
+				{
+				case RT_NONE:
+					break;
+				case RT_EGG:
+					m_RoomAntList.push_back(new Worker(x, y));
+					break;
+				case RT_MALE:
+					m_RoomAntList.push_back(new Male(x, y));
+					break;
+				case RT_QUEEN:
+					m_RoomAntList.push_back(new Soldier(x, y));
+					break;
+				}
+				break;
+			}
+		}
+	}
 }
 
 

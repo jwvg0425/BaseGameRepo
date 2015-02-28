@@ -23,6 +23,9 @@ private:
 	cocos2d::Sprite* m_PlayerSprite;
 	cocos2d::Sprite* m_CursorSprite;
 
+	int m_PrevYPos;
+	int m_PrevXPos;
+
 	//anchorPoint 0.5,0.5 기준
 	void addTile(float x, float y,
 		const std::string& upright, const std::string& rightdown, const std::string& downleft, const std::string& leftup);
