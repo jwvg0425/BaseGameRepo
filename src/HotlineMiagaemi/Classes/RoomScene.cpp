@@ -247,4 +247,19 @@ void RoomScene::initSprite()
 	}
 }
 
+int RoomScene::getAntXPos()
+{
+	return m_AntXPos;
+}
+
+int RoomScene::getAntYPos()
+{
+	return m_AntYPos;
+}
+
+const std::vector<Imago*>& RoomScene::getRoomAntList()
+{
+	return m_RoomAntList;
+}
+
 

@@ -43,6 +43,10 @@ public:
     int getRoomsizeY(){ return m_SizeY; }
     bool isLeft(){ return m_IsLeft; }
 
+	int getAntXPos();
+	int getAntYPos();
+	const std::vector<Imago*>& getRoomAntList();
+
     bool checkRoomAnt(int x, int y);
 
 private:
