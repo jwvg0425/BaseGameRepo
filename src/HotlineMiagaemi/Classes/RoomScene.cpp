@@ -45,10 +45,13 @@ bool RoomScene::init()
     m_AntXPos = 0;
     m_AntYPos = 0;
 
+    m_EggXPos = rand() % m_SizeX + 1;
+    m_EggYPos = rand() % m_SizeY + 1;
     int antNum;
     if (m_RoomType == RT_QUEEN)
     {
-        m_RoomAntList.push_back(new Queen(m_SizeX, m_SizeY));
+        m_RoomAntList.push_back(GameManager::getInstance()->getQueen());
+        GameManager::getInstance()->getQueen()->setPos(m_SizeX, m_SizeY);
         antNum = rand() % 5 + 10;
     }
     else

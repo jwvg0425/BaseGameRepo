@@ -4,7 +4,6 @@ class Queen :
     public Imago
 {
 public:
-    Queen(int x, int y);
     Queen();
     virtual ~Queen();
 

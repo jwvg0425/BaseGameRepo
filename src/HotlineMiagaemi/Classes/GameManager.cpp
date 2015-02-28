@@ -1,6 +1,7 @@
 ﻿#include "GameManager.h"
 #include "Egg.h"
 #include "Imago.h"
+#include "Queen.h"
 #include "const.h"
 
 GameManager* GameManager::m_Instance = nullptr;
@@ -208,4 +209,14 @@ void GameManager::runAnimation(cocos2d::Sprite* sprite, cocos2d::Animation* anim
 	auto repeat = RepeatForever::create(animate);
 	sprite->stopAllActions();
 	sprite->runAction(repeat);
+}
+
+Imago* GameManager::getQueen()
+{
+    return m_QueenAnt;
+}
+
+void GameManager::initQueen()
+{
+    m_QueenAnt = new Queen;
 }
