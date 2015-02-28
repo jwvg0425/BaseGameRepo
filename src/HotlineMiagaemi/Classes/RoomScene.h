@@ -34,7 +34,11 @@ public:
     void setIsLeft(bool isLeft){ m_IsLeft = isLeft; }
 
     void moveCallback(cocos2d::Ref* ref);
+
     RoomType getRoomType(){ return m_RoomType; }
+    int getRoomSizeX(){ return m_SizeX; }
+    int getRoomsizeY(){ return m_SizeY; }
+    bool isLeft(){ return m_IsLeft; }
 
     bool checkRoomAnt(int x, int y);
 
@@ -43,6 +47,7 @@ private:
     std::vector<Imago*> m_RoomAntList;
     cocos2d::Menu*      m_ActMenu;
     cocos2d::MenuItem*  m_MoveItem;
+    cocos2d::MenuItem*  m_OutItem;
     int                 m_AntXPos;
     int                 m_AntYPos;
     int                 m_EggXPos;

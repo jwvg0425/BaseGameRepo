@@ -86,6 +86,10 @@ bool RoomScene::init()
         CC_CALLBACK_1(RoomScene::moveCallback, this));
     setActButtonEnable(m_MoveItem, true);
 
+    m_OutItem = createActButton("방 나가기",
+        CC_CALLBACK_1(RoomScene::moveCallback, this));
+    setActButtonEnable(m_OutItem, true);
+
     m_ActMenu = Menu::create(m_MoveItem, NULL);
 
     m_ActMenu->alignItemsHorizontallyWithPadding(30);
