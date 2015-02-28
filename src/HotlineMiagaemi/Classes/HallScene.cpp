@@ -158,6 +158,7 @@ void HallScene::dodgeCallback(cocos2d::Ref* ref)
         }
         break;
     }
+    TunnelManager::getInstance()->moveCallback(m_AntXPos, m_AntYPos);
     if (TunnelManager::getInstance()->isRoomExist(m_AntXPos, m_AntYPos))
         setActButtonEnable(m_EnterItem, true);
     else
