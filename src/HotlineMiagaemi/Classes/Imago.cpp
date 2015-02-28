@@ -1,5 +1,5 @@
 #include "Imago.h"
-
+#include "TunnelManager.h"
 
 Imago::Imago()
 {
@@ -50,15 +50,23 @@ void Imago::move()
     switch (dir)
     {
     case 0:
+        if (m_Y <= MAX_DEEP)
+            break;
         m_Y--;
         break;
     case 1:
+        if (m_Y >= 0)
+            break;
         m_Y++;
         break;
     case 2:
+        if (m_X <= -1)
+            break;
         m_X--;
         break;
     case 3:
+        if (m_X >= 1)
+            break;
         m_X++;
         break;
     }
