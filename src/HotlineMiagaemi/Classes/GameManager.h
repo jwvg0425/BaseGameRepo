@@ -16,6 +16,7 @@ public:
 	int getAntNum();
 	void initAnt();
 	void initSubtileNames();
+	void initSprites();
 	cocos2d::Animation* getAnimation(Ant* ant);
 	static cocos2d::Animation* createAnimation
 		(const char* format, int startIdx, size_t frameNum, float delay);

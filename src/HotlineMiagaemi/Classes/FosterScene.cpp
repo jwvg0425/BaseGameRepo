@@ -164,38 +164,20 @@ void FosterScene::feedCallback(cocos2d::Ref* ref)
 		switch (type)
 		{
 		case Ant::ST_LARVA:
-		{
-			auto animation = GameManager::createAnimation("larva_feed_%d.png", 1, 8, 0.125f);
-			auto animate = Animate::create(animation);
-			auto repeat = RepeatForever::create(animate);
-			m_AntSprite->stopAllActions();
-			m_AntSprite->runAction(repeat);
+			runAnimation(m_AntSprite, GameManager::createAnimation("larva_feed_%d.png", 1, 8, 0.125f));
 			startAction(2.0f, std::bind(&FosterScene::feedComplete, this));
 			break;
-		}
 		case Ant::ST_IMAGO:
 			switch (static_cast<Imago*>(ant)->getImagoType())
 			{
 			case Imago::IT_WORKER:
-			{
-				auto animation = GameManager::createAnimation("worker_feed_%d.png", 1, 8, 0.125f);
-				auto animate = Animate::create(animation);
-				auto repeat = RepeatForever::create(animate);
-				m_AntSprite->stopAllActions();
-				m_AntSprite->runAction(repeat);
+				runAnimation(m_AntSprite, GameManager::createAnimation("worker_feed_%d.png", 1, 8, 0.125f));
 				startAction(2.0f, std::bind(&FosterScene::feedComplete, this));
 				break;
-			}
 			case Imago::IT_SOLDIER:
-			{
-				auto animation = GameManager::createAnimation("soldier_feed_%d.png", 1, 8, 0.125f);
-				auto animate = Animate::create(animation);
-				auto repeat = RepeatForever::create(animate);
-				m_AntSprite->stopAllActions();
-				m_AntSprite->runAction(repeat);
+				runAnimation(m_AntSprite, GameManager::createAnimation("soldier_feed_%d.png", 1, 8, 0.125f));
 				startAction(2.0f, std::bind(&FosterScene::feedComplete, this));
 				break;
-			}
 			}
 		}
 	}
@@ -211,61 +193,23 @@ void FosterScene::brainwashCallback(cocos2d::Ref* ref)
 		switch (type)
 		{
 		case Ant::ST_LARVA:
-		{
-			auto animation = GameManager::createAnimation("larva_brainwash_%d.png", 1, 4, 0.2f);
-			auto animate = Animate::create(animation);
-			auto repeat = RepeatForever::create(animate);
-			m_AntSprite->stopAllActions();
-			m_AntSprite->runAction(repeat);
-			
-			auto label = Label::createWithSystemFont("개미를 죽입시다 개미는 나의 원수", TEXT_FONT, 16);
-			label->setColor(Color3B(0, 0, 0));
-			addChild(label);
-			auto move = MoveBy::create(1.0f, Point(0, 60));
-			auto fade = FadeOut::create(1.0f);
-			auto spawn = Spawn::create(move, fade, nullptr);
-			auto del = CallFunc::create(CC_CALLBACK_0(Label::removeFromParent, label));
-			auto sequence = Sequence::create(spawn, del, nullptr);
+			runAnimation(m_AntSprite, GameManager::createAnimation("larva_brainwash_%d.png", 1, 4, 0.2f));
+			addUpmoveLabel(1, "개미를 죽입시다 개미는 나의 원수", 60);
 
-			label->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2 + 64);
-			label->runAction(sequence);
 			startAction(2.0f, std::bind(&FosterScene::brainwashComplete, this));
 			break;
-		}
 		case Ant::ST_IMAGO:
 			switch (static_cast<Imago*>(ant)->getImagoType())
 			{
 			case Imago::IT_WORKER:
-			{
-				auto animation = GameManager::createAnimation("worker_brainwash_%d.png", 1, 4, 0.2f);
-				auto animate = Animate::create(animation);
-				auto repeat = RepeatForever::create(animate);
-				m_AntSprite->stopAllActions();
-				m_AntSprite->runAction(repeat);
+				runAnimation(m_AntSprite, GameManager::createAnimation("worker_brainwash_%d.png", 1, 4, 0.2f));
 				break;
-			}
 			case Imago::IT_SOLDIER:
-			{
-				auto animation = GameManager::createAnimation("soldier_brainwash_%d.png", 1, 4, 0.2f);
-				auto animate = Animate::create(animation);
-				auto repeat = RepeatForever::create(animate);
-				m_AntSprite->stopAllActions();
-				m_AntSprite->runAction(repeat);
+				runAnimation(m_AntSprite, GameManager::createAnimation("soldier_brainwash_%d.png", 1, 4, 0.2f));
 				break;
 			}
-			}
 
-			auto label = Label::createWithSystemFont("여왕 개미를 암살하라!", TEXT_FONT, 16);
-			label->setColor(Color3B(0, 0, 0));
-			addChild(label);
-			auto move = MoveBy::create(1.0f, Point(0, 60));
-			auto fade = FadeOut::create(1.0f);
-			auto spawn = Spawn::create(move, fade, nullptr);
-			auto del = CallFunc::create(CC_CALLBACK_0(Label::removeFromParent, label));
-			auto sequence = Sequence::create(spawn, del, nullptr);
-
-			label->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2 + 64);
-			label->runAction(sequence);
+			addUpmoveLabel(1, "여왕 개미를 암살하라!", 60);
 			startAction(2.0f, std::bind(&FosterScene::brainwashComplete, this));
 			break;
 		}
@@ -356,18 +300,8 @@ void FosterScene::update(float dTime)
 			//action을 했더니 개미가 죽은 경우
 			if (ant->isDead())
 			{
-				auto label = Label::createWithSystemFont("개미가 죽어버렸다!", TEXT_FONT, 16);
-				label->setColor(Color3B(0, 0, 0));
-				addChild(label);
-				auto move = MoveBy::create(2.0f, Point(0, 60));
-				auto fade = FadeOut::create(2.0f);
-				auto spawn = Spawn::create(move, fade, nullptr);
-				auto del = CallFunc::create(CC_CALLBACK_0(Label::removeFromParent, label));
-				auto sequence = Sequence::create(spawn, del, nullptr);
-
-				label->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2 + 64);
-				label->runAction(sequence);
-
+				addUpmoveLabel(2, "개미가 죽어버렸다!", 60);
+				
 				GameManager::getInstance()->initAnt();
 				GameManager::getInstance()->antDie();
 
@@ -447,43 +381,9 @@ void FosterScene::feedComplete()
 	GameManager::getInstance()->getAnt()->addSatiety(5 + (rand() % 5));
 	GameManager::getInstance()->getAnt()->addAge(1);
 
-	auto ant = GameManager::getInstance()->getAnt();
-	auto type = ant->getType();
+	setOriginalAni();
 
-	switch (type)
-	{
-	case Ant::ST_LARVA:
-	{
-		auto animation = GameManager::createAnimation("larva_%d.png", 1, 2, 0.3f);
-		auto animate = Animate::create(animation);
-		auto repeat = RepeatForever::create(animate);
-		m_AntSprite->stopAllActions();
-		m_AntSprite->runAction(repeat);
-		break;
-	}
-	case Ant::ST_IMAGO:
-		switch (static_cast<Imago*>(ant)->getImagoType())
-		{
-		case Imago::IT_WORKER:
-		{
-			auto animation = GameManager::createAnimation("worker_%d.png", 1, 4, 0.3f);
-			auto animate = Animate::create(animation);
-			auto repeat = RepeatForever::create(animate);
-			m_AntSprite->stopAllActions();
-			m_AntSprite->runAction(repeat);
-			break;
-		}
-		case Imago::IT_SOLDIER:
-		{
-			auto animation = GameManager::createAnimation("soldier_%d.png", 1, 4, 0.3f);
-			auto animate = Animate::create(animation);
-			auto repeat = RepeatForever::create(animate);
-			m_AntSprite->stopAllActions();
-			m_AntSprite->runAction(repeat);
-			break;
-		}
-		}
-	}
+	addUpmoveLabel(1, "맛있는 밥!", 60);
 }
 
 void FosterScene::brainwashComplete()
@@ -491,86 +391,58 @@ void FosterScene::brainwashComplete()
 	GameManager::getInstance()->getAnt()->addInt(1 + (rand() % 4));
 	GameManager::getInstance()->getAnt()->addSatiety(-5 - (rand() % 5));
 	GameManager::getInstance()->getAnt()->addAge(1 + (rand() % 3));
-	auto ant = GameManager::getInstance()->getAnt();
-	auto type = ant->getType();
 
-	switch (type)
-	{
-	case Ant::ST_LARVA:
-	{
-		auto animation = GameManager::createAnimation("larva_%d.png", 1, 2, 0.3f);
-		auto animate = Animate::create(animation);
-		auto repeat = RepeatForever::create(animate);
-		m_AntSprite->stopAllActions();
-		m_AntSprite->runAction(repeat);
-		break;
-	}
-	case Ant::ST_IMAGO:
-		switch (static_cast<Imago*>(ant)->getImagoType())
-		{
-		case Imago::IT_WORKER:
-		{
-			auto animation = GameManager::createAnimation("worker_%d.png", 1, 4, 0.3f);
-			auto animate = Animate::create(animation);
-			auto repeat = RepeatForever::create(animate);
-			m_AntSprite->stopAllActions();
-			m_AntSprite->runAction(repeat);
-			break;
-		}
-		case Imago::IT_SOLDIER:
-		{
-			auto animation = GameManager::createAnimation("soldier_%d.png", 1, 4, 0.3f);
-			auto animate = Animate::create(animation);
-			auto repeat = RepeatForever::create(animate);
-			m_AntSprite->stopAllActions();
-			m_AntSprite->runAction(repeat);
-			break;
-		}
-		}
-	}
+	setOriginalAni();
+
+	addUpmoveLabel(1, "개미를 죽이자!", 60);
 }
 
 void FosterScene::battleCallback(cocos2d::Ref* sender)
 {
-	//TODO: 애니메이션 넣기
 	if (!m_IsAct)
 	{
+		setTrainAni();
+		addUpmoveLabel(1, "전투 개시!", 60);
 		startAction(2.0f, std::bind(&FosterScene::battleComplete, this));
 	}
 }
 
 void FosterScene::athleticCallback(cocos2d::Ref* sender)
 {
-	//TODO: 애니메이션 넣기
 	if (!m_IsAct)
 	{
+		setTrainAni();
+		addUpmoveLabel(1, "체력은 국력!", 60);
 		startAction(2.0f, std::bind(&FosterScene::athleticComplete, this));
 	}
 }
 
 void FosterScene::exploreCallback(cocos2d::Ref* sender)
 {
-	//TODO: 애니메이션 넣기
 	if (!m_IsAct)
 	{
+		setTrainAni();
+		addUpmoveLabel(1, "방을 탐색하자!", 60);
 		startAction(2.0f, std::bind(&FosterScene::exploreComplete, this));
 	}
 }
 
 void FosterScene::dodgeCallback(cocos2d::Ref* sender)
 {
-	//TODO: 애니메이션 넣기
 	if (!m_IsAct)
 	{
+		setTrainAni();
+		addUpmoveLabel(1, "일보 전진을 위한 이보 후퇴!", 60);
 		startAction(2.0f, std::bind(&FosterScene::dodgeComplete, this));
 	}
 }
 
 void FosterScene::hellCallback(cocos2d::Ref* sender)
 {
-	//TODO: 애니메이션 넣기
 	if (!m_IsAct)
 	{
+		setTrainAni();
+		addUpmoveLabel(1, "으아아아아아!", 60);
 		startAction(2.0f, std::bind(&FosterScene::hellComplete, this));
 	}
 }
@@ -580,6 +452,10 @@ void FosterScene::battleComplete()
 	GameManager::getInstance()->getAnt()->addStr(5 + (rand() % 10));
 	GameManager::getInstance()->getAnt()->addSatiety(-7 - (rand() % 10));
 	GameManager::getInstance()->getAnt()->addAge(3 + (rand() % 5));
+
+	setOriginalAni();
+
+	addUpmoveLabel(1, "공격력 상승!", 60);
 }
 
 void FosterScene::athleticComplete()
@@ -587,16 +463,22 @@ void FosterScene::athleticComplete()
 	GameManager::getInstance()->getAnt()->addHp(15 + (rand() % 20));
 	GameManager::getInstance()->getAnt()->addSatiety(-10 - (rand() % 15));
 	GameManager::getInstance()->getAnt()->addAge(4 + (rand() % 6));
+
+	setOriginalAni();
+
+	addUpmoveLabel(1, "체력 상승!", 60);
 }
 
 void FosterScene::exploreComplete()
 {
 	//TODO : 특수 능력 습득 관련 넣기
+	setOriginalAni();
 }
 
 void FosterScene::dodgeComplete()
 {
 	//TODO : 특수 능력 습득 관련 넣기
+	setOriginalAni();
 
 }
 
@@ -622,11 +504,78 @@ void FosterScene::hellComplete()
 			-GameManager::getInstance()->getAnt()->getStr() / 2);
 		GameManager::getInstance()->getAnt()->addInt(
 			-GameManager::getInstance()->getAnt()->getInt() / 2);
+
+		addUpmoveLabel(1, "훈련 실패...", 60);
 	}
 	else // 70% 확률로 스탯 대폭 상승
 	{
 		GameManager::getInstance()->getAnt()->addHp(100 + (rand() % 50));
 		GameManager::getInstance()->getAnt()->addStr(20 + (rand() % 20));
 		GameManager::getInstance()->getAnt()->addInt(20 + (rand() % 20));
+
+		addUpmoveLabel(1, "대성공! 지옥 훈련 마스터!", 60);
+	}
+
+	setOriginalAni();
+
+}
+
+void FosterScene::addUpmoveLabel(float duration, const std::string& text, float height)
+{
+	auto label = Label::createWithSystemFont(text, TEXT_FONT, 16);
+	label->setColor(Color3B(0, 0, 0));
+	addChild(label);
+	auto move = MoveBy::create(duration, Point(0, height));
+	auto fade = FadeOut::create(duration);
+	auto spawn = Spawn::create(move, fade, nullptr);
+	auto del = CallFunc::create(CC_CALLBACK_0(Label::removeFromParent, label));
+	auto sequence = Sequence::create(spawn, del, nullptr);
+
+	label->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2 + 64);
+	label->runAction(sequence);
+}
+
+void FosterScene::setTrainAni()
+{
+	auto imago = static_cast<Imago*>(GameManager::getInstance()->getAnt());
+
+	switch (imago->getImagoType())
+	{
+	case Imago::IT_WORKER:
+		runAnimation(m_AntSprite, GameManager::createAnimation("worker_train_%d.png", 1, 3, 0.2f));
+		break;
+	case Imago::IT_SOLDIER:
+		break;
+	}
+}
+
+void FosterScene::runAnimation(cocos2d::Sprite* sprite, cocos2d::Animation* animation)
+{
+	auto animate = Animate::create(animation);
+	auto repeat = RepeatForever::create(animate);
+	sprite->stopAllActions();
+	sprite->runAction(repeat);
+}
+
+void FosterScene::setOriginalAni()
+{
+	auto ant = GameManager::getInstance()->getAnt();
+	auto type = ant->getType();
+
+	switch (type)
+	{
+	case Ant::ST_LARVA:
+		runAnimation(m_AntSprite, GameManager::createAnimation("larva_%d.png", 1, 2, 0.3f));
+		break;
+	case Ant::ST_IMAGO:
+		switch (static_cast<Imago*>(ant)->getImagoType())
+		{
+		case Imago::IT_WORKER:
+			runAnimation(m_AntSprite, GameManager::createAnimation("worker_%d.png", 1, 4, 0.3f));
+			break;
+		case Imago::IT_SOLDIER:
+			runAnimation(m_AntSprite, GameManager::createAnimation("soldier_%d.png", 1, 4, 0.3f));
+			break;
+		}
 	}
 }

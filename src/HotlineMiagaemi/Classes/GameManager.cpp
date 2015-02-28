@@ -28,16 +28,7 @@ GameManager::GameManager() : m_NowAnt(nullptr), m_AntNum(5)
 {
 	initAnt();
 	initSubtileNames();
-
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva_brainwash.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva_feed.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("worker.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("worker_feed.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("worker_brainwash.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("soldier.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("soldier_feed.plist");
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("soldier_brainwash.plist");
+	initSprites();
 }
 
 GameManager::~GameManager()
@@ -188,4 +179,18 @@ void GameManager::antDie()
 		// TODO: 게임 오버 씬으로 넘어가게 지금은 그냥 게임 종료.
 		Director::getInstance()->end();
 	}
+}
+
+void GameManager::initSprites()
+{
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva_brainwash.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("larva_feed.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("worker.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("worker_feed.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("worker_brainwash.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("worker_train.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("soldier.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("soldier_feed.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("soldier_brainwash.plist");
 }

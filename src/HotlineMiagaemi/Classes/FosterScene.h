@@ -25,6 +25,9 @@ public:
 private:
 	cocos2d::MenuItem* createActButton(const std::string& labelText, cocos2d::ccMenuCallback callback);
 	void setActButtonEnable(cocos2d::MenuItem* item, bool enable);
+	void addUpmoveLabel(float duration, const std::string& text, float height);
+
+	void runAnimation(cocos2d::Sprite* sprite, cocos2d::Animation* animation);
 
 	void feedCallback(cocos2d::Ref* ref);
 	void brainwashCallback(cocos2d::Ref* ref);
@@ -36,6 +39,9 @@ private:
 	void exploreCallback(cocos2d::Ref* sender);
 	void dodgeCallback(cocos2d::Ref* sender);
 	void hellCallback(cocos2d::Ref* sender);
+
+	void setTrainAni();
+	void setOriginalAni();
 
 	void battleComplete();
 	void athleticComplete();
