@@ -243,7 +243,11 @@ void RoomScene::initRoomAnt()
 	{
 		while (true)
 		{
-			int x = -(rand() % m_SizeX + 1);
+			int x = rand() % m_SizeX + 1;
+			if (m_IsLeft)
+			{
+				x = -x;
+			}
 			int y = -(rand() % m_SizeY + 1);
 
 			if (checkRoomAnt(x, y))
