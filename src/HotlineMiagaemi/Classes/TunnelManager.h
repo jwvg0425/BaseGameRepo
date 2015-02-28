@@ -13,6 +13,7 @@
 
 class RoomScene;
 class Imago;
+class Ant;
 
 class TunnelManager
 {
@@ -31,9 +32,10 @@ public:
     void hallSceneCallback(cocos2d::Ref* sender);
     void roomSceneCallback(int antYPos);
     void moveCallback(int playerX, int playerY);
+    bool isAntExist(int playerX, int playerY);
     bool isRoomExist(int antXPos, int antYPos);
     bool isLeft();
-	const std::map<int, Imago*>& getHallAntList();
+	const std::vector<Imago*>& getHallAntList();
 
 private:
     TunnelManager();
@@ -46,7 +48,7 @@ private:
     std::map<int, bool>         m_RoomDirList;
     std::map<int, RoomType>     m_RoomTypeList;
     std::map<int, Size>         m_RoomSizeList;
-    std::map<int, Imago*>       m_AntList;
+    std::vector<Imago*>         m_HallAntList;
 };
 
 #endif

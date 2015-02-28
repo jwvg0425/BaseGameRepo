@@ -1,6 +1,7 @@
 #include "TunnelManager.h"
 #include "GameManager.h"
 #include "HallScene.h"
+#include "Ant.h"
 #include "Imago.h"
 #include "Worker.h"
 #include "Male.h"
@@ -100,16 +101,26 @@ void TunnelManager::initAnt()
             int xPos = (rand() % 3) - 1;
             int yPos = -(rand() % MAX_DEEP);
             int antType = rand() % 100;
+            Imago* ant;
             if (checkAntInterval(yPos))
             {
                 if (antType < 50)
-                    m_AntList[yPos] = new Worker(xPos,yPos);
+                {
+                    ant = new Worker(xPos, yPos);
+                    m_HallAntList.push_back(ant);
+                }
                 else if (antType < 80)
-                    m_AntList[yPos] = new Soldier(xPos, yPos);
+                {
+                    ant = new Soldier(xPos, yPos);
+                    m_HallAntList.push_back(ant);
+                }
                 else
-                    m_AntList[yPos] = new Male(xPos, yPos);
+                {
+                    ant = new Male(xPos, yPos);
+                    m_HallAntList.push_back(ant);
+                }
                 break;
-                m_AntList[yPos]->setPos(xPos, yPos);
+                ant->setPos(xPos, yPos);
             }
         }
     }
@@ -131,9 +142,9 @@ bool TunnelManager::checkAntInterval(int antYPos)
     if (antYPos == 0)
         return false;
 
-    for (auto& ant : m_AntList)
+    for (auto& ant : m_HallAntList)
     {
-        if (antYPos == ant.first)
+        if (antYPos == ant->getPosY())
             return false;
     }
     return true;
@@ -141,25 +152,28 @@ bool TunnelManager::checkAntInterval(int antYPos)
 
 void TunnelManager::moveCallback(int playerX, int playerY)
 {
-    for (auto& ant : m_AntList)
+    for (auto& ant : m_HallAntList)
     {
-        int prevX = ant.second->getPosX();
-        int prevY = ant.second->getPosY();
-        ant.second->move();
-        //player와 겹치는 경우를 테스트
-        if (playerX == ant.second->getPosX() && playerY == ant.second->getPosY())
+        int prevX = ant->getPosX();
+        int prevY = ant->getPosY();
+        ant->move();
+        //ai가 움직였을 때 player와 겹치는 경우를 테스트
+        if (playerX == ant->getPosX() && playerY == ant->getPosY())
         {
-            ant.second->attack(m_PlayerAnt);
-            ant.second->setPos(prevX, prevY);
+            ant->attack(m_PlayerAnt);
+            ant->setPos(prevX, prevY);
         }
 
         //AI Ant들끼리 겹치는 경우를 테스트
-        auto it = m_AntList.find(ant.second->getPosY());
-        if (it != m_AntList.end() && it->second != ant.second)
+        for (auto& otherAnt : m_HallAntList)
         {
-            if (it->second->getPosX() == ant.second->getPosX())
+            if (ant == otherAnt)
+                continue;
+            if (ant->getPosX() == otherAnt->getPosX() &&
+                ant->getPosY() == otherAnt->getPosY())
             {
-                ant.second->setPos(prevX, prevY);
+                ant->attack(otherAnt);
+                ant->setPos(prevX, prevY);
             }
         }
     }
@@ -184,6 +198,19 @@ void TunnelManager::roomSceneCallback(int antYPos)
     }
 }
 
+bool TunnelManager::isAntExist(int playerX, int playerY)
+{
+    for (auto& ant : m_HallAntList)
+    {
+        if (playerX == ant->getPosX() && playerY == ant->getPosY())
+        {
+            ant->isAttacked(m_PlayerAnt->getStr());
+            return true;
+        }
+    }
+    return false;
+}
+
 bool TunnelManager::isRoomExist(int antXPos, int antYPos)
 {
     if (antXPos == 0)
@@ -204,7 +231,7 @@ bool TunnelManager::isRoomExist(int antXPos, int antYPos)
     return false;
 }
 
-const std::map<int, Imago*>& TunnelManager::getHallAntList()
+const std::vector<Imago*>& TunnelManager::getHallAntList()
 {
-	return m_AntList;
+	return m_HallAntList;
 }

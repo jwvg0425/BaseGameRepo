@@ -129,6 +129,10 @@ void HallScene::moveCallback(cocos2d::Ref* ref)
     m_AntYPos--;
     if (m_AntYPos <= MAX_DEEP)
         m_AntYPos++;
+    if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+    {
+        m_AntYPos++;
+    }
     TunnelManager::getInstance()->moveCallback(m_AntXPos, m_AntYPos);
     if (TunnelManager::getInstance()->isRoomExist(m_AntXPos, m_AntYPos))
         setActButtonEnable(m_EnterItem, true);
