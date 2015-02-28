@@ -83,10 +83,13 @@ void HallScene::dodgeCallback(cocos2d::Ref* ref)
             random = rand() % 2;
             switch (random)
             {
-            case 0:
+            case 0: //반대로 갈 때
                 m_AntXPos++;
                 break;
-            case 1:
+            case 1: //뒤로 갈 떄
+                if (m_AntYPos == 0) // 막혔을 때
+                    m_AntXPos++;
+                    break;
                 m_AntYPos++;
                 break;
             }
@@ -100,10 +103,13 @@ void HallScene::dodgeCallback(cocos2d::Ref* ref)
             random = rand() % 2;
             switch (random)
             {
-            case 0:
+            case 0: //반대로 갈 때
                 m_AntXPos--;
                 break;
-            case 1:
+            case 1: //뒤로 갈 때
+                if (m_AntYPos == 0) // 막혔을 때
+                    m_AntXPos--;
+                    break;
                 m_AntYPos++;
                 break;
             }

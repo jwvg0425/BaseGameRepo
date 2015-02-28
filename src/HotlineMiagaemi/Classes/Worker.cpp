@@ -1,5 +1,14 @@
 #include "Worker.h"
 
+Worker::Worker(int x, int y)
+{
+    m_HP = 1500;
+    m_STR = 200;
+    m_INT = 100;
+    m_Life = 500;
+    m_ImagoType = IT_MALE;
+    m_X = x; m_Y = y;
+}
 
 Worker::Worker()
 {

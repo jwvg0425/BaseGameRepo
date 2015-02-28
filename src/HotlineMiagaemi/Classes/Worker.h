@@ -4,6 +4,7 @@ class Worker :
     public Imago
 {
 public:
+    Worker(int x, int y);
     Worker();
     virtual ~Worker();
 

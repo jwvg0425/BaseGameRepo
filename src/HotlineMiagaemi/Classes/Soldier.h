@@ -4,6 +4,7 @@ class Soldier :
     public Imago
 {
 public:
+    Soldier(int x, int y);
     Soldier();
     virtual ~Soldier();
 

@@ -101,11 +101,11 @@ void TunnelManager::initAnt()
             if (checkAntInterval(yPos))
             {
                 if (antType < 50)
-                    m_AntList[yPos] = new Worker;
+                    m_AntList[yPos] = new Worker(xPos,yPos);
                 else if (antType < 80)
-                    m_AntList[yPos] = new Soldier;
+                    m_AntList[yPos] = new Soldier(xPos, yPos);
                 else
-                    m_AntList[yPos] = new Male;
+                    m_AntList[yPos] = new Male(xPos, yPos);
                 break;
                 m_AntList[yPos]->setPos(xPos, yPos);
             }
