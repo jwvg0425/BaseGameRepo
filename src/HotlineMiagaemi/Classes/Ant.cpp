@@ -109,3 +109,13 @@ bool Ant::isDead()
 
 	return false;
 }
+
+void Ant::addStr(int str)
+{
+	m_STR += str;
+}
+
+void Ant::addHp(int hp)
+{
+	m_HP += hp;
+}

@@ -151,7 +151,9 @@ void HallSprite::update(float dTime)
 				runAction(MoveBy::create(0.5, Point(0, -64)));
 				m_Camera--;
 			}
+			m_PlayerSprite->setRotation(180);
 			m_PlayerSprite->runAction(MoveBy::create(0.5, Point(0, 64)));
+			
 		}
 		else
 		{
@@ -160,7 +162,9 @@ void HallSprite::update(float dTime)
 				runAction(MoveBy::create(0.5, Point(0, 64)));
 				m_Camera++;
 			}
+			m_PlayerSprite->setRotation(0);
 			m_PlayerSprite->runAction(MoveBy::create(0.5, Point(0, -64)));
+			
 		}
 		m_PrevYPos = yPos;
 	}
@@ -170,10 +174,12 @@ void HallSprite::update(float dTime)
 		if (xPos > m_PrevXPos)
 		{
 			m_PlayerSprite->runAction(MoveBy::create(0.5, Point(64, 0)));
+			m_PlayerSprite->setRotation(270);
 		}
 		else
 		{
 			m_PlayerSprite->runAction(MoveBy::create(0.5, Point(-64, 0)));
+			m_PlayerSprite->setRotation(90);
 		}
 		m_PrevXPos = xPos;
 	}

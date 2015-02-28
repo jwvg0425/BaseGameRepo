@@ -381,6 +381,10 @@ void FosterScene::update(float dTime)
 				setActButtonEnable(m_TrainItem, false);
 				setActButtonEnable(m_InfiltrateItem, false);
 
+				m_IsTrainVisible = false;
+
+				m_TrainMenu->setVisible(m_IsTrainVisible);
+
 				startAction(Egg::getEvolveTime(), nullptr);
 			}
 		}
@@ -528,25 +532,101 @@ void FosterScene::brainwashComplete()
 
 void FosterScene::battleCallback(cocos2d::Ref* sender)
 {
-
+	//TODO: 애니메이션 넣기
+	if (!m_IsAct)
+	{
+		startAction(2.0f, std::bind(&FosterScene::battleComplete, this));
+	}
 }
 
 void FosterScene::athleticCallback(cocos2d::Ref* sender)
 {
-
+	//TODO: 애니메이션 넣기
+	if (!m_IsAct)
+	{
+		startAction(2.0f, std::bind(&FosterScene::athleticComplete, this));
+	}
 }
 
 void FosterScene::exploreCallback(cocos2d::Ref* sender)
 {
-
+	//TODO: 애니메이션 넣기
+	if (!m_IsAct)
+	{
+		startAction(2.0f, std::bind(&FosterScene::exploreComplete, this));
+	}
 }
 
 void FosterScene::dodgeCallback(cocos2d::Ref* sender)
 {
-
+	//TODO: 애니메이션 넣기
+	if (!m_IsAct)
+	{
+		startAction(2.0f, std::bind(&FosterScene::dodgeComplete, this));
+	}
 }
 
 void FosterScene::hellCallback(cocos2d::Ref* sender)
 {
+	//TODO: 애니메이션 넣기
+	if (!m_IsAct)
+	{
+		startAction(2.0f, std::bind(&FosterScene::hellComplete, this));
+	}
+}
 
+void FosterScene::battleComplete()
+{
+	GameManager::getInstance()->getAnt()->addStr(5 + (rand() % 10));
+	GameManager::getInstance()->getAnt()->addSatiety(-7 - (rand() % 10));
+	GameManager::getInstance()->getAnt()->addAge(3 + (rand() % 5));
+}
+
+void FosterScene::athleticComplete()
+{
+	GameManager::getInstance()->getAnt()->addHp(15 + (rand() % 20));
+	GameManager::getInstance()->getAnt()->addSatiety(-10 - (rand() % 15));
+	GameManager::getInstance()->getAnt()->addAge(4 + (rand() % 6));
+}
+
+void FosterScene::exploreComplete()
+{
+	//TODO : 특수 능력 습득 관련 넣기
+}
+
+void FosterScene::dodgeComplete()
+{
+	//TODO : 특수 능력 습득 관련 넣기
+
+}
+
+void FosterScene::hellComplete()
+{
+	int randomVal = rand() % 100;
+
+	GameManager::getInstance()->getAnt()->addSatiety(-15 - (rand() % 10));
+	GameManager::getInstance()->getAnt()->addAge(5 + (rand() % 20));
+
+	//10% 확률로 사망
+	if (randomVal < 10)
+	{
+		//포만도를 강제로 0보다 작게 만들어 사망시킴
+		GameManager::getInstance()->getAnt()->addSatiety(
+			-GameManager::getInstance()->getAnt()->getSatiety() - 1);
+	}
+	else if (randomVal < 30) //20% 확률로 스탯 50%씩 감소
+	{
+		GameManager::getInstance()->getAnt()->addHp(
+			-GameManager::getInstance()->getAnt()->getHp() / 2);
+		GameManager::getInstance()->getAnt()->addStr(
+			-GameManager::getInstance()->getAnt()->getStr() / 2);
+		GameManager::getInstance()->getAnt()->addInt(
+			-GameManager::getInstance()->getAnt()->getInt() / 2);
+	}
+	else // 70% 확률로 스탯 대폭 상승
+	{
+		GameManager::getInstance()->getAnt()->addHp(100 + (rand() % 50));
+		GameManager::getInstance()->getAnt()->addStr(20 + (rand() % 20));
+		GameManager::getInstance()->getAnt()->addInt(20 + (rand() % 20));
+	}
 }

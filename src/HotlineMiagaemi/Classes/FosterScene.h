@@ -37,6 +37,12 @@ private:
 	void dodgeCallback(cocos2d::Ref* sender);
 	void hellCallback(cocos2d::Ref* sender);
 
+	void battleComplete();
+	void athleticComplete();
+	void exploreComplete();
+	void dodgeComplete();
+	void hellComplete();
+
 	void feedComplete();
 	void brainwashComplete();
 

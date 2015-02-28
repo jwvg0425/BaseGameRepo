@@ -40,6 +40,8 @@ public:
 	void addSatiety(int satiety);
 	void addAge(int age);
 	void addInt(int val);
+	void addStr(int str);
+	void addHp(int hp);
 
 	int getHp();
 	int getStr();
