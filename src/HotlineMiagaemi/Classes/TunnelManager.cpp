@@ -172,7 +172,6 @@ void TunnelManager::moveCallback(int playerX, int playerY)
             if (ant->getPosX() == otherAnt->getPosX() &&
                 ant->getPosY() == otherAnt->getPosY())
             {
-                ant->attack(otherAnt);
                 ant->setPos(prevX, prevY);
             }
         }

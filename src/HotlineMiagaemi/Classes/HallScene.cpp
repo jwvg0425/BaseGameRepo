@@ -76,6 +76,10 @@ void HallScene::dodgeCallback(cocos2d::Ref* ref)
         if (m_AntYPos == 0)
             break;
         m_AntYPos++;
+        if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+        {
+            m_AntYPos--;
+        }
         break;
     case 1: //왼쪽으로 갈 때
         if (m_AntXPos == -1)  //막혔을때 반대로 가거나 뒤로가기
@@ -85,17 +89,35 @@ void HallScene::dodgeCallback(cocos2d::Ref* ref)
             {
             case 0: //반대로 갈 때
                 m_AntXPos++;
+                if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+                {
+                    m_AntXPos--;
+                }
                 break;
             case 1: //뒤로 갈 떄
-                if (m_AntYPos == 0) // 막혔을 때
+                if (m_AntYPos == 0) //막혔을 때
+                {
                     m_AntXPos++;
+                    if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+                    {
+                        m_AntXPos--;
+                    }
                     break;
+                }
                 m_AntYPos++;
+                if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+                {
+                    m_AntYPos--;
+                }
                 break;
             }
             break;
         }
         m_AntXPos--;
+        if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+        {
+            m_AntXPos++;
+        }
         break;
     case 2: //오른쪽으로 갈 때
         if (m_AntXPos == 1)
@@ -105,17 +127,35 @@ void HallScene::dodgeCallback(cocos2d::Ref* ref)
             {
             case 0: //반대로 갈 때
                 m_AntXPos--;
+                if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+                {
+                    m_AntXPos++;
+                }
                 break;
             case 1: //뒤로 갈 때
                 if (m_AntYPos == 0) // 막혔을 때
+                {
                     m_AntXPos--;
+                    if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+                    {
+                        m_AntXPos++;
+                    }
                     break;
+                }
                 m_AntYPos++;
+                if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+                {
+                    m_AntYPos--;
+                }
                 break;
             }
             break;
         }
         m_AntXPos++;
+        if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+        {
+            m_AntXPos--;
+        }
         break;
     }
     if (TunnelManager::getInstance()->isRoomExist(m_AntXPos, m_AntYPos))
