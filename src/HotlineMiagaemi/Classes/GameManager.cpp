@@ -75,6 +75,8 @@ cocos2d::Animation* GameManager::getAnimation(Ant* ant)
 			return createAnimation("worker_%d.png", 1, 4, 0.3f);
 		case Imago::IT_SOLDIER:
 			return createAnimation("soldier_%d.png", 1, 4, 0.3f);
+		case Imago::IT_MALE:
+			return createAnimation("male_%d.png", 1, 4, 0.3f);
 		}
 		return nullptr;
 	}

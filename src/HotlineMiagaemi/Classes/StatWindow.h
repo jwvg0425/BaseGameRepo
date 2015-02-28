@@ -13,6 +13,7 @@ public:
 	virtual bool init();
 
 	void update(float dTime);
+	void setOpacity(GLubyte opacity);
 
 	CREATE_FUNC(StatWindow);
 

@@ -149,7 +149,7 @@ bool HallSprite::init()
 
 	m_CursorSprite = Sprite::create("cursor_1.png");
 
-	GameManager::runAnimation(m_CursorSprite,GameManager::createAnimation("cursor_%d.png", 1, 4, 0.3f));
+	GameManager::runAnimation(m_CursorSprite, GameManager::createAnimation("cursor_%d.png", 1, 4, 0.3f));
 
 	m_CursorSprite->setAnchorPoint(Point(0.5, 0.5));
 	m_CursorSprite->setOpacity(128);

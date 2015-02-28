@@ -127,3 +127,13 @@ void StatWindow::updateLabel()
 		m_PrevAge = ageValue;
 	}
 }
+
+void StatWindow::setOpacity(GLubyte opacity)
+{
+	m_Window->setOpacity(opacity);
+	m_Hp->setOpacity(opacity);
+	m_Int->setOpacity(opacity);
+	m_Str->setOpacity(opacity);
+	m_Sat->setOpacity(opacity);
+	m_Life->setOpacity(opacity);
+}

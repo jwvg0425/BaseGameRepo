@@ -5,6 +5,7 @@
 typedef std::function<void()> ActionFunc;
 
 class HallSprite;
+class StatWindow;
 class HallScene : public cocos2d::LayerColor
 {
 public:

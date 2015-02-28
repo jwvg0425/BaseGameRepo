@@ -5,6 +5,7 @@
 #include "const.h"
 #include "HallSprite.h"
 #include "FosterScene.h"
+#include "StatWindow.h"
 
 USING_NS_CC;
 
@@ -79,6 +80,7 @@ void HallScene::dodgeCallback(cocos2d::Ref* ref)
 	m_IsAct = false;
 	m_Time = 0;
 
+	GameManager::getInstance()->getAnt()->addAge(1);
     int random = rand() % 3;
 
     switch (random)
@@ -194,6 +196,7 @@ void HallScene::moveCallback(cocos2d::Ref* ref)
 	m_Time = 0;
 
     m_AntYPos--;
+	GameManager::getInstance()->getAnt()->addAge(1);
 	GameManager::getInstance()->getAnt()->setDir(DIR_DOWN);
     if (m_AntYPos <= MAX_DEEP)
         m_AntYPos++;
@@ -216,6 +219,7 @@ void HallScene::enterCallback(cocos2d::Ref* ref)
 	m_IsAct = false;
 	m_Time = 0;
 
+	GameManager::getInstance()->getAnt()->addAge(1);
     TunnelManager::getInstance()->roomSceneCallback(m_AntYPos);
 }
 
