@@ -3,11 +3,12 @@
 
 #include "cocos2d.h"
 
+class Imago;
 enum RoomType
 {
     RT_NONE,
     RT_EGG,
-    RT_PRINCESS,
+    RT_MALE,
     RT_QUEEN
 };
 
@@ -34,8 +35,11 @@ public:
 
     void moveCallback(cocos2d::Ref* ref);
 
+    bool checkRoomAnt(int x, int y);
+
 private:
     RoomType            m_RoomType;
+    std::vector<Imago*> m_RoomAntList;
     cocos2d::Menu*      m_ActMenu;
     cocos2d::MenuItem*  m_MoveItem;
     int                 m_AntXPos;

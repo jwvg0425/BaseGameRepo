@@ -2,6 +2,11 @@
 #include "StatWindow.h"
 #include "GameManager.h"
 #include "TunnelManager.h"
+#include "Imago.h"
+#include "Worker.h"
+#include "Male.h"
+#include "Soldier.h"
+#include "Queen.h"
 #include "const.h"
 
 USING_NS_CC;
@@ -39,6 +44,41 @@ bool RoomScene::init()
 
     m_AntXPos = 0;
     m_AntYPos = 0;
+
+    int antNum;
+    if (m_RoomType == RT_QUEEN)
+    {
+        m_RoomAntList.push_back(new Queen(m_SizeX, m_SizeY));
+        antNum = rand() % 5 + 10;
+    }
+    else
+        antNum = rand() % 11 + 20;
+    for (int i = 0; i < antNum; ++i)
+    {
+        while (true)
+        {
+            int x = rand() % m_SizeX + 1;
+            int y = rand() % m_SizeY + 1;
+
+            if (checkRoomAnt(x, y))
+            {
+                switch (m_RoomType)
+                {
+                case RT_NONE:
+                    break;
+                case RT_EGG:
+                    m_RoomAntList.push_back(new Worker(x,y));
+                    break;
+                case RT_MALE:
+                    m_RoomAntList.push_back(new Male(x,y));
+                case RT_QUEEN:
+                    m_RoomAntList.push_back(new Soldier(x, y));
+                    break;
+                }
+                break;
+            }
+        }
+    }
     m_MoveItem = createActButton("이동하기",
         CC_CALLBACK_1(RoomScene::moveCallback, this));
     setActButtonEnable(m_MoveItem, true);
@@ -52,6 +92,18 @@ bool RoomScene::init()
     return true;
 }
 
+bool RoomScene::checkRoomAnt(int x, int y)
+{
+    if (x == 0 && y == 0)
+        return false;
+    for (auto& ant : m_RoomAntList)
+    {
+        if (ant->getPosX() == x && ant->getPosY() == y)
+            return false;
+    }
+    return true;
+}
+
 void RoomScene::moveCallback(cocos2d::Ref* ref)
 {
     int dir = rand() % 4;
@@ -61,17 +113,33 @@ void RoomScene::moveCallback(cocos2d::Ref* ref)
             if (m_SizeY >= m_AntYPos) //Y좌표는 최대 0~ -20
             {
                 m_AntYPos++;
+                if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+                {
+                    m_AntYPos--;
+                }
                 break;
             }
             m_AntYPos--;
+            if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+            {
+                m_AntYPos++;
+            }
             break;
         case 1: //위로 향할 때
             if (m_AntYPos >= 0)
             {
                 m_AntYPos--;
+                if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+                {
+                    m_AntYPos++;
+                }
                 break;
             }
             m_AntYPos++;
+            if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+            {
+                m_AntYPos--;
+            }
             break;
         case 2: //왼쪽으로 갈 때
             if (m_IsLeft) //왼쪽 방일경우 X좌표는 0~ -20
@@ -79,6 +147,10 @@ void RoomScene::moveCallback(cocos2d::Ref* ref)
                 if (m_AntXPos <= m_SizeX)
                 {
                     m_AntXPos++;
+                    if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+                    {
+                        m_AntXPos--;
+                    }
                     break;
                 }
             }
@@ -87,10 +159,18 @@ void RoomScene::moveCallback(cocos2d::Ref* ref)
                 if (m_AntXPos <= 0)
                 {
                     m_AntXPos++;
+                    if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+                    {
+                        m_AntXPos--;
+                    }
                     break;
                 }
             }
             m_AntXPos--;
+            if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+            {
+                m_AntXPos++;
+            }
             break;
         case 3: //오른쪽으로 갈 때
             if (m_IsLeft) //왼쪽 방일경우 X좌표는 0~ -20
@@ -98,6 +178,10 @@ void RoomScene::moveCallback(cocos2d::Ref* ref)
                 if (m_AntXPos >= 0)
                 {
                     m_AntXPos--;
+                    if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+                    {
+                        m_AntXPos++;
+                    }
                     break;
                 }
             }
@@ -106,10 +190,18 @@ void RoomScene::moveCallback(cocos2d::Ref* ref)
                 if (m_AntXPos >= m_SizeX)
                 {
                     m_AntXPos--;
+                    if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+                    {
+                        m_AntXPos++;
+                    }
                     break;
                 }
             }
             m_AntXPos++;
+            if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
+            {
+                m_AntXPos--;
+            }
             break;
     }
 
@@ -139,3 +231,5 @@ void RoomScene::setActButtonEnable(cocos2d::MenuItem* item, bool enable)
         item->setColor(Color3B(128, 128, 128));
     }
 }
+
+

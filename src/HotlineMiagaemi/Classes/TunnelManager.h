@@ -4,7 +4,7 @@
 #define MAX_DEEP -200
 #define MIN_ROOM 8
 #define MIN_ANT 30
-#define MAX_ROOM_INTERVAL 10
+#define MAX_ROOM_INTERVAL 5
 
 #include "RoomScene.h"
 #include "cocos2d.h"

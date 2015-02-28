@@ -76,7 +76,7 @@ void TunnelManager::initRoom()
                 roomType = RT_EGG;
                 break;
             case 1:
-                roomType = RT_PRINCESS;
+                roomType = RT_MALE;
                 break;
             }
             ///////////////////////////
