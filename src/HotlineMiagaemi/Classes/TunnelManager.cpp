@@ -47,8 +47,18 @@ void TunnelManager::initRoom()
         {
             int yPosition = -(rand() % MAX_DEEP);  //Room의 깊이설정
             auto isLeft = (rand() % 2) ? true : false; //Room의 방향설정
+            //Room의 사이즈설정
             Size roomSize;
-            roomSize.x = rand() % 11 + 10; roomSize.y = rand() % 11 + 10; //Room의 사이즈설정
+            if (isLeft)
+            {
+                roomSize.x = -(rand() % 11 + 10);
+                roomSize.y = -(rand() % 11 + 10);
+            }
+            else
+            {
+                roomSize.x = (rand() % 11 + 10);
+                roomSize.y = -(rand() % 11 + 10);
+            }
             //Room의 Type설정
             int random = rand() % 2;
             auto roomType = RT_NONE;
