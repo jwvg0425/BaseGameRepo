@@ -123,11 +123,6 @@ void RoomScene::moveCallback(cocos2d::Ref* ref)
         case 0: //아래로 향할 때
             if (m_SizeY >= m_AntYPos) //Y좌표는 최대 0~ -20
             {
-                m_AntYPos++;
-                if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
-                {
-                    m_AntYPos--;
-                }
                 break;
             }
             m_AntYPos--;
@@ -139,11 +134,6 @@ void RoomScene::moveCallback(cocos2d::Ref* ref)
         case 1: //위로 향할 때
             if (m_AntYPos >= 0)
             {
-                m_AntYPos--;
-                if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
-                {
-                    m_AntYPos++;
-                }
                 break;
             }
             m_AntYPos++;
@@ -157,11 +147,6 @@ void RoomScene::moveCallback(cocos2d::Ref* ref)
             {
                 if (m_AntXPos <= m_SizeX)
                 {
-                    m_AntXPos++;
-                    if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
-                    {
-                        m_AntXPos--;
-                    }
                     break;
                 }
             }
@@ -169,11 +154,6 @@ void RoomScene::moveCallback(cocos2d::Ref* ref)
             {
                 if (m_AntXPos <= 0)
                 {
-                    m_AntXPos++;
-                    if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
-                    {
-                        m_AntXPos--;
-                    }
                     break;
                 }
             }
@@ -188,11 +168,6 @@ void RoomScene::moveCallback(cocos2d::Ref* ref)
             {
                 if (m_AntXPos >= 0)
                 {
-                    m_AntXPos--;
-                    if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
-                    {
-                        m_AntXPos++;
-                    }
                     break;
                 }
             }
@@ -200,11 +175,6 @@ void RoomScene::moveCallback(cocos2d::Ref* ref)
             {
                 if (m_AntXPos >= m_SizeX)
                 {
-                    m_AntXPos--;
-                    if (TunnelManager::getInstance()->isAntExist(m_AntXPos, m_AntYPos))
-                    {
-                        m_AntXPos++;
-                    }
                     break;
                 }
             }
