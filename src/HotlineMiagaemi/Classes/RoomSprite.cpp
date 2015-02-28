@@ -66,6 +66,15 @@ void RoomSprite::update(float dTime)
 
 	if (xPos != m_PrevXPos)
 	{
+		if (xPos > m_PrevXPos)
+		{
+			m_PlayerSprite->runAction(MoveBy::create(0.5, Point(64, 0)));
+		}
+		else
+		{
+			m_PlayerSprite->runAction(MoveBy::create(0.5, Point(-64, 0)));
+		}
+
 		m_PrevXPos = xPos;
 	}
 

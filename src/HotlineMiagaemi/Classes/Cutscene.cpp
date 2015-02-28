@@ -25,7 +25,7 @@ bool CutScene::init()
     cut1->setAnchorPoint(Vec2(0, 0));
     this->addChild(cut1);
     auto cutAnimation = Animation::create();
-    cutAnimation->setDelayPerUnit(0.1f);
+    cutAnimation->setDelayPerUnit(2.0f);
 
 	cutAnimation->addSpriteFrameWithFile("cutscene/cut00.png");
     cutAnimation->addSpriteFrameWithFile("cutscene/cut01.png");
@@ -42,7 +42,7 @@ bool CutScene::init()
 
     auto director = Director::getInstance();
     auto action1 = Animate::create(cutAnimation);
-	auto actionFade = FadeOut::create(2);
+	auto actionFade = FadeOut::create(3);
     auto action2 = CallFuncN::create(CC_CALLBACK_1(CutScene::SceneCallback, this));
 	auto cutScene = Sequence::create(action1, actionFade, action2, NULL);
     cut1->runAction(cutScene);
