@@ -36,3 +36,30 @@ Imago::ImagoType Imago::getImagoType()
 {
 	return m_ImagoType;
 }
+
+void Imago::setPos(int x, int y)
+{
+    m_X = x;
+    m_Y = y;
+}
+
+void Imago::move()
+{
+    int dir = rand() % 4;
+
+    switch (dir)
+    {
+    case 0:
+        m_Y--;
+        break;
+    case 1:
+        m_Y++;
+        break;
+    case 2:
+        m_X--;
+        break;
+    case 3:
+        m_X++;
+        break;
+    }
+}

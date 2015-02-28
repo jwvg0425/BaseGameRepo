@@ -4,6 +4,7 @@ class Male :
     public Imago
 {
 public:
+    Male(int x, int y);
     Male();
     virtual ~Male();
 

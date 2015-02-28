@@ -1,5 +1,9 @@
 #include "TunnelManager.h"
 #include "HallScene.h"
+#include "Imago.h"
+#include "Worker.h"
+#include "Male.h"
+#include "Soldier.h"
 
 USING_NS_CC;
 
@@ -27,6 +31,7 @@ void TunnelManager::releaseInstance()
 TunnelManager::TunnelManager()
 {
     initRoom();
+    initAnt();
 }
 
 
@@ -83,15 +88,79 @@ void TunnelManager::initRoom()
     }
 }
 
+void TunnelManager::initAnt()
+{
+    int antNum = MIN_ANT + (rand() % MIN_ANT);
+    for (int i = 0; i < antNum; ++i)
+    {
+        while (true)
+        {
+            int xPos = (rand() % 3) - 1;
+            int yPos = -(rand() % MAX_DEEP);
+            int antType = rand() % 100;
+            if (checkAntInterval(yPos))
+            {
+                if (antType < 50)
+                    m_AntList[yPos] = new Worker;
+                else if (antType < 80)
+                    m_AntList[yPos] = new Soldier;
+                else
+                    m_AntList[yPos] = new Male;
+                break;
+                m_AntList[yPos]->setPos(xPos, yPos);
+            }
+        }
+    }
+}
+
 bool TunnelManager::checkRoomInterval(int yPosition)
 {
     for (auto& roomDeep : m_RoomDirList)
     {
-        if (yPosition <= roomDeep.first + MAX_INTERVAL &&
-            yPosition >= roomDeep.first - MAX_INTERVAL)
+        if (yPosition <= roomDeep.first + MAX_ROOM_INTERVAL &&
+            yPosition >= roomDeep.first - MAX_ROOM_INTERVAL)
             return false;
     }
     return true;
+}
+
+bool TunnelManager::checkAntInterval(int antYPos)
+{
+    if (antYPos == 0)
+        return false;
+
+    for (auto& ant : m_AntList)
+    {
+        if (antYPos == ant.first)
+            return false;
+    }
+    return true;
+}
+
+void TunnelManager::moveCallback(int playerX, int playerY)
+{
+    for (auto& ant : m_AntList)
+    {
+        int prevX = ant.second->getPosX();
+        int prevY = ant.second->getPosY();
+        ant.second->move();
+        //player와 겹치는 경우를 테스트
+        if (playerX == ant.second->getPosX() && playerY == ant.second->getPosY())
+        {
+            //공격하는 부분을 추가해야함!!!!
+            ant.second->setPos(prevX, prevY);
+        }
+
+        //AI Ant들끼리 겹치는 경우를 테스트
+        auto it = m_AntList.find(ant.second->getPosY());
+        if (it != m_AntList.end() && it->second != ant.second)
+        {
+            if (it->second->getPosX() == ant.second->getPosX())
+            {
+                ant.second->setPos(prevX, prevY);
+            }
+        }
+    }
 }
 
 void TunnelManager::hallSceneCallback(Ref* sender)

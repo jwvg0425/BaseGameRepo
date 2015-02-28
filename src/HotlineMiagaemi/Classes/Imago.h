@@ -25,8 +25,16 @@ public:
 
     void                attack(Ant* ant);
 
+    void                setPos(int x, int y);
+    int                 getPosX(){ return m_X; }
+    int                 getPosY(){ return m_Y; }
+
+    void                move();
+
 protected:
     int         m_PheromoneTime;
+    int         m_X;
+    int         m_Y;
     ImagoType   m_ImagoType;
 };
 
