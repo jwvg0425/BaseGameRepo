@@ -23,7 +23,7 @@ bool HallSprite::init()
 		return false;
 	}
 
-	for (int y = 0; y > -200; y--)
+	for (int y = 0; y >= -200; y--)
 	{
 		auto game = GameManager::getInstance();
 		auto manager = TunnelManager::getInstance();

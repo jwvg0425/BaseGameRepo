@@ -157,6 +157,16 @@ void FosterScene::feedCallback(cocos2d::Ref* ref)
 				startAction(2.0f, std::bind(&FosterScene::feedComplete, this));
 				break;
 			}
+			case Imago::IT_SOLDIER:
+			{
+				auto animation = GameManager::createAnimation("soldier_feed_%d.png", 1, 8, 0.125f);
+				auto animate = Animate::create(animation);
+				auto repeat = RepeatForever::create(animate);
+				m_AntSprite->stopAllActions();
+				m_AntSprite->runAction(repeat);
+				startAction(2.0f, std::bind(&FosterScene::feedComplete, this));
+				break;
+			}
 			}
 		}
 	}
@@ -389,6 +399,15 @@ void FosterScene::feedComplete()
 		case Imago::IT_WORKER:
 		{
 			auto animation = GameManager::createAnimation("worker_%d.png", 1, 4, 0.3f);
+			auto animate = Animate::create(animation);
+			auto repeat = RepeatForever::create(animate);
+			m_AntSprite->stopAllActions();
+			m_AntSprite->runAction(repeat);
+			break;
+		}
+		case Imago::IT_SOLDIER:
+		{
+			auto animation = GameManager::createAnimation("soldier_%d.png", 1, 4, 0.3f);
 			auto animate = Animate::create(animation);
 			auto repeat = RepeatForever::create(animate);
 			m_AntSprite->stopAllActions();
