@@ -33,10 +33,12 @@ public:
     void moveCallback(int playerX, int playerY);
     bool isRoomExist(int antXPos, int antYPos);
     bool isLeft();
+	const std::map<int, Imago*>& getHallAntList();
 
 private:
     TunnelManager();
     virtual ~TunnelManager();
+	
 
     static TunnelManager* m_Instance;
 

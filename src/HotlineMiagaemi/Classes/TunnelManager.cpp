@@ -203,3 +203,8 @@ bool TunnelManager::isRoomExist(int antXPos, int antYPos)
     }
     return false;
 }
+
+const std::map<int, Imago*>& TunnelManager::getHallAntList()
+{
+	return m_AntList;
+}
