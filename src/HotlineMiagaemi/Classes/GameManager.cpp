@@ -193,4 +193,16 @@ void GameManager::initSprites()
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("soldier.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("soldier_feed.plist");
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("soldier_brainwash.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("soldier_train.plist");
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("male.plist");
+
+	SpriteFrameCache::getInstance()->addSpriteFramesWithFile("cursor.plist");
+}
+
+void GameManager::runAnimation(cocos2d::Sprite* sprite, cocos2d::Animation* animation)
+{
+	auto animate = Animate::create(animation);
+	auto repeat = RepeatForever::create(animate);
+	sprite->stopAllActions();
+	sprite->runAction(repeat);
 }

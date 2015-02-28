@@ -6,7 +6,7 @@ Worker::Worker(int x, int y)
     m_STR = 200;
     m_INT = 100;
     m_Life = 500;
-    m_ImagoType = IT_MALE;
+    m_ImagoType = IT_WORKER;
     m_X = x; m_Y = y;
 }
 

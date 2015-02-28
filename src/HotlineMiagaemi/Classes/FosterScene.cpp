@@ -164,18 +164,22 @@ void FosterScene::feedCallback(cocos2d::Ref* ref)
 		switch (type)
 		{
 		case Ant::ST_LARVA:
-			runAnimation(m_AntSprite, GameManager::createAnimation("larva_feed_%d.png", 1, 8, 0.125f));
+			GameManager::runAnimation(m_AntSprite, GameManager::createAnimation("larva_feed_%d.png", 1, 8, 0.125f));
 			startAction(2.0f, std::bind(&FosterScene::feedComplete, this));
 			break;
 		case Ant::ST_IMAGO:
 			switch (static_cast<Imago*>(ant)->getImagoType())
 			{
 			case Imago::IT_WORKER:
-				runAnimation(m_AntSprite, GameManager::createAnimation("worker_feed_%d.png", 1, 8, 0.125f));
+				GameManager::runAnimation(m_AntSprite, GameManager::createAnimation("worker_feed_%d.png", 1, 8, 0.125f));
 				startAction(2.0f, std::bind(&FosterScene::feedComplete, this));
 				break;
 			case Imago::IT_SOLDIER:
-				runAnimation(m_AntSprite, GameManager::createAnimation("soldier_feed_%d.png", 1, 8, 0.125f));
+				GameManager::runAnimation(m_AntSprite, GameManager::createAnimation("soldier_feed_%d.png", 1, 8, 0.125f));
+				startAction(2.0f, std::bind(&FosterScene::feedComplete, this));
+				break;
+			case Imago::IT_MALE:
+				GameManager::runAnimation(m_AntSprite, GameManager::createAnimation("male_feed_%d.png", 1, 8, 0.125f));
 				startAction(2.0f, std::bind(&FosterScene::feedComplete, this));
 				break;
 			}
@@ -193,7 +197,7 @@ void FosterScene::brainwashCallback(cocos2d::Ref* ref)
 		switch (type)
 		{
 		case Ant::ST_LARVA:
-			runAnimation(m_AntSprite, GameManager::createAnimation("larva_brainwash_%d.png", 1, 4, 0.2f));
+			GameManager::runAnimation(m_AntSprite, GameManager::createAnimation("larva_brainwash_%d.png", 1, 4, 0.2f));
 			addUpmoveLabel(1, "개미를 죽입시다 개미는 나의 원수", 60);
 
 			startAction(2.0f, std::bind(&FosterScene::brainwashComplete, this));
@@ -202,10 +206,13 @@ void FosterScene::brainwashCallback(cocos2d::Ref* ref)
 			switch (static_cast<Imago*>(ant)->getImagoType())
 			{
 			case Imago::IT_WORKER:
-				runAnimation(m_AntSprite, GameManager::createAnimation("worker_brainwash_%d.png", 1, 4, 0.2f));
+				GameManager::runAnimation(m_AntSprite, GameManager::createAnimation("worker_brainwash_%d.png", 1, 4, 0.2f));
 				break;
 			case Imago::IT_SOLDIER:
-				runAnimation(m_AntSprite, GameManager::createAnimation("soldier_brainwash_%d.png", 1, 4, 0.2f));
+				GameManager::runAnimation(m_AntSprite, GameManager::createAnimation("soldier_brainwash_%d.png", 1, 4, 0.2f));
+				break;
+			case Imago::IT_MALE:
+				GameManager::runAnimation(m_AntSprite, GameManager::createAnimation("male_brainwash_%d.png", 1, 4, 0.2f));
 				break;
 			}
 
@@ -542,19 +549,15 @@ void FosterScene::setTrainAni()
 	switch (imago->getImagoType())
 	{
 	case Imago::IT_WORKER:
-		runAnimation(m_AntSprite, GameManager::createAnimation("worker_train_%d.png", 1, 3, 0.2f));
+		GameManager::runAnimation(m_AntSprite, GameManager::createAnimation("worker_train_%d.png", 1, 3, 0.2f));
 		break;
 	case Imago::IT_SOLDIER:
+		GameManager::runAnimation(m_AntSprite, GameManager::createAnimation("soldier_train_%d.png", 1, 3, 0.2f));
+		break;
+	case Imago::IT_MALE:
+		GameManager::runAnimation(m_AntSprite, GameManager::createAnimation("male_train_%d.png", 1, 3, 0.2f));
 		break;
 	}
-}
-
-void FosterScene::runAnimation(cocos2d::Sprite* sprite, cocos2d::Animation* animation)
-{
-	auto animate = Animate::create(animation);
-	auto repeat = RepeatForever::create(animate);
-	sprite->stopAllActions();
-	sprite->runAction(repeat);
 }
 
 void FosterScene::setOriginalAni()
@@ -565,16 +568,19 @@ void FosterScene::setOriginalAni()
 	switch (type)
 	{
 	case Ant::ST_LARVA:
-		runAnimation(m_AntSprite, GameManager::createAnimation("larva_%d.png", 1, 2, 0.3f));
+		GameManager::runAnimation(m_AntSprite, GameManager::createAnimation("larva_%d.png", 1, 2, 0.3f));
 		break;
 	case Ant::ST_IMAGO:
 		switch (static_cast<Imago*>(ant)->getImagoType())
 		{
 		case Imago::IT_WORKER:
-			runAnimation(m_AntSprite, GameManager::createAnimation("worker_%d.png", 1, 4, 0.3f));
+			GameManager::runAnimation(m_AntSprite, GameManager::createAnimation("worker_%d.png", 1, 4, 0.3f));
 			break;
 		case Imago::IT_SOLDIER:
-			runAnimation(m_AntSprite, GameManager::createAnimation("soldier_%d.png", 1, 4, 0.3f));
+			GameManager::runAnimation(m_AntSprite, GameManager::createAnimation("soldier_%d.png", 1, 4, 0.3f));
+			break;
+		case Imago::IT_MALE:
+			GameManager::runAnimation(m_AntSprite, GameManager::createAnimation("male_%d.png", 1, 4, 0.3f));
 			break;
 		}
 	}

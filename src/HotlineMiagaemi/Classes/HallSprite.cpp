@@ -3,10 +3,11 @@
 #include "TunnelManager.h"
 #include "HallScene.h"
 #include "GameManager.h"
+#include "Imago.h"
 
 USING_NS_CC;
 
-HallSprite::HallSprite() : m_PlayerSprite(nullptr), m_Camera(0)
+HallSprite::HallSprite() : m_PlayerSprite(nullptr), m_CursorSprite(nullptr), m_Camera(0)
 {
 
 }
@@ -108,6 +109,15 @@ bool HallSprite::init()
 	addChild(m_PlayerSprite);
 
 	m_PlayerSprite->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME - 32);
+
+	m_CursorSprite = Sprite::create("cursor_1.png");
+
+	GameManager::runAnimation(m_CursorSprite,GameManager::createAnimation("cursor_%d.png", 1, 4, 0.3f));
+
+	m_CursorSprite->setAnchorPoint(Point(0.5, 0.5));
+	m_CursorSprite->setOpacity(128);
+
+	addChild(m_CursorSprite);
 	
 	scheduleUpdate();
 
@@ -153,7 +163,6 @@ void HallSprite::update(float dTime)
 			}
 			m_PlayerSprite->setRotation(180);
 			m_PlayerSprite->runAction(MoveBy::create(0.5, Point(0, 64)));
-			
 		}
 		else
 		{
@@ -183,4 +192,6 @@ void HallSprite::update(float dTime)
 		}
 		m_PrevXPos = xPos;
 	}
+
+	m_CursorSprite->setPosition(m_PlayerSprite->getPositionX(), m_PlayerSprite->getPositionY() + 32);
 }

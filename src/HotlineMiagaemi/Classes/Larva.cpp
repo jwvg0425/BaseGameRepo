@@ -47,7 +47,7 @@ Ant* Larva::evolve()
 
 	if (randomValue < 70)
 	{
-		evolveAnt = new Worker;
+		evolveAnt = new Male;
 	}
 	else if (randomValue < 90)
 	{
@@ -60,8 +60,7 @@ Ant* Larva::evolve()
 	}
 	else
 	{
-		//TODO : Male 완성되면 Male로
-		evolveAnt = new Worker;
+		evolveAnt = new Male;
 	}
 
 	evolveAnt->addAge(m_Age);

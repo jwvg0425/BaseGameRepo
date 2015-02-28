@@ -18,6 +18,7 @@ public:
 
 private:
 	cocos2d::Sprite* m_PlayerSprite;
+	cocos2d::Sprite* m_CursorSprite;
 	int m_PrevYPos;
 	int m_PrevXPos;
 	int m_Camera;

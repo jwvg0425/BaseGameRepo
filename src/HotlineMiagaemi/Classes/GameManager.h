@@ -21,9 +21,12 @@ public:
 	static cocos2d::Animation* createAnimation
 		(const char* format, int startIdx, size_t frameNum, float delay);
 
+	static void runAnimation(cocos2d::Sprite* sprite, cocos2d::Animation* animation);
+
 	cocos2d::Sprite* getSubtile(Direction parts, int surrounds);
 
 private:
+	
 	GameManager();
 	~GameManager();
 	Ant* m_NowAnt;

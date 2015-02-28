@@ -27,8 +27,6 @@ private:
 	void setActButtonEnable(cocos2d::MenuItem* item, bool enable);
 	void addUpmoveLabel(float duration, const std::string& text, float height);
 
-	void runAnimation(cocos2d::Sprite* sprite, cocos2d::Animation* animation);
-
 	void feedCallback(cocos2d::Ref* ref);
 	void brainwashCallback(cocos2d::Ref* ref);
 	void trainCallback(cocos2d::Ref* ref);

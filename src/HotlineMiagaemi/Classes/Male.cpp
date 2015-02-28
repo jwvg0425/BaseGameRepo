@@ -26,7 +26,7 @@ Male::~Male()
 
 Sprite* Male::getSprite()
 {
-    return Sprite::create("male.png");
+    return Sprite::create("male_1.png");
 }
 
 bool Male::isEvolve()
