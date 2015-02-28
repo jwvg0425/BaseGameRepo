@@ -246,6 +246,34 @@ void HallSprite::update(float dTime)
 
 	auto antList = TunnelManager::getInstance()->getHallAntList();
 
+	std::vector<Imago*> deletedMembers;
+
+	for (auto& sprites : m_EnemySprites)
+	{
+		//해당 스프라이트가 존재하는 스프라이트인지 검사
+		if (![&]() -> bool
+		{
+			for (int i = 0; i < antList.size(); i++)
+			{
+				if (antList[i] == sprites.first)
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}())
+		{
+			sprites.second->removeFromParent();
+			deletedMembers.push_back(sprites.first);
+		}
+	}
+
+	for (auto& member : deletedMembers)
+	{
+		m_EnemySprites.erase(member);
+	}
+
 	for (int i = 0; i < antList.size(); i++)
 	{
 		int xPos = antList[i]->getPosX();
@@ -279,33 +307,5 @@ void HallSprite::update(float dTime)
 			m_EnemySprites[antList[i]]->setRotation(180);
 			break;
 		}
-	}
-
-	std::vector<Imago*> deletedMembers;
-
-	for (auto& sprites : m_EnemySprites)
-	{
-		//해당 스프라이트가 존재하는 스프라이트인지 검사
-		if (![&]() -> bool
-		{
-			for (int i = 0; i < antList.size(); i++)
-			{
-				if (antList[i] == sprites.first)
-				{
-					return true;
-				}
-			}
-
-			return false;
-		}())
-		{
-			sprites.second->removeFromParent();
-			deletedMembers.push_back(sprites.first);
-		}
-	}
-
-	for (auto& member : deletedMembers)
-	{
-		m_EnemySprites.erase(member);
 	}
 }

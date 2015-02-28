@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 
+class RoomSprite;
 class Imago;
 enum RoomType
 {
@@ -25,13 +26,14 @@ public:
     static cocos2d::Scene* createScene(RoomType roomType, bool isLeft, int sizeX, int sizeY);
 
     virtual bool init();
+	void initSprite();
 
     CREATE_FUNC(RoomScene);
 
     void setRoomType(RoomType type){ m_RoomType = type; }
     void setRoomSizeX(int sizeX){ m_SizeX = sizeX; }
     void setRoomSizeY(int sizeY){ m_SizeY = sizeY; }
-    void setIsLeft(bool isLeft){ m_IsLeft = isLeft; }
+	void setIsLeft(bool isLeft);
 
     void moveCallback(cocos2d::Ref* ref);
     void outCallback(cocos2d::Ref* ref);
@@ -49,6 +51,7 @@ private:
     cocos2d::Menu*      m_ActMenu;
     cocos2d::MenuItem*  m_MoveItem;
     cocos2d::MenuItem*  m_OutItem;
+	RoomSprite*			m_Sprite;
     int                 m_AntXPos;
     int                 m_AntYPos;
     int                 m_EggXPos;

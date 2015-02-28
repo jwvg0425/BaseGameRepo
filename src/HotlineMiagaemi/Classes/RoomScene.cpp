@@ -8,6 +8,7 @@
 #include "Soldier.h"
 #include "Queen.h"
 #include "const.h"
+#include "RoomSprite.h"
 
 USING_NS_CC;
 
@@ -31,6 +32,8 @@ cocos2d::Scene* RoomScene::createScene(RoomType roomType, bool isLeft, int sizeX
     static_cast<RoomScene*>(layer)->setRoomType(roomType);
     static_cast<RoomScene*>(layer)->setRoomSizeX(sizeX);
     static_cast<RoomScene*>(layer)->setRoomSizeY(sizeY);
+	static_cast<RoomScene*>(layer)->setIsLeft(isLeft);
+	static_cast<RoomScene*>(layer)->initSprite();
 
     return scene;
 }
@@ -96,6 +99,7 @@ bool RoomScene::init()
     m_ActMenu->setPosition(WND_WIDTH_GAME * 7 / 8, 50);
 
     addChild(m_ActMenu);
+
     return true;
 }
 
@@ -246,6 +250,31 @@ void RoomScene::setActButtonEnable(cocos2d::MenuItem* item, bool enable)
     {
         item->setColor(Color3B(128, 128, 128));
     }
+}
+
+void RoomScene::setIsLeft(bool isLeft)
+{
+	m_IsLeft = isLeft;
+
+	
+}
+
+void RoomScene::initSprite()
+{
+	m_Sprite = RoomSprite::create();
+	m_Sprite->initWithScene(this);
+	addChild(m_Sprite, -1);
+
+	if (m_IsLeft)
+	{
+		m_Sprite->setAnchorPoint(Point(1, 1));
+		m_Sprite->setPosition(WND_WIDTH_GAME, WND_HEIGHT_GAME);
+	}
+	else
+	{
+		m_Sprite->setAnchorPoint(Point(0, 1));
+		m_Sprite->setPosition(0, WND_HEIGHT_GAME);
+	}
 }
 
 
