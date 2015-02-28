@@ -12,6 +12,7 @@ public:
 	void releaseInstance();
 	Ant* getAnt();
 	void setAnt(Ant* ant);
+	void antDie();
 	int getAntNum();
 	void initAnt();
 	void initSubtileNames();

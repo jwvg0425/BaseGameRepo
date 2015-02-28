@@ -62,7 +62,7 @@ bool FosterScene::init()
 		CC_CALLBACK_1(FosterScene::dodgeCallback, this));
 	setActButtonEnable(dodgeItem, true);
 
-	auto hellItem = createActButton("Áö¿Á",
+	auto hellItem = createActButton("Áö¿Á ÈÆ·Ã",
 		CC_CALLBACK_1(FosterScene::hellCallback, this));
 	setActButtonEnable(hellItem, true);
 
@@ -351,10 +351,43 @@ void FosterScene::update(float dTime)
 		if (m_ActTime > m_CompleteTime)
 		{
 			completeAction();
+			auto ant = GameManager::getInstance()->getAnt();
+
+			//actionÀ» Çß´õ´Ï °³¹Ì°¡ Á×Àº °æ¿ì
+			if (ant->isDead())
+			{
+				auto label = Label::createWithSystemFont("°³¹Ì°¡ Á×¾î¹ö·È´Ù!", TEXT_FONT, 16);
+				label->setColor(Color3B(0, 0, 0));
+				addChild(label);
+				auto move = MoveBy::create(2.0f, Point(0, 60));
+				auto fade = FadeOut::create(2.0f);
+				auto spawn = Spawn::create(move, fade, nullptr);
+				auto del = CallFunc::create(CC_CALLBACK_0(Label::removeFromParent, label));
+				auto sequence = Sequence::create(spawn, del, nullptr);
+
+				label->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2 + 64);
+				label->runAction(sequence);
+
+				GameManager::getInstance()->initAnt();
+				GameManager::getInstance()->antDie();
+
+				m_AntSprite->removeFromParent();
+				m_AntSprite = GameManager::getInstance()->getAnt()->getSprite();
+				m_AntSprite->setPosition(WND_WIDTH_GAME / 2, WND_HEIGHT_GAME / 2);
+				addChild(m_AntSprite);
+
+				setActButtonEnable(m_FeedItem, false);
+				setActButtonEnable(m_BrainWashItem, false);
+				setActButtonEnable(m_TrainItem, false);
+				setActButtonEnable(m_InfiltrateItem, false);
+
+				startAction(Egg::getEvolveTime(), nullptr);
+			}
 		}
 	}
 
 	m_StatWindow->update(dTime);
+	m_EggNum->setString(std::to_string(GameManager::getInstance()->getAntNum()));
 }
 
 void FosterScene::setActButtonEnable(cocos2d::MenuItem* item, bool enable)

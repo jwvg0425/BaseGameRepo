@@ -52,7 +52,7 @@ Ant* GameManager::getAnt()
 
 void GameManager::initAnt()
 {
-	m_NowAnt = new Egg();
+	setAnt(new Egg());
 }
 
 void GameManager::setAnt(Ant* ant)
@@ -177,4 +177,15 @@ void GameManager::initSubtileNames()
 		m_SubtileNames[DIR_LEFTUP][DIR_LEFT | DIR_LEFTUP] =
 		"tile/subtile_12.png";
 
+}
+
+void GameManager::antDie()
+{
+	m_AntNum--;
+
+	if (m_AntNum < 0)
+	{
+		// TODO: 게임 오버 씬으로 넘어가게 지금은 그냥 게임 종료.
+		Director::getInstance()->end();
+	}
 }
